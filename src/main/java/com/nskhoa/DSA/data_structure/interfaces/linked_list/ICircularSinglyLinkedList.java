@@ -1,6 +1,7 @@
 package com.nskhoa.DSA.data_structure.interfaces.linked_list;
 
-import data_structure.implementation.linked_list.circular_singly_linked_list.Node;
+
+import com.nskhoa.DSA.data_structure.implementation.linked_list.circular_singly_linked_list.Node;
 
 public interface ICircularSinglyLinkedList
 {

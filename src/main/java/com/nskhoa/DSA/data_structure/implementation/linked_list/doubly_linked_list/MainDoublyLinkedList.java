@@ -1,6 +1,7 @@
 package com.nskhoa.DSA.data_structure.implementation.linked_list.doubly_linked_list;
 
-import data_structure.interfaces.linked_list.IDoublyLinkedList;
+
+import com.nskhoa.DSA.data_structure.interfaces.linked_list.IDoublyLinkedList;
 
 public class MainDoublyLinkedList {
     public static void main(String[] args) {

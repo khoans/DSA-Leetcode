@@ -1,6 +1,7 @@
 package com.nskhoa.DSA.data_structure.implementation.linked_list.singly_linked_list;
 
-import data_structure.interfaces.linked_list.ISinglyLinkedList;
+
+import com.nskhoa.DSA.data_structure.interfaces.linked_list.ISinglyLinkedList;
 
 class MainSinglyLinkedList {
     public static void main(String[] args) {

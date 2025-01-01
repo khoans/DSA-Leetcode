@@ -1,6 +1,8 @@
 package com.nskhoa.DSA.data_structure.implementation.linked_list.circular_doubly_linked_list;
 
-public class CircularDoublyLinkedList implements data_structure.interfaces.linked_list.CircularDoublyLinkedList
+import com.nskhoa.DSA.data_structure.interfaces.linked_list.ICircularDoublyLinkedList;
+
+public class CircularDoublyLinkedList implements ICircularDoublyLinkedList
 {
     public DoublyNode head;
     public DoublyNode tail;
