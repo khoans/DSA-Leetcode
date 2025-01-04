@@ -81,7 +81,7 @@ public class GreatestCommonDivisorOfStrings
         We need to compare the two concatenations of length O(m+n).
      */
 
-    class Solution2 {
+    static class Solution2 {
         public int gcd(int x, int y) {
             if (y == 0) {
                 return x;
@@ -100,5 +100,15 @@ public class GreatestCommonDivisorOfStrings
             int gcdLength = gcd(str1.length(), str2.length());
             return str1.substring(0, gcdLength);
         }
+    }
+
+    public static void main(String[] args)
+    {
+        String s = "ABCABCABCABC";
+        String t = "ABCABC";
+
+        Solution2 sol = new Solution2();
+        String solution = sol.gcdOfStrings(s, t);
+        System.out.println(solution);
     }
 }
