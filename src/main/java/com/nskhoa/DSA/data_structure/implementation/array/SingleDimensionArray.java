@@ -1,6 +1,8 @@
 package com.nskhoa.DSA.data_structure.implementation.array;
 
-public class SingleDimensionArray implements data_structure.interfaces.array.ISingleDimensionArray
+import com.nskhoa.DSA.data_structure.interfaces.array.ISingleDimensionArray;
+
+public class SingleDimensionArray implements ISingleDimensionArray
 {
     int arr[] = null;
 

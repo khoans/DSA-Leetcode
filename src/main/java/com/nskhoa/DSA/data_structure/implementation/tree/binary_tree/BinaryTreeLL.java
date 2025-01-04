@@ -1,6 +1,7 @@
 package com.nskhoa.DSA.data_structure.implementation.tree.binary_tree;
 
-import data_structure.implementation.tree.binary_tree.binary_tree.BinaryNode;
+
+import com.nskhoa.DSA.data_structure.implementation.tree.binary_tree.binary_tree.BinaryNode;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -1,6 +1,7 @@
 package com.nskhoa.DSA.data_structure.implementation.array;
 
-import data_structure.interfaces.array.ITwoDimensionArray;
+
+import com.nskhoa.DSA.data_structure.interfaces.array.ITwoDimensionArray;
 
 public class TwoDimensionArray implements ITwoDimensionArray
 {
