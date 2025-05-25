@@ -1,10 +1,11 @@
-package com.nskhoa.sorting_algo.bubble_sort;
+package com.nskhoa.sorting_algo.merge_sort;
 
 public class Practice
 {
-            static void bubbleSort(int arr[])
-            {
-            }
+
+    static void mergeSort(int[] arr) {
+
+    }
 
     static void printArray(int arr[])
     {
@@ -36,7 +37,7 @@ public class Practice
                 1
         };
 
-        bubbleSort(arr);
+        mergeSort(arr);
         printArray(arr);
     }
 }

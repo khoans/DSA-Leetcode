@@ -154,5 +154,7 @@ public class BinarySearchTree {
         binarySearchTree.insert(1);
         binarySearchTree.insert(9);
 
+        binarySearchTree.levelOrder();
+
     }
 }

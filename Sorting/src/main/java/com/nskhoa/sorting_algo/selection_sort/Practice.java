@@ -3,9 +3,9 @@ package com.nskhoa.sorting_algo.selection_sort;
 public class Practice
 {
 
-    //    static void selectionSort(int[] a)
-    //    {
-    //    }
+        static void selectionSort(int[] a)
+        {
+        }
 
     static void printArray(int arr[])
     {
@@ -37,7 +37,7 @@ public class Practice
                 1
         };
 
-        //        selectionSort(arr);
+                selectionSort(arr);
         printArray(arr);
     }
 }
