@@ -1,10 +1,10 @@
-package com.nskhoa.sorting_algo.insertion_sort;
+package com.nskhoa.sorting_algo.bubble_sort;
 
-public class Practice
+public class BubbleSortPractice
 {
-	    static void insertionSort(int[] arr)
-        {
-        }
+            static void bubbleSort(int arr[])
+            {
+            }
 
     static void printArray(int arr[])
     {
@@ -36,6 +36,7 @@ public class Practice
                 1
         };
 
+        bubbleSort(arr);
         printArray(arr);
     }
 }

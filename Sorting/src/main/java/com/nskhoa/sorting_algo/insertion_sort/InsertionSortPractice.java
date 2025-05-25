@@ -1,9 +1,8 @@
-package com.nskhoa.sorting_algo.selection_sort;
+package com.nskhoa.sorting_algo.insertion_sort;
 
-public class Practice
+public class InsertionSortPractice
 {
-
-        static void selectionSort(int[] a)
+	    static void insertionSort(int[] arr)
         {
         }
 
@@ -37,7 +36,7 @@ public class Practice
                 1
         };
 
-                selectionSort(arr);
+        insertionSort(arr);
         printArray(arr);
     }
 }

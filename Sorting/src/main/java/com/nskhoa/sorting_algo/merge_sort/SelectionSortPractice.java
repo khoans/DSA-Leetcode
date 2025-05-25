@@ -1,6 +1,6 @@
 package com.nskhoa.sorting_algo.merge_sort;
 
-public class Practice
+public class SelectionSortPractice
 {
 
     static void mergeSort(int[] arr) {
