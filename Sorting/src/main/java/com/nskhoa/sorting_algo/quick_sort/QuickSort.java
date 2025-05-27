@@ -1,4 +1,4 @@
-package com.nskhoa.DSA.algo.sort;
+package com.nskhoa.sorting_algo.quick_sort;
 
 public class QuickSort {
 
@@ -26,6 +26,13 @@ public class QuickSort {
 
 
 
+    static void sort(int[] arr) {
+        if (arr == null || arr.length <2) {
+            return;
+        }
+
+        quickSort(arr, 0, arr.length-1);
+    }
 
 
 	public static void printArray(int []array) {
@@ -34,4 +41,27 @@ public class QuickSort {
 		}
 	}
 
+    public static void main(String[] args)
+    {
+        int[] arr = {
+                4,
+                5,
+                2,
+                7,
+                9,
+                1,
+                3,
+                10,
+                2,
+                9,
+                5,
+                6,
+                5,
+                3,
+                1
+        };
+
+        sort(arr);
+        printArray(arr);
+    }
 }

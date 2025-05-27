@@ -1,20 +1,15 @@
-package com.nskhoa.sorting_algo.merge_sort;
+package com.nskhoa.sorting_algo.quick_sort;
 
-public class SelectionSortPractice
-{
-
-    static void mergeSort(int[] arr) {
+public class QuickSortPractice {
+    static void sort(int[] arr) {
 
     }
 
-    static void printArray(int arr[])
-    {
-        int n = arr.length;
-        for (int i = 0; i < n; i++)
-        {
-            System.out.print(arr[i] + " ");
+
+    public static void printArray(int []array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]+"  ");
         }
-        System.out.println();
     }
 
     public static void main(String[] args)
@@ -37,7 +32,8 @@ public class SelectionSortPractice
                 1
         };
 
-        mergeSort(arr);
+        sort(arr);
         printArray(arr);
     }
+
 }
