@@ -1,4 +1,4 @@
-package com.nskhoa.sorting_algo.binary_heap;
+package com.nskhoa.sorting_algo.heap_sort;
 
 public class BinaryHeap {
 	int[] arr;

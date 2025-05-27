@@ -1,7 +1,5 @@
 package com.nskhoa.sorting_algo.heap_sort;
 
-import com.nskhoa.sorting_algo.binary_heap.BinaryHeap;
-
 public class HeapSort {
 
   int[] arr = null;
