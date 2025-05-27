@@ -1,4 +1,4 @@
-package com.nskhoa.sorting_algo;
+package com.nskhoa.sorting_algo.bucket_sort;
 
 import java.util.ArrayList;
 import java.util.Collections;
