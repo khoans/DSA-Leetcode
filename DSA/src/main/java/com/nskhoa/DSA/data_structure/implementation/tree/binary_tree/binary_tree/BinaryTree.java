@@ -1,7 +1,9 @@
-package com.nskhoa.DSA.data_structure.implementation.tree.binary_tree;
+package com.nskhoa.DSA.data_structure.implementation.tree.binary_tree.binary_tree;
 
 
-public class BinaryTree {
+import com.nskhoa.DSA.data_structure.interfaces.tree.binary_tree.IBinaryTree;
+
+public class BinaryTree implements IBinaryTree {
     String[] arr;
     int lastUsedIndex;
 
@@ -12,7 +14,8 @@ public class BinaryTree {
     }
 
     // isFull
-    boolean isFull() {
+    @Override
+    public boolean isFull() {
         if (arr.length-1 == lastUsedIndex) {
             return true;
         } else {
@@ -22,7 +25,8 @@ public class BinaryTree {
 
     // insert method
 
-    void insert( String value) {
+    @Override
+    public void insert(String value) {
         if (!isFull()) {
             arr[lastUsedIndex+1] =value;
             lastUsedIndex++;
@@ -33,6 +37,7 @@ public class BinaryTree {
     }
 
     // preOrder Traversal
+    @Override
     public void preOrder(int index) {
         if (index > lastUsedIndex) {
             return;
@@ -43,6 +48,7 @@ public class BinaryTree {
     }
 
     // InOrder Traversal
+    @Override
     public void inOrder(int index) {
         if (index > lastUsedIndex) {
             return;
@@ -54,6 +60,7 @@ public class BinaryTree {
     }
 
     // Post Order Traversal
+    @Override
     public void postOrder(int index) {
         if (index > lastUsedIndex) {
             return;
@@ -64,6 +71,7 @@ public class BinaryTree {
     }
 
     // Level Order Traversal
+    @Override
     public void levelOrder() {
         for (int i = 1; i<=lastUsedIndex; i++) {
             System.out.print(arr[i]+ " ");
@@ -71,6 +79,7 @@ public class BinaryTree {
     }
 
     // Search method
+    @Override
     public int search(String value) {
         for (int i = 1; i<=lastUsedIndex; i++) {
             if (arr[i] == value) {
@@ -83,6 +92,7 @@ public class BinaryTree {
     }
 
     // Delete Method
+    @Override
     public void delete(String value) {
         int location = search(value);
         if (location == -1) {
@@ -96,6 +106,7 @@ public class BinaryTree {
 
     // Delete BT
 
+    @Override
     public void deleteBT() {
         try {
             arr = null;
@@ -106,13 +117,6 @@ public class BinaryTree {
         }
     }
 
-    public static void main(String[] args) {
-        BinaryTree bt = new BinaryTree(10);
-        for (int i = 1 ; i < 12; i++) {
-            bt.insert("con cu " + i);
-        }
-        bt.preOrder(3);
-    }
 }
 
 /**

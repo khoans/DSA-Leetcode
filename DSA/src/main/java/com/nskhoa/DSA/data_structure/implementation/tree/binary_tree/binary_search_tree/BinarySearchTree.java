@@ -1,20 +1,22 @@
-package com.nskhoa.DSA.data_structure.implementation.tree.binary_tree;
+package com.nskhoa.DSA.data_structure.implementation.tree.binary_tree.binary_search_tree;
 
 
-import com.nskhoa.DSA.data_structure.implementation.tree.binary_tree.binary_search_tree.BinaryNode;
+import com.nskhoa.DSA.data_structure.interfaces.tree.binary_search_tree.IBinarySearchTree;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinarySearchTree {
+public class BinarySearchTree
+        implements IBinarySearchTree {
     BinaryNode root;
 
-    BinarySearchTree() {
+    public BinarySearchTree() {
         root = null;
     }
 
     // Insert Method
-    private BinaryNode insert(BinaryNode currentNode, int value) {
+    @Override
+    public BinaryNode insert(BinaryNode currentNode, int value) {
         if (currentNode == null) {
             BinaryNode newNode = new BinaryNode();
             newNode.value = value;
@@ -29,13 +31,15 @@ public class BinarySearchTree {
         }
     }
 
-    void insert(int value) {
+    @Override
+    public void insert(int value) {
         root = insert(root, value);
     }
 
 
     // PreOrder Traversal
 
+    @Override
     public void preOrder(BinaryNode node) {
         if (node == null) {
             return;
@@ -46,6 +50,7 @@ public class BinarySearchTree {
     }
 
     // Inorder Traversal
+    @Override
     public void inOrder(BinaryNode node) {
         if (node == null) {
             return;
@@ -58,6 +63,7 @@ public class BinarySearchTree {
     }
 
     // PostOrder Traversal
+    @Override
     public void postOrder(BinaryNode node) {
         if (node == null) {
             return;
@@ -69,7 +75,8 @@ public class BinarySearchTree {
 
     // Level Order
 
-    void levelOrder() {
+    @Override
+    public void levelOrder() {
         Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
         queue.add(root);
         while (!queue.isEmpty()) {
@@ -85,7 +92,8 @@ public class BinarySearchTree {
     }
 
     // Search Method
-    BinaryNode search(BinaryNode node, int value) {
+    @Override
+    public BinaryNode search(BinaryNode node, int value) {
         if (node == null ) {
             System.out.println("Value: "+ value+ " not found in BST");
             return null;
@@ -99,16 +107,8 @@ public class BinarySearchTree {
         }
     }
 
-    // Minimum node
-    public static BinaryNode minimumNode(BinaryNode root) {
-        if (root.left == null) {
-            return root;
-        } else {
-            return minimumNode(root.left);
-        }
-    }
-
     // Delete node
+    @Override
     public BinaryNode deleteNode(BinaryNode root, int value) {
         if (root == null) {
             System.out.println("Value not found in BST");
@@ -121,7 +121,7 @@ public class BinarySearchTree {
         } else {
             if (root.left != null && root.right != null) {
                 BinaryNode temp = root;
-                BinaryNode minNodeForRight = minimumNode(temp.right);
+                BinaryNode minNodeForRight = IBinarySearchTree.minimumNode(temp.right);
                 root.value = minNodeForRight.value;
                 root.right = deleteNode(root.right, minNodeForRight.value);
             } else if (root.left != null) {
@@ -137,24 +137,10 @@ public class BinarySearchTree {
 
     }
 
+    @Override
     public void deleteBST() {
         root = null;
         System.out.println("BST has been deleted successfully");
     }
 
-    public static void main(String[] args) {
-        BinarySearchTree binarySearchTree = new BinarySearchTree();
-        binarySearchTree.insert(5);
-        binarySearchTree.insert(3);
-        binarySearchTree.insert(7);
-        binarySearchTree.insert(2);
-        binarySearchTree.insert(4);
-        binarySearchTree.insert(6);
-        binarySearchTree.insert(8);
-        binarySearchTree.insert(1);
-        binarySearchTree.insert(9);
-
-        binarySearchTree.levelOrder();
-
-    }
 }

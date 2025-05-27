@@ -1,6 +1,8 @@
 package com.nskhoa.DSA.data_structure.implementation.tree.trie_prefix_tree;
 
-public class Trie {
+import com.nskhoa.DSA.data_structure.interfaces.tree.trie_prefix_tree.ITriePrefixTree;
+
+public class Trie implements ITriePrefixTree {
     private TrieNode root;
 
     public Trie() {
@@ -8,6 +10,7 @@ public class Trie {
         System.out.println("The Trie has been create");
     }
 
+    @Override
     public void insert(String word) {
         TrieNode current = root;
         for (int i=0; i<word.length(); i++) {
@@ -25,6 +28,7 @@ public class Trie {
 
     // Search for a word in Trie
 
+    @Override
     public boolean search(String word) {
         TrieNode currentNode = root;
         for (int i =0; i<word.length(); i++) {
@@ -47,7 +51,8 @@ public class Trie {
 
     // Delete a String from Trie
 
-    private boolean delete(TrieNode parentNode, String word, int index) {
+    @Override
+    public boolean delete(TrieNode parentNode, String word, int index) {
         char ch = word.charAt(index);
         TrieNode currentNode = parentNode.children.get(ch);
         boolean canThisNodeBeDeleted;
@@ -78,6 +83,7 @@ public class Trie {
         }
     }
 
+    @Override
     public void delete(String word) {
         if (search(word) == true) {
             delete(root, word, 0);

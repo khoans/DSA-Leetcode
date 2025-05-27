@@ -1,6 +1,8 @@
 package com.nskhoa.DSA.data_structure.implementation.tree.binary_heap;
 
-public class BinaryHeap {
+import com.nskhoa.DSA.data_structure.interfaces.tree.binary_heap.IBinaryHeap;
+
+public class BinaryHeap implements IBinaryHeap {
     int arr[];
     int sizeOfTree;
 
@@ -10,6 +12,7 @@ public class BinaryHeap {
         System.out.println("Binary Heap has been created");
     }
 
+    @Override
     public boolean isEmpty() {
         if (sizeOfTree == 0) {
             return true;
@@ -19,6 +22,7 @@ public class BinaryHeap {
         }
     }
 
+    @Override
     public Integer peek() {
         if (isEmpty()) {
             System.out.println("Binary Heap is Empty");
@@ -28,10 +32,12 @@ public class BinaryHeap {
 
     }
 
+    @Override
     public int sizeOfBP() {
         return sizeOfTree;
     }
 
+    @Override
     public void levelOrder() {
         for (int i = 1; i <= sizeOfTree; i++) {
             System.out.print(arr[i] + " ");
@@ -40,6 +46,7 @@ public class BinaryHeap {
     }
 
     // Heapify for Insert
+    @Override
     public void heapifyBottomToTop(int index, String heapType) {
         int parent = index / 2;
         if (index <= 1) {
@@ -63,6 +70,7 @@ public class BinaryHeap {
 
     }
 
+    @Override
     public void insert(int value, String typeHeap) {
         arr[sizeOfTree + 1] = value;
         sizeOfTree++;
@@ -71,6 +79,7 @@ public class BinaryHeap {
     }
 
     // heapifyTopToBottom
+    @Override
     public void heapifyTopToBottom(int index, String heapType) {
         int left = index * 2;
         int right = index * 2 + 1;
@@ -127,6 +136,7 @@ public class BinaryHeap {
         heapifyTopToBottom(swapChild, heapType);
     }
 
+    @Override
     public int extractHeadOfBP(String heapType) {
         if (isEmpty()) {
             return -1;
@@ -141,6 +151,7 @@ public class BinaryHeap {
     }
 
     // delete
+    @Override
     public void deleteBH() {
         arr = null;
         System.out.println("BH has been successfully deleted");

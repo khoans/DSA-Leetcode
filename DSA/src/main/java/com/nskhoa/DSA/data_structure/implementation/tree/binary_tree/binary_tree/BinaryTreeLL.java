@@ -1,12 +1,12 @@
-package com.nskhoa.DSA.data_structure.implementation.tree.binary_tree;
+package com.nskhoa.DSA.data_structure.implementation.tree.binary_tree.binary_tree;
 
 
-import com.nskhoa.DSA.data_structure.implementation.tree.binary_tree.binary_tree.BinaryNode;
+import com.nskhoa.DSA.data_structure.interfaces.tree.binary_tree.IBinaryTreeLL;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinaryTreeLL {
+public class BinaryTreeLL implements IBinaryTreeLL {
     BinaryNode root;
 
     public BinaryTreeLL() {
@@ -14,7 +14,8 @@ public class BinaryTreeLL {
     }
 
     // PreOrder Traversal
-    void preOrder(BinaryNode node) {
+    @Override
+    public void preOrder(BinaryNode node) {
         if (node == null) {
             return;
         }
@@ -25,7 +26,8 @@ public class BinaryTreeLL {
 
     // InOrder Traversal
 
-    void inOrder(BinaryNode node) {
+    @Override
+    public void inOrder(BinaryNode node) {
         if (node == null) {
             return;
         }
@@ -35,7 +37,8 @@ public class BinaryTreeLL {
     }
 
     // Post Order Traversal
-    void postOrder(BinaryNode node) {
+    @Override
+    public void postOrder(BinaryNode node) {
         if (node == null) {
             return;
         }
@@ -45,7 +48,8 @@ public class BinaryTreeLL {
     }
 
     // Level Order
-    void levelOrder() {
+    @Override
+    public void levelOrder() {
         Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
         queue.add(root);
         while (!queue.isEmpty()) {
@@ -61,6 +65,7 @@ public class BinaryTreeLL {
     }
 
     // Search Method
+    @Override
     public void search(String value) {
         Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
         queue.add(root);
@@ -82,7 +87,8 @@ public class BinaryTreeLL {
     }
 
     // Insert Method
-    void insert(String value) {
+    @Override
+    public void insert(String value) {
         BinaryNode newNode = new BinaryNode();
         newNode.value = value;
         if (root == null) {
@@ -110,6 +116,7 @@ public class BinaryTreeLL {
     }
 
     // Get Deepest node
+    @Override
     public BinaryNode getDeepestNode() {
         Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
         queue.add(root);
@@ -127,6 +134,7 @@ public class BinaryTreeLL {
     }
 
     // Delete Deepest node
+    @Override
     public void deleteDeepestNode() {
         Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
         queue.add(root);
@@ -148,7 +156,8 @@ public class BinaryTreeLL {
     }
 
     // Delete Given node
-    void deleteNode(String value) {
+    @Override
+    public void deleteNode(String value) {
         Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
         queue.add(root);
         while (!queue.isEmpty()) {
@@ -167,7 +176,8 @@ public class BinaryTreeLL {
     }
 
     // Delete Binary Tree
-    void deleteBT() {
+    @Override
+    public void deleteBT() {
         root = null;
         System.out.println("BT has been successfully deleted!");
     }
