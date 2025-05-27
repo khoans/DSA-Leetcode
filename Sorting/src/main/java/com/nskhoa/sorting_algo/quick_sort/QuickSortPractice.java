@@ -1,21 +1,19 @@
 package com.nskhoa.sorting_algo.quick_sort;
 
 public class QuickSortPractice {
+
     static void sort(int[] arr) {
 
     }
 
-
-    public static void printArray(int []array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i]+"  ");
+    public static void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + "  ");
         }
     }
 
-    public static void main(String[] args)
-    {
-        int[] arr = {
-                4,
+    public static void main(String[] args) {
+        int[] arr = {4,
                 5,
                 2,
                 7,
@@ -29,11 +27,14 @@ public class QuickSortPractice {
                 6,
                 5,
                 3,
-                1
+                1,
+                5
         };
-
         sort(arr);
         printArray(arr);
+
+//        int pivot = partition(arr, 0, arr.length-1);
+//        System.out.println(pivot);
     }
 
 }
