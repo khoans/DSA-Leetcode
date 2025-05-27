@@ -3,25 +3,25 @@ These problems could come from neetcode and leetcode.
 # Array and Hashing
 ## Easy
 
-1. [Two Sum](https://leetcode.com/problems/two-sum/)
-2. [Score of a String](https://leetcode.com/problems/score-of-parentheses/)
-3. [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
-4. [Valid Anagram](https://leetcode.com/problems/valid-anagram/)
-5. [Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
-6. [Is Subsequence](https://leetcode.com/problems/is-subsequence/)
-7. [Length of Last Word](https://leetcode.com/problems/length-of-last-word/)
-8. [Number of Senior Citizens](https://leetcode.com/problems/number-of-senior-citizens/)
-9. [Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)
-10. [String Matching in an Array](https://leetcode.com/problems/string-matching-in-an-array/)
-11. [Pascal's Triangle](https://leetcode.com/problems/pascals-triangle/)
-12. [Remove Element](https://leetcode.com/problems/remove-element/)
-13. [Unique Email Addresses](https://leetcode.com/problems/unique-email-addresses/)
-14. [Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings/)
-15. [Can Place Flowers](https://leetcode.com/problems/can-place-flowers/)
-16. [Majority Element](https://leetcode.com/problems/majority-element/)
-17. [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/)
-18. [Longest Strictly Increasing or Strictly Decreasing Subarray](https://leetcode.com/problems/longest-continuous-increasing-subsequence/)
-19. [Maximum Ascending Subarray Sum](https://leetcode.com/problems/maximum-ascending-subarray-sum/)
+1. [Two Sum](https://leetcode.com/problems/two-sum/) [x]
+2. [Score of a String](https://leetcode.com/problems/score-of-a-string/description/) [x]
+3. [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) [x]
+4. [Valid Anagram](https://leetcode.com/problems/valid-anagram/) [x]
+5. [Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/) [x]
+6. [Is Subsequence](https://leetcode.com/problems/is-subsequence/) [x]
+7. [Length of Last Word](https://leetcode.com/problems/length-of-last-word/) [x]
+8. [Number of Senior Citizens](https://leetcode.com/problems/number-of-senior-citizens/) [x]
+9. [Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/) [x]
+10. [String Matching in an Array](https://leetcode.com/problems/string-matching-in-an-array/) [x]
+11. [Pascal's Triangle](https://leetcode.com/problems/pascals-triangle/) [x]
+12. [Remove Element](https://leetcode.com/problems/remove-element/) [x]
+13. [Unique Email Addresses](https://leetcode.com/problems/unique-email-addresses/) [x]
+14. [Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings/) [x]
+15. [Can Place Flowers](https://leetcode.com/problems/can-place-flowers/) [x]
+16. [Majority Element](https://leetcode.com/problems/majority-element/) [x]
+17. [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/) [x]
+18. [Longest Strictly Increasing or Strictly Decreasing Subarray](https://leetcode.com/problems/longest-continuous-increasing-subsequence/) [x]
+19. [Maximum Ascending Subarray Sum](https://leetcode.com/problems/maximum-ascending-subarray-sum/) [x]
 20. [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/)
 21. [Kth Distinct String in An Array](https://leetcode.com/problems/kth-distinct-string-in-an-array/)
 22. [Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/)
@@ -29,32 +29,34 @@ These problems could come from neetcode and leetcode.
 24. [Find Missing and Repeated Values](https://leetcode.com/problems/set-mismatch/)
 25. [Word Pattern](https://leetcode.com/problems/word-pattern/)
 26. [Height Checker](https://leetcode.com/problems/height-checker/)
-27. [Special Array I](https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/)
+27. [Special Array I](https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/) [x]
 28. [Check If Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/)
-29. [Monotonic Array](https://leetcode.com/problems/monotonic-array/)
-30. [Divide Array Into Equal Pairs](https://leetcode.com/problems/divide-array-into-equal-pairs/)
-31. [Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/)
+29. [Monotonic Array](https://leetcode.com/problems/monotonic-array/) [x]
+30. [Divide Array Into Equal Pairs](https://leetcode.com/problems/divide-array-into-equal-pairs/) [x]
+31. [Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/) [x]
 32. [Find Words That Can Be Formed by Characters](https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/)
-33. [Count the Number of Consistent Strings](https://leetcode.com/problems/count-the-number-of-consistent-strings/)
-34. [Largest 3-Same-Digit Number in String](https://leetcode.com/problems/largest-3-same-digit-number-in-string/)
+33. [Count the Number of Consistent Strings](https://leetcode.com/problems/count-the-number-of-consistent-strings/) [x]
+34. [Largest 3-Same-Digit Number in String](https://leetcode.com/problems/largest-3-same-digit-number-in-string/) [x]
 35. [Destination City](https://leetcode.com/problems/destination-city/)
 36. [Maximum Product Difference Between Two Pairs](https://leetcode.com/problems/maximum-product-difference-between-two-pairs/)
 37. [Circular Sentence](https://leetcode.com/problems/circular-sentence/)
 38. [Maximum Score After Splitting a String](https://leetcode.com/problems/maximum-score-after-splitting-a-string/)
 39. [Path Crossing](https://leetcode.com/problems/path-crossing/)
 40. [Minimum Changes to Make Alternating Binary String](https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/)
-41. [Redistribute Characters to Make All Strings Equal](https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/)
+41. [Redistribute Characters to Make All Strings Equal](https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/) [x]
 42. [Longest Palindrome](https://leetcode.com/problems/longest-palindrome/)
 43. [Largest Substring Between Two Equal Characters](https://leetcode.com/problems/largest-substring-between-two-equal-characters/)
-44. [Set Mismatch](https://leetcode.com/problems/set-mismatch/)
+44. [Set Mismatch](https://leetcode.com/problems/set-mismatch/) [x]
 45. [First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)
 46. [Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/)
 47. [Find Common Characters](https://leetcode.com/problems/find-common-characters/)
 48. [Number of Students Unable to Eat Lunch](https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/)
-49. [Time Needed to Buy Tickets](https://leetcode.com/problems/time-needed-to-buy-tickets/)
+49. [Time Needed to Buy Tickets](https://leetcode.com/problems/time-needed-to-buy-tickets/) [x]
 50. [Special Array with X Elements Greater Than or Equal X](https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/)
 51. [Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/)
 52. [Append Characters to String to Make Subsequences](https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/)
+53. [Single Number](https://leetcode.com/problems/single-number/description/) [x]
+54. [Sort Array By Increasing Frequency](https://leetcode.com/problems/sort-array-by-increasing-frequency/) [x]
 
 ## Medium
 
@@ -146,8 +148,8 @@ These problems could come from neetcode and leetcode.
 
 ## Easy
 
-1. [Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/)
-2. [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+1. [Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/) 
+2. [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) [x]
 3. [Minimum Recolors to Get K Consecutive Black Blocks](https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/)
 4. [Defuse the Bomb](https://leetcode.com/problems/defuse-the-bomb/)
 
