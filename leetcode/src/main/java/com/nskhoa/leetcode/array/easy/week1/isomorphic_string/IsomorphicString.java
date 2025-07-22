@@ -1,4 +1,4 @@
-package com.nskhoa.leetcode.array.easy.isomorphic_string;
+package com.nskhoa.leetcode.array.easy.week1.isomorphic_string;
 
 import java.util.Arrays;
 

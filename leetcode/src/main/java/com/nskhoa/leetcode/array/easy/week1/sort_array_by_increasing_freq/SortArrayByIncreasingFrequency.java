@@ -1,4 +1,4 @@
-package com.nskhoa.leetcode.array.easy.sort_array_by_increasing_freq;
+package com.nskhoa.leetcode.array.easy.week1.sort_array_by_increasing_freq;
 
 /*
 * Given an array of integers nums, sort the array in increasing order based on the frequency of the values. If multiple values have the same frequency, sort them in decreasing order.
@@ -32,7 +32,6 @@ Constraints:
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class SortArrayByIncreasingFrequency {
     class Solution {

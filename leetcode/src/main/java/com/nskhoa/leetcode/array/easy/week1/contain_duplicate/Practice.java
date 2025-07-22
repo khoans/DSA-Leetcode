@@ -1,4 +1,4 @@
-package com.nskhoa.leetcode.array.easy.contain_duplicate;
+package com.nskhoa.leetcode.array.easy.week1.contain_duplicate;
 
 import java.util.HashSet;
 import java.util.Set;

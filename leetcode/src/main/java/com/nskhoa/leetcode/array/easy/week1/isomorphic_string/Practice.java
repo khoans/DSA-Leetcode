@@ -1,6 +1,4 @@
-package com.nskhoa.leetcode.array.easy.isomorphic_string;
-
-import java.util.Arrays;
+package com.nskhoa.leetcode.array.easy.week1.isomorphic_string;
 
 public class Practice {
     class Solution {

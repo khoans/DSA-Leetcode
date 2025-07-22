@@ -1,4 +1,4 @@
-package com.nskhoa.leetcode.array.easy.is_anagram;
+package com.nskhoa.leetcode.array.easy.week1.is_anagram;
 
 /**
  * Given two strings s and t, return true if t is an anagram of s, and false otherwise.

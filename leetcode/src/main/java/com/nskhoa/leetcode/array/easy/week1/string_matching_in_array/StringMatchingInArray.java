@@ -1,4 +1,4 @@
-package com.nskhoa.leetcode.array.easy.string_matching_in_array;
+package com.nskhoa.leetcode.array.easy.week1.string_matching_in_array;
 
 import java.util.ArrayList;
 import java.util.List;

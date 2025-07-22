@@ -1,4 +1,4 @@
-package com.nskhoa.leetcode.array.easy.two_sum;
+package com.nskhoa.leetcode.array.easy.week1.two_sum;
 
 import java.util.HashMap;
 import java.util.Map;

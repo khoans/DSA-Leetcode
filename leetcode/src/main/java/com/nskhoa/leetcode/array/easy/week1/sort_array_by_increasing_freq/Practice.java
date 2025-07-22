@@ -1,8 +1,4 @@
-package com.nskhoa.leetcode.array.easy.sort_array_by_increasing_freq;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+package com.nskhoa.leetcode.array.easy.week1.sort_array_by_increasing_freq;
 
 public class Practice {
     class Solution {
