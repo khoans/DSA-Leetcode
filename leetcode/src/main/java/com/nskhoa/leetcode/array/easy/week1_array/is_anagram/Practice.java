@@ -1,4 +1,4 @@
-package com.nskhoa.leetcode.array.easy.week1.is_anagram;
+package com.nskhoa.leetcode.array.easy.week1_array.is_anagram;
 
 public class Practice {
     class Solution {

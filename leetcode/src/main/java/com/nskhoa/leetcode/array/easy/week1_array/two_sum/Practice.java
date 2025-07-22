@@ -1,4 +1,4 @@
-package com.nskhoa.leetcode.array.easy.week1.two_sum;
+package com.nskhoa.leetcode.array.easy.week1_array.two_sum;
 
 public class Practice {
     class Solution {
