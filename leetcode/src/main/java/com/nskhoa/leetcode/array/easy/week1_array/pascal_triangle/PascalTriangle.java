@@ -15,12 +15,15 @@ public class PascalTriangle {
                 List<Integer> row = new ArrayList<>();
                 List<Integer> prevRow = triangle.get(rowNum -1);
 
+                // The first row element is always 1.
                 row.add(1);
 
+                // Each triangle element (except the first and last of each row)
                 for (int j = 1 ; j < rowNum; j++) {
                     row.add(prevRow.get(j-1) + prevRow.get(j));
                 }
 
+                // The last row element is always 1.
                 row.add(1);
 
                 triangle.add(row);

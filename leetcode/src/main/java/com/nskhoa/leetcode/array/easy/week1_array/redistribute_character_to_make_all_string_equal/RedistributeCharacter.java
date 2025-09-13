@@ -45,6 +45,7 @@ public class RedistributeCharacter {
         Solution sol = new Solution();
 
         String[] words = new String[]{"abc", "aabc", "bc"};
-        sol.makeEqual(words);
+        var result = sol.makeEqual(words);
+        System.out.println(result);
     }
 }
