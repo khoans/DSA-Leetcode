@@ -63,4 +63,29 @@ public class Largest3SameDigitNumber {
             return "";
         }
     }
+
+    static class Solution2 {
+        public String largestGoodInteger(String num) {
+            String answer = "";
+            String longest = "";
+            for (int i = 9 ; i >= 0; i--) {
+                longest = String.valueOf(i).repeat(3);
+                if (num.indexOf(longest) != -1) {
+                    answer = longest;
+                    return answer;
+                }
+            }
+            return answer;
+        }
+    }
+
+    public static void main(String[] args) {
+        String num = "6333317779";
+        String num2 = "6888817779";
+        var sol2 = new Solution2();
+//        var result = sol2.largestGoodInteger(num);
+        var result2 = sol2.largestGoodInteger(num2);
+//        System.out.println(result);
+        System.out.println(result2);
+    }
 }
