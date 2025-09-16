@@ -25,6 +25,11 @@ Constraints:
 strs[i] consists of only lowercase English letters if it is non-empty.
  * */
 public class LongestCommonPrefix {
+    /**
+     * Horizontal scanning
+     * Time complexity: O(S) where S is the sum of all characters in all strings
+     * Space complexity: O(1)
+     */
     class Solution {
         public String longestCommonPrefix(String[] strs) {
             if (strs.length == 0) {
@@ -45,6 +50,11 @@ public class LongestCommonPrefix {
         }
     }
 
+    /**
+     * Vertical scanning
+     * Time complexity: O(S) where S is the sum of all characters in all strings
+     * Space complexity: O(1)
+     */
     class Solution2 {
         public String longestCommonPrefix(String[] strs) {
             if (strs == null || strs.length == 0) {
