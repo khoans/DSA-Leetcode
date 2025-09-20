@@ -14,6 +14,7 @@
         <module>Sorting</module>
         <module>DesignPattern/java</module>
         <module>DesignPattern/java/singleton</module>
+        <module>leetcode-advanced-implementation</module>
     </modules>
 
     <properties>
