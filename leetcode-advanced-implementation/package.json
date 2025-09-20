@@ -1,0 +1,15 @@
+{
+  "name": "leetcode-advanced-implementation",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "khoa",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@datastructures-js/priority-queue": "^6.3.4"
+  }
+}
