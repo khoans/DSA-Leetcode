@@ -163,7 +163,7 @@ The space complexity is O(1) as the algorithm uses only a constant amount of ext
 
     public static void main(String[] args) {
         Solution solution = new TimeNeededToBuyTicket().new Solution();
-        int[] tickets = {2, 3, 2};
+        int[] tickets = {2, 3, 6, 5, 2};
         int k = 2;
         int result = solution.timeRequiredToBuy(tickets, k);
         System.out.println(result); // Output: 6
