@@ -64,6 +64,10 @@ public class SpecialArrayWithXGreaterOrEqualToX {
     public static void main(String[] args) {
         Solution solution = new SpecialArrayWithXGreaterOrEqualToX().new Solution();
         int[] nums = {3, 5};
-        System.out.println(solution.specialArray(nums)); // Output: 2
+//        System.out.println(solution.specialArray(nums)); // Output: 2
+        
+        int[] nums2 = {0, 4, 3, 0, 4};
+        System.out.println(solution.specialArray(nums2)); // Output: 3
+
     }
 }
