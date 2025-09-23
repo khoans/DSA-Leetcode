@@ -44,6 +44,10 @@ Follow up: Could you find an O(nums1.length + nums2.length) solution?
  * */
 public class NextGreaterElementI {
 
+    /*
+     * Time: O(n)
+     * Space: O(n)
+     * */
     public class Solution {
 
         public int[] nextGreaterElement(int[] nums1, int[] nums2) {
