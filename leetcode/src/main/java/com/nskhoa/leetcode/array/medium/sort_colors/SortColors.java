@@ -32,6 +32,8 @@ public class SortColors {
     class Solution {
         /*
       Dutch National Flag problem solution.
+      Time complexity: O(N)
+        Space complexity: O(1)
       */
         public void sortColors(int[] nums) {
             // For all idx < i : nums[idx < i] = 0
@@ -47,15 +49,18 @@ public class SortColors {
                     // Swap p0-th and curr-th elements
                     // i++ and j++
                     tmp = nums[p0];
-                    nums[p0++] = nums[curr];
-                    nums[curr++] = tmp;
+                    nums[p0] = nums[curr];
+                    nums[curr] = tmp;
+                    p0++;
+                    curr++;
                 }
                 else if (nums[curr] == 2) {
                     // Swap k-th and curr-th elements
                     // p2--
                     tmp = nums[curr];
                     nums[curr] = nums[p2];
-                    nums[p2--] = tmp;
+                    nums[p2] = tmp;
+                    p2--;
                 }
                 else {
                     curr++;
