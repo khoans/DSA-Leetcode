@@ -2,7 +2,7 @@ package com.nskhoa.sorting_algo.merge_sort;
 
 public class MergeSortPractice {
     static void sort(int[] arr) {
-        
+
 
     }
 
