@@ -1,48 +1,42 @@
 package com.nskhoa.sorting_algo.selection_sort;
 
-public class SelectionSort
-{
+public class SelectionSort {
+    static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
 
     // This is the opposite of the bubble sort. In bubblesort, we find the largest element and place them at the end.
     // In Selection sort, we find the smallest element to place it at the start of the array
-    static void selectionSort(int[] a)
-    {
+    static void selectionSort(int[] a) {
         // First pointer
-        for (int j = 0; j < a.length; j++)
-        {
+        for (int j = 0; j < a.length; j++) {
             // Track the minimum number
             int minimumIndex = j;
             // Second pointer
-            for (int i = j + 1; i < a.length; i++)
-            {
+            for (int i = j + 1; i < a.length; i++) {
                 // If the traverse arr < current minimum number => update the index
-                if (a[i] < a[minimumIndex])
-                {
+                if (a[i] < a[minimumIndex]) {
                     minimumIndex = i;
                 }
             }
 
             // If there is a new minimum number => swap the two
-            if (minimumIndex != j)
-            {
-                int temp = a[j];
-                a[j] = a[minimumIndex];
-                a[minimumIndex] = temp;
+            if (minimumIndex != j) {
+                swap(a, j, minimumIndex);
             }
         }
     }
 
 
-    public static void printArray(int[] array)
-    {
-        for (int i = 0; i < array.length; i++)
-        {
+    public static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + "  ");
         }
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         int[] arr = {
                 4,
                 5,
