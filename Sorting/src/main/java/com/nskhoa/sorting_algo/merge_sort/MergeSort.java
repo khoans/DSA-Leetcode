@@ -14,13 +14,13 @@ public class MergeSort {
      */
 
     static void merge(int[] arr, int left, int middle, int right) {
-        // Create temporary arrays to hold left and right halves
-        int[] leftTempArr = new int[middle - left + 2];
-        // intp[ rightTempArr = new int[right - (middle +1) +2];
-        int[] rightTempArr = new int[right - middle + 1];
-
         int arrLeftLength = middle - left + 1;
         int arrRightLength = right - middle;
+
+        // Create temporary arrays to hold left and right halves
+        int[] leftTempArr = new int[arrLeftLength + 1];
+        // intp[ rightTempArr = new int[right - (middle +1) +2];
+        int[] rightTempArr = new int[arrRightLength + 1];
 
         // Copy values into the left temp array
         for (int i = 0; i < arrLeftLength; i++) {
@@ -33,8 +33,8 @@ public class MergeSort {
         }
 
         // Add sentinel values at the end of each temporary array
-        leftTempArr[middle - left + 1] = Integer.MAX_VALUE;
-        rightTempArr[right - middle] = Integer.MAX_VALUE;
+        leftTempArr[arrLeftLength] = Integer.MAX_VALUE;
+        rightTempArr[arrRightLength] = Integer.MAX_VALUE;
 
         int i = 0, j = 0;
 
