@@ -19,13 +19,16 @@ public class MergeSort {
         // intp[ rightTempArr = new int[right - (middle +1) +2];
         int[] rightTempArr = new int[right - middle + 1];
 
+        int arrLeftLength = middle - left + 1;
+        int arrRightLength = right - middle;
+
         // Copy values into the left temp array
-        for (int i = 0; i <= middle - left; i++) {
+        for (int i = 0; i < arrLeftLength; i++) {
             leftTempArr[i] = arr[left + i];
         }
 
         // Copy values into the right temp array
-        for (int i = 0; i < right - middle; i++) {
+        for (int i = 0; i < arrRightLength; i++) {
             rightTempArr[i] = arr[middle + i + 1];
         }
 
@@ -57,7 +60,7 @@ public class MergeSort {
      * @param right The ending index of the array/subarray
      */
     static void mergeSort(int[] arr, int left, int right) {
-        if (right > left) {
+        if (left < right) {
             int middle = (left + right) / 2;
 
             // Sort the left half
