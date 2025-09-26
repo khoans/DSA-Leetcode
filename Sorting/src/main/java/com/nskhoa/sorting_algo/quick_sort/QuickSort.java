@@ -26,22 +26,16 @@ public class QuickSort {
      *
      * @return the final index position of the pivot after partitioning
      */
-    static int partition(int[] arr, int start, int end) {
-        int pivot = arr[end]; // pivot element chosen as the last element
-        int i = start - 1; // i tracks the boundary for smaller elements
-
-        // Traverse from start to end-1
-        for (int j = start; j < end; j++) {
-            // If current element is smaller or equal to the pivot
-            if (arr[j] <= pivot) {
-                i++; // increment boundary
-                swap(arr, i, j); // swap current element into "smaller elements" region
+    static int partition(int[] array, int start, int end) {
+        int pivot = array[end];
+        int i = start - 1;
+        for (int j = start; j <= end; j++) {
+            if (array[j] <= pivot) {
+                i++;
+                swap(array, i, j);
             }
         }
-
-        // Finally, place the pivot element after all smaller elements
-        swap(arr, i + 1, end);
-        return i + 1; // return pivot's final position
+        return i;
     }
 
     /**
