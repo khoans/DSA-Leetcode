@@ -49,7 +49,6 @@ public class SortColors {
             // For all idx > k : nums[idx > k] = 2
             int p2 = nums.length - 1;
 
-            int tmp;
             while (curr <= p2) {
                 if (nums[curr] == 0) {
                     // Swap p0-th and curr-th elements
