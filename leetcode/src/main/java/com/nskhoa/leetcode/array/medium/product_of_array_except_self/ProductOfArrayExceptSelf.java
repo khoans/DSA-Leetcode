@@ -127,5 +127,25 @@ Space complexity : O(1) since don't use any additional array for our computation
         }
     }
 
+    public static void main(String[] args) {
+        Solution2 solution = new ProductOfArrayExceptSelf().new Solution2();
+//        int[] nums1 = {1, 2, 3, 4};
+        int[] nums1 = {4, 5, 1, 8, 2};
+        int[] result1 = solution.productExceptSelf(nums1);
+        // Output: [24,12,8,6]
+        for (int num : result1) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+
+//        int[] nums2 = {-1, 1, 0, -3, 3};
+//        int[] result2 = solution.productExceptSelf(nums2);
+//        // Output: [0,0,9,0,0]
+//        for (int num : result2) {
+//            System.out.print(num + " ");
+//        }
+//        System.out.println();
+    }
+
 
 }
