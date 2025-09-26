@@ -30,6 +30,12 @@ Follow up: Could you come up with a one-pass algorithm using only constant extra
  * */
 public class SortColors {
     class Solution {
+        void swap(int[] arr, int i, int j) {
+            int tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+        }
+
         /*
       Dutch National Flag problem solution.
       Time complexity: O(N)
@@ -48,18 +54,14 @@ public class SortColors {
                 if (nums[curr] == 0) {
                     // Swap p0-th and curr-th elements
                     // i++ and j++
-                    tmp = nums[p0];
-                    nums[p0] = nums[curr];
-                    nums[curr] = tmp;
+                    swap(nums, curr, p0);
                     p0++;
                     curr++;
                 }
                 else if (nums[curr] == 2) {
                     // Swap k-th and curr-th elements
                     // p2--
-                    tmp = nums[curr];
-                    nums[curr] = nums[p2];
-                    nums[p2] = tmp;
+                    swap(nums, curr, p2);
                     p2--;
                 }
                 else {
