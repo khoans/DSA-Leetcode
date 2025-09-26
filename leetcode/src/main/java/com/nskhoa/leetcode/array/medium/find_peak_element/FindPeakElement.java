@@ -59,10 +59,10 @@ public class FindPeakElement {
 
     public static void main(String[] args) {
         Solution solution = new FindPeakElement().new Solution();
-        int[] nums1 = {1, 2, 3, 1};
-        System.out.println(solution.findPeakElement(nums1)); // Output: 2
+//        int[] nums1 = {1, 2, 3, 1};
+//        System.out.println(solution.findPeakElement(nums1)); // Output: 2
 
-        int[] nums2 = {1, 2, 1, 3, 5, 6, 4};
+        int[] nums2 = {1, 2, 1, 3, 2, 3, 4, 5};
         System.out.println(solution.findPeakElement(nums2)); // Output: 5
     }
 }

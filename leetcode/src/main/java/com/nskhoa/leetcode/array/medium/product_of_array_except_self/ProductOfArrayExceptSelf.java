@@ -37,6 +37,10 @@ Space complexity : O(N) used up by the two intermediate arrays that we construct
      * */
     class Solution {
 
+        /*
+        Time complexity : O(N) where N represents the number of elements in the input array. We use one iteration to construct the array L, one to construct the array R and one last to construct the answer array using L and R.
+Space complexity : O(N) used up by the two intermediate arrays that we constructed to keep track
+        * */
         public int[] productExceptSelf(int[] nums) {
             // The length of the input array
             int length = nums.length;
