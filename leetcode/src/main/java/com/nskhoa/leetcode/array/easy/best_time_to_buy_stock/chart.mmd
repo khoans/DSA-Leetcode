@@ -1,0 +1,13 @@
+flowchart TD
+    A["Start"] --> B["Initialize min_price = infinity"]
+    B --> C["Initialize max_profit = 0"]
+    C --> D{"For each price in prices"}
+    D -- " Yes " --> E{"Is price < min_price?"}
+    E -- " Yes " --> F["Update min_price = price"]
+    F --> D
+    E -- " No " --> G["Calculate profit = price - min_price"]
+    G --> H{"Is profit > max_profit?"}
+    H -- " Yes " --> I["Update max_profit = profit"]
+    I --> D
+    H -- " No " --> D
+    D -- " No " --> J["Return max_profit"]

@@ -1,0 +1,14 @@
+flowchart TD
+    A["Start"] --> B{"For each 'num' in nums"}
+    B -- " Next num " --> C["Calculate index = abs(num) - 1"]
+    C --> D{"If nums[index] is positive"}
+    D -- " Yes " --> E["Mark as seen: nums[index] = -nums[index]"]
+    E --> B
+    D -- " No " --> B
+    B -- " Marking phase finished " --> F["Initialize empty list 'result'"]
+    F --> G{"For i from 0 to n-1"}
+    G -- " Next index " --> H{"Is nums[i] > 0?"}
+    H -- " Yes " --> I["Add i + 1 to 'result'"]
+    I --> G
+    H -- " No " --> G
+    G -- " Collection phase finished " --> J["Return 'result'"]

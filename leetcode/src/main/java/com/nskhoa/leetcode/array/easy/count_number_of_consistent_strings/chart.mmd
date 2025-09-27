@@ -1,0 +1,16 @@
+flowchart TD
+    A["Start"] --> B["Create a hash set 'allowed_set' from 'allowed' string"]
+    B --> C["Initialize count = 0"]
+    C --> D{"For each 'word' in 'words'"}
+    D -- " Next word " --> E["Set is_consistent = true"]
+    E --> F{"For each 'char' in 'word'"}
+    F -- " Next char " --> G{"Is 'char' in 'allowed_set'?"}
+    G -- " No " --> H["Set is_consistent = false"]
+    H --> I["Break from inner loop"]
+    I --> J
+    G -- " Yes " --> F
+    F -- " Loop finished " --> J{"Is 'is_consistent' true?"}
+    J -- " Yes " --> K["Increment count"]
+    K --> D
+    J -- " No " --> D
+    D -- " All words checked " --> L["Return count"]

@@ -61,6 +61,10 @@ Space complexity: O(m+n) because in the worst case, when all elements in the arr
         }
     }
 
+    /*
+    Time Complexity: O(n + m)
+      Space Complexity: O(n)
+    * */
     class Solution2 {
         public int[] intersection(int[] nums1, int[] nums2) {
 

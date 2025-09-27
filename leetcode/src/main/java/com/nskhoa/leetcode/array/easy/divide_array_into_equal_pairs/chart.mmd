@@ -1,0 +1,10 @@
+flowchart TD
+    A["Start"] --> B["Create a frequency map 'counts'"]
+    B --> C{"For each 'num' in the input array 'nums'"}
+    C -- " Next num " --> D["Increment the count for 'num' in the map"]
+    D --> C
+    C -- " Loop finished " --> E{"For each 'count' in the values of the frequency map"}
+    E -- " Next count " --> F{"Is 'count' an odd number?"}
+    F -- " Yes " --> G["Return false"]
+    F -- " No " --> E
+    E -- " All counts are even " --> H["Return true"]

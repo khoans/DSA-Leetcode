@@ -1,0 +1,8 @@
+flowchart TD
+    A["Start"] --> B["Get n = nums.length"]
+    B --> C["Create new array 'ans' of size 2*n"]
+    C --> D{"Loop for i from 0 to n-1"}
+    D -- " Yes " --> E["Set ans[i] = nums[i]"]
+    E --> F["Set ans[i + n] = nums[i]"]
+    F --> D
+    D -- " No " --> G["Return ans"]

@@ -1,0 +1,8 @@
+flowchart TD
+    A["Start"] --> B["Initialize an empty hash set 'seen'"]
+    B --> C{"For each number 'num' in nums"}
+    C -- " Next number " --> D{"Does 'seen' contain 'num'?"}
+    D -- " Yes " --> E["Return true"]
+    D -- " No " --> F["Add 'num' to 'seen'"]
+    F --> C
+    C -- " Loop finished " --> G["Return false"]

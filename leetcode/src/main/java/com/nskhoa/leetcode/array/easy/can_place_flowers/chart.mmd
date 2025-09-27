@@ -1,0 +1,25 @@
+flowchart TD
+    Start([Start])
+    Loop{For i in flowerbed}
+    IsZero{"flowerbed[i] == 0?"}
+    CheckLeft{"Is left empty?\ni == 0 or flowerbed[i-1] == 0"}
+    CheckRight{"Is right empty?\ni == len-1 or flowerbed[i+1] == 0"}
+    PlantFlower(["Plant flower\nflowerbed[i] = 1\ncount++"])
+    EnoughFlowers{"count >= n?"}
+    ReturnTrue([Return true])
+    Continue([Continue to next i])
+    EndReturn([Return count >= n])
+    Start --> Loop
+    Loop --> IsZero
+    IsZero -- No --> Continue
+    IsZero -- Yes --> CheckLeft
+    CheckLeft -- No --> Continue
+    CheckLeft -- Yes --> CheckRight
+    CheckRight -- No --> Continue
+    CheckRight -- Yes --> PlantFlower
+    PlantFlower --> EnoughFlowers
+    EnoughFlowers -- Yes --> ReturnTrue
+    EnoughFlowers -- No --> Continue
+    Continue --> Loop
+    Loop --> EndReturn
+
