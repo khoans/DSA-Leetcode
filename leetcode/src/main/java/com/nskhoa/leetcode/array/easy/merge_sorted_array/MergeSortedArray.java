@@ -67,10 +67,12 @@ Unlike Approach 2, we're not using an extra array.
                     break;
                 }
                 if (p1 >= 0 && nums1[p1] > nums2[p2]) {
-                    nums1[p] = nums1[p1--];
+                    nums1[p] = nums1[p1];
+                    p1--;
                 }
                 else {
-                    nums1[p] = nums2[p2--];
+                    nums1[p] = nums2[p2];
+                    p2--;
                 }
             }
         }
