@@ -369,7 +369,7 @@ LRU Cache → HashMap + Doubly Linked List
 Daily Temperatures → Monotonic Stack
 Next Greater Element II → Monotonic Stack, Circular Array
 Count of Smaller Numbers After Self → BIT (Fenwick), Merge Sort, BST
-Closest BST Values II → BST Traversal, Priority Queue
+Closest BST Values II → BST Traversal, Priority Queue (FINISHED)
 Nth Prime → Sieve, Math
 
 Sorting Algorithm Visualizations (7)
