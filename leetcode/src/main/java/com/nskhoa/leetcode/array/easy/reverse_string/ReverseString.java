@@ -36,8 +36,10 @@ Space complexity : O(1), it's a constant space solution.
             int left = 0, right = s.length - 1;
             while (left < right) {
                 char tmp = s[left];
-                s[left++] = s[right];
-                s[right--] = tmp;
+                s[left] = s[right];
+                s[right] = tmp;
+                left++;
+                right--;
             }
         }
     }
