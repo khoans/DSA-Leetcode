@@ -3,8 +3,7 @@ package com.nskhoa.DSA.data_structure.interfaces.linked_list;
 
 import com.nskhoa.DSA.data_structure.implementation.linked_list.doubly_linked_list.DoublyNode;
 
-public interface IDoublyLinkedList
-{
+public interface IDoublyLinkedList {
     DoublyNode createDLL(int nodeValue);
 
     // Insertion Method
@@ -24,4 +23,7 @@ public interface IDoublyLinkedList
 
     // Delete entire DLL
     void deleteDLL();
+
+    // Reverse Doubly Linked List
+    void reverseDLL();
 }

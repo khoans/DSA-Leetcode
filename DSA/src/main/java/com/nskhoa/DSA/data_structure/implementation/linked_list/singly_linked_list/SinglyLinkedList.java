@@ -3,8 +3,7 @@ package com.nskhoa.DSA.data_structure.implementation.linked_list.singly_linked_l
 
 import com.nskhoa.DSA.data_structure.interfaces.linked_list.ISinglyLinkedList;
 
-public class SinglyLinkedList implements ISinglyLinkedList
-{
+public class SinglyLinkedList implements ISinglyLinkedList {
     public Node head;
     public Node tail;
     public int size;
@@ -29,14 +28,17 @@ public class SinglyLinkedList implements ISinglyLinkedList
         if (head == null) {
             createSinglyLinkedList(nodeValue);
             return;
-        } else if (location == 0) {
+        }
+        else if (location == 0) {
             node.next = head;
             head = node;
-        } else if (location >= size) {
+        }
+        else if (location >= size) {
             node.next = null;
             tail.next = node;
             tail = node;
-        } else {
+        }
+        else {
             Node tempNode = head;
             int index = 0;
             while (index < location - 1) {
@@ -55,9 +57,10 @@ public class SinglyLinkedList implements ISinglyLinkedList
     public void traverseSinglyLinkedList() {
         if (head == null) {
             System.out.println("SLL does not exist!");
-        } else {
+        }
+        else {
             Node tempNode = head;
-            for (int i = 0; i<size; i++) {
+            for (int i = 0; i < size; i++) {
                 System.out.print(tempNode.value);
                 if (i != size - 1) {
                     System.out.print(" -> ");
@@ -74,9 +77,9 @@ public class SinglyLinkedList implements ISinglyLinkedList
     public boolean searchNode(int nodeValue) {
         if (head != null) {
             Node tempNode = head;
-            for (int i=0; i<size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (tempNode.value == nodeValue) {
-                    System.out.print("Found the node at location: " +i+"\n");
+                    System.out.print("Found the node at location: " + i + "\n");
                     return true;
                 }
                 tempNode = tempNode.next;
@@ -92,13 +95,15 @@ public class SinglyLinkedList implements ISinglyLinkedList
         if (head == null) {
             System.out.println("The SLL does not exist");
             return;
-        } else if (location == 0) {
+        }
+        else if (location == 0) {
             head = head.next;
             size--;
             if (size == 0) {
                 tail = null;
             }
-        } else if (location >= size) {
+        }
+        else if (location >= size) {
             Node tempNode = head;
             for (int i = 0; i < size - 1; i++) {
                 tempNode = tempNode.next;
@@ -111,9 +116,10 @@ public class SinglyLinkedList implements ISinglyLinkedList
             tempNode.next = null;
             tail = tempNode;
             size--;
-        } else {
+        }
+        else {
             Node tempNode = head;
-            for (int i = 0; i <location-1; i++) {
+            for (int i = 0; i < location - 1; i++) {
                 tempNode = tempNode.next;
             }
             tempNode.next = tempNode.next.next;
@@ -130,5 +136,37 @@ public class SinglyLinkedList implements ISinglyLinkedList
 
     }
 
+    @Override
+    public void reverseSinglyLinkedList() {
+        if (head != null) {
+            Node prevNode = null;
+            Node currentNode = head;
+            Node nextNode;
+            for (int i = 0; i < size; i++) {
+                nextNode = currentNode.next;
+                currentNode.next = prevNode;
+                prevNode = currentNode;
+                currentNode = nextNode;
+            }
+            tail = head;
+            head = prevNode;
+        }
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList sll = new SinglyLinkedList();
+        sll.createSinglyLinkedList(5);
+        sll.insertInLinkedList(10, 1);
+        sll.insertInLinkedList(15, 2);
+        sll.insertInLinkedList(20, 1);
+        sll.insertInLinkedList(25, 0);
+        sll.traverseSinglyLinkedList();
+        sll.deletionOfNode(3);
+        sll.traverseSinglyLinkedList();
+        sll.searchNode(15);
+        sll.deleteSLL();
+        sll.traverseSinglyLinkedList();
+        sll.reverseSinglyLinkedList();
+    }
 }
 

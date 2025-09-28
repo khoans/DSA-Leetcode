@@ -157,5 +157,18 @@ public class BinaryHeap implements IBinaryHeap {
         System.out.println("BH has been successfully deleted");
     }
 
+    public static void main(String[] args) {
+        BinaryHeap bh = new BinaryHeap(5);
+        bh.insert(10, "Min");
+        bh.insert(5, "Min");
+        bh.insert(20, "Min");
+        bh.insert(3, "Min");
+        bh.insert(7, "Min");
+        bh.levelOrder();
+        System.out.println(bh.peek());
+        System.out.println(bh.extractHeadOfBP("Min"));
+        bh.levelOrder();
+        bh.deleteBH();
+    }
 }
 

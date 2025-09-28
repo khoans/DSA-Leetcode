@@ -13,7 +13,7 @@ public class Trie implements ITriePrefixTree {
     @Override
     public void insert(String word) {
         TrieNode current = root;
-        for (int i=0; i<word.length(); i++) {
+        for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
             TrieNode node = current.children.get(ch);
             if (node == null) {
@@ -23,7 +23,7 @@ public class Trie implements ITriePrefixTree {
             current = node;
         }
         current.endOfString = true;
-        System.out.println("Successfully inserted " + word+ " in Trie");
+        System.out.println("Successfully inserted " + word + " in Trie");
     }
 
     // Search for a word in Trie
@@ -31,20 +31,21 @@ public class Trie implements ITriePrefixTree {
     @Override
     public boolean search(String word) {
         TrieNode currentNode = root;
-        for (int i =0; i<word.length(); i++) {
+        for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
             TrieNode node = currentNode.children.get(ch);
             if (node == null) {
-                System.out.println("Word: "+word+ " does not exist in Trie");
+                System.out.println("Word: " + word + " does not exist in Trie");
                 return false;
             }
             currentNode = node;
         }
         if (currentNode.endOfString == true) {
-            System.out.println("Word: "+word+ " exists in Trie");
+            System.out.println("Word: " + word + " exists in Trie");
             return true;
-        } else {
-            System.out.println("Word: "+word+ " does not exist in Trie. But it is a prefix of another string");
+        }
+        else {
+            System.out.println("Word: " + word + " does not exist in Trie. But it is a prefix of another string");
         }
         return currentNode.endOfString;
     }
@@ -58,27 +59,29 @@ public class Trie implements ITriePrefixTree {
         boolean canThisNodeBeDeleted;
 
         if (currentNode.children.size() > 1) {
-            delete(currentNode, word, index+1);
+            delete(currentNode, word, index + 1);
             return false;
         }
-        if (index == word.length() -1) {
-            if (currentNode.children.size()>=1) {
+        if (index == word.length() - 1) {
+            if (currentNode.children.size() >= 1) {
                 currentNode.endOfString = false;
                 return false;
-            } else {
+            }
+            else {
                 parentNode.children.remove(ch);
                 return true;
             }
         }
         if (currentNode.endOfString == true) {
-            delete(currentNode, word, index+1);
+            delete(currentNode, word, index + 1);
             return false;
         }
-        canThisNodeBeDeleted = delete(currentNode, word, index+1);
+        canThisNodeBeDeleted = delete(currentNode, word, index + 1);
         if (canThisNodeBeDeleted == true) {
             parentNode.children.remove(ch);
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -91,4 +94,32 @@ public class Trie implements ITriePrefixTree {
     }
 
 
+    public static void main(String[] args) {
+        Trie trie = new Trie();
+        trie.insert("the");
+        trie.insert("a");
+        trie.insert("there");
+        trie.insert("answer");
+        trie.insert("any");
+        trie.insert("by");
+        trie.insert("bye");
+        trie.insert("their");
+
+        System.out.println("-------------------------------------");
+
+        trie.search("the");
+        trie.search("these");
+        trie.search("their");
+        trie.search("thaw");
+
+        System.out.println("-------------------------------------");
+
+        trie.delete("the");
+        trie.delete("their");
+        System.out.println("-------------------------------------");
+
+        trie.search("the");
+        trie.search("there");
+        trie.search("their");
+    }
 }

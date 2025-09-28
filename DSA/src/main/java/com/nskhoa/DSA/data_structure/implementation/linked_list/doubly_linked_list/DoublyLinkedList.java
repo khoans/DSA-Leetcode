@@ -3,8 +3,7 @@ package com.nskhoa.DSA.data_structure.implementation.linked_list.doubly_linked_l
 
 import com.nskhoa.DSA.data_structure.interfaces.linked_list.IDoublyLinkedList;
 
-public class DoublyLinkedList implements IDoublyLinkedList
-{
+public class DoublyLinkedList implements IDoublyLinkedList {
     DoublyNode head;
     DoublyNode tail;
     int size;
@@ -30,20 +29,23 @@ public class DoublyLinkedList implements IDoublyLinkedList
         if (head == null) {
             createDLL(nodeValue);
             return;
-        } else if (location == 0) {
+        }
+        else if (location == 0) {
             newNode.next = head;
             newNode.prev = null;
             head.prev = newNode;
             head = newNode;
-        } else if (location >= size) {
+        }
+        else if (location >= size) {
             newNode.next = null;
             tail.next = newNode;
             newNode.prev = tail;
             tail = newNode;
-        } else {
+        }
+        else {
             DoublyNode tempNode = head;
             int index = 0;
-            while (index < location-1) {
+            while (index < location - 1) {
                 tempNode = tempNode.next;
                 index++;
             }
@@ -62,12 +64,13 @@ public class DoublyLinkedList implements IDoublyLinkedList
             DoublyNode tempNode = head;
             for (int i = 0; i < size; i++) {
                 System.out.print(tempNode.value);
-                if (i != size-1) {
+                if (i != size - 1) {
                     System.out.print(" -> ");
                 }
                 tempNode = tempNode.next;
             }
-        } else {
+        }
+        else {
             System.out.println("The DLL does not exist!");
         }
         System.out.println("\n");
@@ -80,12 +83,13 @@ public class DoublyLinkedList implements IDoublyLinkedList
             DoublyNode tempNode = tail;
             for (int i = 0; i < size; i++) {
                 System.out.print(tempNode.value);
-                if (i != size-1) {
+                if (i != size - 1) {
                     System.out.print(" <- ");
                 }
                 tempNode = tempNode.prev;
             }
-        } else {
+        }
+        else {
             System.out.println("The DLL does not exist!");
         }
         System.out.println("\n");
@@ -98,7 +102,7 @@ public class DoublyLinkedList implements IDoublyLinkedList
             DoublyNode tempNode = head;
             for (int i = 0; i < size; i++) {
                 if (tempNode.value == nodeValue) {
-                    System.out.print("The Node is found at location: " +i);
+                    System.out.print("The Node is found at location: " + i);
                     return true;
                 }
                 tempNode = tempNode.next;
@@ -114,32 +118,37 @@ public class DoublyLinkedList implements IDoublyLinkedList
         if (head == null) {
             System.out.println("The DLL does not exist!");
             return;
-        } else if (location == 0) {
+        }
+        else if (location == 0) {
             if (size == 1) {
                 head = null;
                 tail = null;
                 size--;
                 return;
-            } else {
+            }
+            else {
                 head = head.next;
                 head.prev = null;
                 size--;
             }
-        } else if (location >= size) {
+        }
+        else if (location >= size) {
             DoublyNode tempNode = tail.prev;
             if (size == 1) {
                 head = null;
                 tail = null;
                 size--;
                 return;
-            } else {
+            }
+            else {
                 tempNode.next = null;
                 tail = tempNode;
                 size--;
             }
-        } else {
+        }
+        else {
             DoublyNode tempNode = head;
-            for (int i = 0; i < location-1; i++) {
+            for (int i = 0; i < location - 1; i++) {
                 tempNode = tempNode.next;
             }
             tempNode.next = tempNode.next.next;
@@ -152,7 +161,7 @@ public class DoublyLinkedList implements IDoublyLinkedList
     @Override
     public void deleteDLL() {
         DoublyNode tempNode = head;
-        for (int i =0; i< size; i++) {
+        for (int i = 0; i < size; i++) {
             tempNode.prev = null;
             tempNode = tempNode.next;
         }
@@ -161,7 +170,41 @@ public class DoublyLinkedList implements IDoublyLinkedList
         System.out.println("The DLL has been deleted!");
     }
 
+    @Override
+    public void reverseDLL() {
+        if (head != null) {
+            DoublyNode currentNode = head;
+            DoublyNode prevNode = null;
+            DoublyNode nextNode;
+            for (int i = 0; i < size; i++) {
+                nextNode = currentNode.next;
+                currentNode.next = prevNode;
+                currentNode.prev = nextNode;
+                prevNode = currentNode;
+                currentNode = nextNode;
+            }
+            head = prevNode;
+        }
+    }
 
+    public static void main(String[] args) {
+        DoublyLinkedList dll = new DoublyLinkedList();
+        dll.createDLL(5);
+        dll.insertDLL(7, 1);
+        dll.insertDLL(3, 0);
+        dll.insertDLL(12, 2);
+        dll.traverseDLL();
+        dll.reverseTraverseDLL();
+        dll.searchNode(7);
+        System.out.println();
+        dll.deleteNodeDLL(3);
+        dll.traverseDLL();
+        dll.reverseDLL();
+        dll.traverseDLL();
+        dll.deleteDLL();
+        dll.traverseDLL();
+        dll.reverseDLL();
+    }
 
 }
 

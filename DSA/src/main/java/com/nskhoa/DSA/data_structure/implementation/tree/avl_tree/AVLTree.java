@@ -233,4 +233,50 @@ public class AVLTree {
         root = null;
     }
 
+    public static void main(String[] args) {
+        AVLTree avl = new AVLTree();
+        avl.insert(10);
+        avl.insert(20);
+        avl.insert(30);
+        avl.insert(40);
+        avl.insert(50);
+        avl.insert(25);
+
+        System.out.println("Preorder traversal of the constructed AVL tree is:");
+        avl.preOrder(avl.root);
+        System.out.println();
+
+        System.out.println("Inorder traversal of the constructed AVL tree is:");
+        avl.inOrder(avl.root);
+        System.out.println();
+
+        System.out.println("Postorder traversal of the constructed AVL tree is:");
+        avl.postOrder(avl.root);
+        System.out.println();
+
+        System.out.println("Level order traversal of the constructed AVL tree is:");
+        avl.levelOrder();
+        System.out.println();
+
+        avl.search(avl.root, 30);
+        avl.search(avl.root, 100);
+
+        avl.delete(10);
+        System.out.println("Preorder traversal after deletion of 10:");
+        avl.preOrder(avl.root);
+        System.out.println();
+
+        avl.delete(20);
+        System.out.println("Preorder traversal after deletion of 20:");
+        avl.preOrder(avl.root);
+        System.out.println();
+
+        avl.delete(30);
+        System.out.println("Preorder traversal after deletion of 30:");
+        avl.preOrder(avl.root);
+        System.out.println();
+
+        avl.deleteAVL();
+        System.out.println("AVL tree deleted successfully");
+    }
 }

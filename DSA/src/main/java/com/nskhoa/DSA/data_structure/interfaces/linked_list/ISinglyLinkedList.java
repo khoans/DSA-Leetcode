@@ -3,8 +3,7 @@ package com.nskhoa.DSA.data_structure.interfaces.linked_list;
 
 import com.nskhoa.DSA.data_structure.implementation.linked_list.singly_linked_list.Node;
 
-public interface ISinglyLinkedList
-{
+public interface ISinglyLinkedList {
     Node createSinglyLinkedList(int nodeValue);
 
     // Insert Method SinglyLinkedList
@@ -20,4 +19,7 @@ public interface ISinglyLinkedList
 
     //  Delete Entire SinglyLinkedList
     void deleteSLL();
+
+    // Reverse SinglyLinkedList
+    void reverseSinglyLinkedList();
 }

@@ -22,10 +22,12 @@ public class BinarySearchTree
             newNode.value = value;
             // System.out.println("The value successfully inserted");
             return newNode;
-        } else if (value <= currentNode.value) {
+        }
+        else if (value <= currentNode.value) {
             currentNode.left = insert(currentNode.left, value);
             return currentNode;
-        } else {
+        }
+        else {
             currentNode.right = insert(currentNode.right, value);
             return currentNode;
         }
@@ -94,15 +96,18 @@ public class BinarySearchTree
     // Search Method
     @Override
     public BinaryNode search(BinaryNode node, int value) {
-        if (node == null ) {
-            System.out.println("Value: "+ value+ " not found in BST");
+        if (node == null) {
+            System.out.println("Value: " + value + " not found in BST");
             return null;
-        } else if (node.value == value) {
-            System.out.println("Value: "+ value+ " found in BST");
+        }
+        else if (node.value == value) {
+            System.out.println("Value: " + value + " found in BST");
             return node;
-        } else if (value < node.value) {
+        }
+        else if (value < node.value) {
             return search(node.left, value);
-        } else {
+        }
+        else {
             return search(node.right, value);
         }
     }
@@ -116,19 +121,24 @@ public class BinarySearchTree
         }
         if (value < root.value) {
             root.left = deleteNode(root.left, value);
-        } else if (value > root.value) {
+        }
+        else if (value > root.value) {
             root.right = deleteNode(root.right, value);
-        } else {
+        }
+        else {
             if (root.left != null && root.right != null) {
                 BinaryNode temp = root;
                 BinaryNode minNodeForRight = IBinarySearchTree.minimumNode(temp.right);
                 root.value = minNodeForRight.value;
                 root.right = deleteNode(root.right, minNodeForRight.value);
-            } else if (root.left != null) {
+            }
+            else if (root.left != null) {
                 root = root.left;
-            } else if (root.right != null) {
+            }
+            else if (root.right != null) {
                 root = root.right;
-            } else {
+            }
+            else {
                 root = null;
             }
         }
@@ -143,4 +153,36 @@ public class BinarySearchTree
         System.out.println("BST has been deleted successfully");
     }
 
+    public static void main(String[] args) {
+        BinarySearchTree bst = new BinarySearchTree();
+        bst.insert(15);
+        bst.insert(10);
+        bst.insert(20);
+        bst.insert(25);
+        bst.insert(8);
+        bst.insert(12);
+        bst.insert(17);
+
+        System.out.println("PreOrder Traversal:");
+        bst.preOrder(bst.root);
+        System.out.println("\nInOrder Traversal:");
+        bst.inOrder(bst.root);
+        System.out.println("\nPostOrder Traversal:");
+        bst.postOrder(bst.root);
+        System.out.println("\nLevelOrder Traversal:");
+        bst.levelOrder();
+
+        System.out.println("\n\nSearch for 25 in BST:");
+        bst.search(bst.root, 25);
+        System.out.println("Search for 100 in BST:");
+        bst.search(bst.root, 100);
+
+        System.out.println("\nDelete 20 from BST:");
+        bst.deleteNode(bst.root, 20);
+        System.out.println("InOrder Traversal after deletion:");
+        bst.inOrder(bst.root);
+
+        System.out.println("\nDelete entire BST:");
+        bst.deleteBST();
+    }
 }

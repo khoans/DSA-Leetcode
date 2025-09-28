@@ -8,17 +8,18 @@ public class BinaryTree implements IBinaryTree {
     int lastUsedIndex;
 
     public BinaryTree(int size) {
-        arr = new String[size+1];
-        this.lastUsedIndex=0;
-        System.out.println("Blank Tree of size " +size+ " has been created");
+        arr = new String[size + 1];
+        this.lastUsedIndex = 0;
+        System.out.println("Blank Tree of size " + size + " has been created");
     }
 
     // isFull
     @Override
     public boolean isFull() {
-        if (arr.length-1 == lastUsedIndex) {
+        if (arr.length - 1 == lastUsedIndex) {
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -28,10 +29,11 @@ public class BinaryTree implements IBinaryTree {
     @Override
     public void insert(String value) {
         if (!isFull()) {
-            arr[lastUsedIndex+1] =value;
+            arr[lastUsedIndex + 1] = value;
             lastUsedIndex++;
-            System.out.println("The value of "+value+" has been inserted");
-        } else {
+            System.out.println("The value of " + value + " has been inserted");
+        }
+        else {
             System.out.println("The BT is full");
         }
     }
@@ -42,7 +44,7 @@ public class BinaryTree implements IBinaryTree {
         if (index > lastUsedIndex) {
             return;
         }
-        System.out.print(arr[index]+ " ");
+        System.out.print(arr[index] + " ");
         preOrder(index * 2);
         preOrder(index * 2 + 1);
     }
@@ -73,17 +75,17 @@ public class BinaryTree implements IBinaryTree {
     // Level Order Traversal
     @Override
     public void levelOrder() {
-        for (int i = 1; i<=lastUsedIndex; i++) {
-            System.out.print(arr[i]+ " ");
+        for (int i = 1; i <= lastUsedIndex; i++) {
+            System.out.print(arr[i] + " ");
         }
     }
 
     // Search method
     @Override
     public int search(String value) {
-        for (int i = 1; i<=lastUsedIndex; i++) {
+        for (int i = 1; i <= lastUsedIndex; i++) {
             if (arr[i] == value) {
-                System.out.println(value+" exists at the location: " + i);
+                System.out.println(value + " exists at the location: " + i);
                 return i;
             }
         }
@@ -97,7 +99,8 @@ public class BinaryTree implements IBinaryTree {
         int location = search(value);
         if (location == -1) {
             return;
-        } else {
+        }
+        else {
             arr[location] = arr[lastUsedIndex];
             lastUsedIndex--;
             System.out.println("The node successfully deleted");
@@ -112,101 +115,108 @@ public class BinaryTree implements IBinaryTree {
             arr = null;
             System.out.println("The BT has been successfully deleted");
 
-        } catch (Exception e){
+        }
+        catch (Exception e) {
             System.out.println("There was an error deleting the tree");
         }
     }
 
+    public static void main(String[] args) {
+        BinaryTree bt = new BinaryTree(7);
+        bt.insert("N");
+        bt.insert("I");
+        bt.insert("S");
+        bt.insert("H");
+        bt.insert("K");
+        bt.insert("O");
+        bt.insert("A");
+
+        System.out.println("Pre-order Traversal: ");
+        bt.preOrder(1);
+        System.out.println();
+
+        System.out.println("In-order Traversal: ");
+        bt.inOrder(1);
+        System.out.println();
+
+        System.out.println("Post-order Traversal: ");
+        bt.postOrder(1);
+        System.out.println();
+
+        System.out.println("Level-order Traversal: ");
+        bt.levelOrder();
+        System.out.println();
+
+        bt.search("K");
+        bt.delete("K");
+        bt.levelOrder();
+        System.out.println();
+
+        bt.deleteBT();
+    }
 }
 
 /**
  * 1. Pre-order Traversal
  * In pre-order traversal, the nodes are visited in the following order:
- *
  * Visit the current node.
- *
  * Recursively visit the left subtree.
- *
  * Recursively visit the right subtree.
- *
  * In the provided code, the preOrder method follows this logic by first printing the node, then recursively calling preOrder on the left child (index * 2) and then on the right child (index * 2 + 1).
- *
  * Example: For a binary tree like this:
- *
  * mathematica
  * Copy
- *        A
- *      /   \
- *     B     C
- *    / \   / \
- *   D   E F   G
+ * A
+ * /   \
+ * B     C
+ * / \   / \
+ * D   E F   G
  * The pre-order traversal would be: A, B, D, E, C, F, G
- *
  * 2. In-order Traversal
  * In in-order traversal, the nodes are visited in the following order:
- *
  * Recursively visit the left subtree.
- *
  * Visit the current node.
- *
  * Recursively visit the right subtree.
- *
  * In the provided code, the inOrder method first recursively calls inOrder on the left child, then prints the node, and finally recursively calls inOrder on the right child.
- *
  * Example: For the same tree:
- *
  * mathematica
  * Copy
- *        A
- *      /   \
- *     B     C
- *    / \   / \
- *   D   E F   G
+ * A
+ * /   \
+ * B     C
+ * / \   / \
+ * D   E F   G
  * The in-order traversal would be: D, B, E, A, F, C, G
- *
  * 3. Post-order Traversal
  * In post-order traversal, the nodes are visited in the following order:
- *
  * Recursively visit the left subtree.
- *
  * Recursively visit the right subtree.
- *
  * Visit the current node.
- *
  * In the provided code, the postOrder method first recursively calls postOrder on the left child and right child, and then prints the node.
- *
  * Example: For the same tree:
- *
  * mathematica
  * Copy
- *        A
- *      /   \
- *     B     C
- *    / \   / \
- *   D   E F   G
+ * A
+ * /   \
+ * B     C
+ * / \   / \
+ * D   E F   G
  * The post-order traversal would be: D, E, B, F, G, C, A
- *
  * 4. Level-order Traversal
  * Level-order traversal (also known as breadth-first traversal) visits the nodes level by level, from top to bottom, left to right. It is implemented using a queue in most cases. In your levelOrder method, it loops through the array and prints the nodes at each level from left to right.
- *
  * Example: For the same tree:
- *
  * mathematica
  * Copy
- *        A
- *      /   \
- *     B     C
- *    / \   / \
- *   D   E F   G
+ * A
+ * /   \
+ * B     C
+ * / \   / \
+ * D   E F   G
  * The level-order traversal would be: A, B, C, D, E, F, G
- *
  * Summary of Traversals:
  * Pre-order: Root → Left → Right
- *
  * In-order: Left → Root → Right
- *
  * Post-order: Left → Right → Root
- *
  * Level-order: Visit level by level from top to bottom.
  */
 

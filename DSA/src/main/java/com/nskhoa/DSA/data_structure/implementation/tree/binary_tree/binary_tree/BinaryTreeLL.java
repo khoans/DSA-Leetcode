@@ -72,18 +72,19 @@ public class BinaryTreeLL implements IBinaryTreeLL {
         while (!queue.isEmpty()) {
             BinaryNode presentNode = queue.remove();
             if (presentNode.value == value) {
-                System.out.println("The value-"+value+" is found in Tree");
+                System.out.println("The value-" + value + " is found in Tree");
                 return;
-            } else {
-                if (presentNode.left!=null) {
+            }
+            else {
+                if (presentNode.left != null) {
                     queue.add(presentNode.left);
                 }
-                if (presentNode.right!=null) {
+                if (presentNode.right != null) {
                     queue.add(presentNode.right);
                 }
             }
         }
-        System.out.println("The value-"+value+" is not found in Tree");
+        System.out.println("The value-" + value + " is not found in Tree");
     }
 
     // Insert Method
@@ -104,11 +105,13 @@ public class BinaryTreeLL implements IBinaryTreeLL {
                 presentNode.left = newNode;
                 System.out.println("Successfully Inserted");
                 break;
-            } else if (presentNode.right == null) {
+            }
+            else if (presentNode.right == null) {
                 presentNode.right = newNode;
                 System.out.println("Successfully Inserted");
                 break;
-            } else {
+            }
+            else {
                 queue.add(presentNode.left);
                 queue.add(presentNode.right);
             }
@@ -145,7 +148,8 @@ public class BinaryTreeLL implements IBinaryTreeLL {
             if (presentNode.left == null) {
                 previousNode.right = null;
                 return;
-            } else if (presentNode.right == null) {
+            }
+            else if (presentNode.right == null) {
                 presentNode.left = null;
                 return;
             }
@@ -167,9 +171,14 @@ public class BinaryTreeLL implements IBinaryTreeLL {
                 deleteDeepestNode();
                 System.out.println("The node is deleted!");
                 return;
-            } else {
-                if (presentNode.left != null) queue.add(presentNode.left);
-                if (presentNode.right != null) queue.add(presentNode.right);
+            }
+            else {
+                if (presentNode.left != null) {
+                    queue.add(presentNode.left);
+                }
+                if (presentNode.right != null) {
+                    queue.add(presentNode.right);
+                }
             }
         }
         System.out.println("The node does not exist in this BT");
@@ -182,4 +191,35 @@ public class BinaryTreeLL implements IBinaryTreeLL {
         System.out.println("BT has been successfully deleted!");
     }
 
+    public static void main(String[] args) {
+        BinaryTreeLL btree = new BinaryTreeLL();
+        btree.insert("N");
+        btree.insert("S");
+        btree.insert("K");
+        btree.insert("H");
+        btree.insert("O");
+        btree.insert("A");
+
+        System.out.println("PreOrder Traversal:");
+        btree.preOrder(btree.root);
+        System.out.println("\nInOrder Traversal:");
+        btree.inOrder(btree.root);
+        System.out.println("\nPostOrder Traversal:");
+        btree.postOrder(btree.root);
+        System.out.println("\nLevelOrder Traversal:");
+        btree.levelOrder();
+
+        System.out.println();
+        btree.search("K");
+        btree.search("Z");
+
+        btree.deleteNode("O");
+        System.out.println("LevelOrder Traversal after deletion:");
+        btree.levelOrder();
+
+        System.out.println();
+        btree.deleteBT();
+        System.out.println("LevelOrder Traversal after deleting BT:");
+        btree.levelOrder();
+    }
 }

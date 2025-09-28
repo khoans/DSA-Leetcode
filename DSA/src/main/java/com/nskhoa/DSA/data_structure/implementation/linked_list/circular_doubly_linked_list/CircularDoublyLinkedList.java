@@ -2,8 +2,7 @@ package com.nskhoa.DSA.data_structure.implementation.linked_list.circular_doubly
 
 import com.nskhoa.DSA.data_structure.interfaces.linked_list.ICircularDoublyLinkedList;
 
-public class CircularDoublyLinkedList implements ICircularDoublyLinkedList
-{
+public class CircularDoublyLinkedList implements ICircularDoublyLinkedList {
     public DoublyNode head;
     public DoublyNode tail;
     public int size;
@@ -21,6 +20,7 @@ public class CircularDoublyLinkedList implements ICircularDoublyLinkedList
         size = 1;
         return head;
     }
+
     // Insertion Method
     @Override
     public void insertNode(int nodeValue, int location) {
@@ -29,22 +29,25 @@ public class CircularDoublyLinkedList implements ICircularDoublyLinkedList
         if (head == null) {
             createCDLL(nodeValue);
             return;
-        } else if (location == 0) {
+        }
+        else if (location == 0) {
             newNode.next = head;
             newNode.prev = tail;
             head.prev = newNode;
             tail.next = newNode;
             head = newNode;
-        } else if (location >= size) {
+        }
+        else if (location >= size) {
             newNode.next = head;
             newNode.prev = tail;
             head.prev = newNode;
             tail.next = newNode;
             tail = newNode;
-        } else {
+        }
+        else {
             DoublyNode tempNode = head;
             int index = 0;
-            while (index < location -1) {
+            while (index < location - 1) {
                 tempNode = tempNode.next;
                 index++;
             }
@@ -61,14 +64,15 @@ public class CircularDoublyLinkedList implements ICircularDoublyLinkedList
     public void traverseCDLL() {
         if (head != null) {
             DoublyNode tempNode = head;
-            for (int i=0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 System.out.print(tempNode.value);
                 if (i != size - 1) {
                     System.out.print(" -> ");
                 }
                 tempNode = tempNode.next;
             }
-        } else {
+        }
+        else {
             System.out.println("The CDLL does not exist.");
         }
         System.out.println();
@@ -79,15 +83,16 @@ public class CircularDoublyLinkedList implements ICircularDoublyLinkedList
     public void reverseTraversalCDLL() {
         if (head != null) {
             DoublyNode tempNode = tail;
-            for (int i=0; i<size; i++) {
+            for (int i = 0; i < size; i++) {
                 System.out.print(tempNode.value);
-                if (i != size-1) {
+                if (i != size - 1) {
                     System.out.print(" <- ");
                 }
                 tempNode = tempNode.prev;
             }
 
-        } else {
+        }
+        else {
             System.out.println("The CDLL does not exist!");
         }
     }
@@ -99,7 +104,7 @@ public class CircularDoublyLinkedList implements ICircularDoublyLinkedList
             DoublyNode tempNode = head;
             for (int i = 0; i < size; i++) {
                 if (tempNode.value == nodeValue) {
-                    System.out.println("The node is found at location: "+i);
+                    System.out.println("The node is found at location: " + i);
                     return true;
                 }
                 tempNode = tempNode.next;
@@ -115,35 +120,40 @@ public class CircularDoublyLinkedList implements ICircularDoublyLinkedList
         if (head == null) {
             System.out.println("The CDLL does not exist!");
             return;
-        } else if (location == 0) {
+        }
+        else if (location == 0) {
             if (size == 1) {
                 head.prev = null;
                 head.next = null;
                 head = tail = null;
                 size--;
                 return;
-            } else {
+            }
+            else {
                 head = head.next;
                 head.prev = tail;
                 tail.next = head;
                 size--;
             }
-        } else if (location >= size) {
+        }
+        else if (location >= size) {
             if (size == 1) {
                 head.prev = null;
                 head.next = null;
                 head = tail = null;
                 size--;
                 return;
-            } else {
+            }
+            else {
                 tail = tail.prev;
                 tail.next = head;
                 head.prev = tail;
                 size--;
             }
-        } else {
+        }
+        else {
             DoublyNode tempNode = head;
-            for (int i = 0; i < location -1; i++){
+            for (int i = 0; i < location - 1; i++) {
                 tempNode = tempNode.next;
             }
             tempNode.next = tempNode.next.next;
@@ -156,7 +166,7 @@ public class CircularDoublyLinkedList implements ICircularDoublyLinkedList
     @Override
     public void deleteCDLL() {
         DoublyNode tempNode = head;
-        for (int i=0; i<size; i++) {
+        for (int i = 0; i < size; i++) {
             tempNode.prev = null;
             tempNode = tempNode.next;
         }
@@ -165,13 +175,21 @@ public class CircularDoublyLinkedList implements ICircularDoublyLinkedList
         System.out.println("The CDLL has been deleted!");
     }
 
-
-
-
-
-
-
-
-
+    public static void main(String[] args) {
+        CircularDoublyLinkedList cdll = new CircularDoublyLinkedList();
+        cdll.createCDLL(5);
+        cdll.insertNode(10, 1);
+        cdll.insertNode(15, 2);
+        cdll.insertNode(20, 3);
+        cdll.insertNode(25, 4);
+        cdll.traverseCDLL();
+        cdll.reverseTraversalCDLL();
+        System.out.println();
+        cdll.searchNode(15);
+        cdll.deleteNode(3);
+        cdll.traverseCDLL();
+        cdll.deleteCDLL();
+        cdll.traverseCDLL();
+    }
 }
 
