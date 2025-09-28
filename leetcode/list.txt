@@ -1,0 +1,396 @@
+Full Flat Classification (Problem → Patterns)
+
+Two Sum → Array, Hashing, One-pass HashMap
+Best Time to Buy and Sell Stock → Array, Greedy, Kadane’s Variant
+Contains Duplicate → Array, HashSet
+Valid Anagram → Sorting, HashMap, String
+Single Number → Bit Manipulation (XOR)
+Score of a String → String, Math, Iteration
+Concatenation of Array → Array, Simulation
+Longest Common Prefix → String, Sorting, Trie (alt)
+Remove Element → Array, Two Pointers (in-place overwrite)
+Majority Element → Array, Boyer-Moore Voting, HashMap
+Replace Elements With Greatest Element on Right Side → Array, Suffix Traversal
+Is Subsequence → String, Two Pointers
+Length of Last Word → String, Traversal
+Number of Senior Citizens → String Parsing, Counting
+Pascal’s Triangle → Array, DP (binomial pattern)
+String Matching in an Array → String, Substring Search
+Unique Email Addresses → String Parsing, HashSet
+Isomorphic Strings → HashMap, String
+Divide Array Into Equal Pairs → HashMap, Frequency Counting
+Count the Number of Consistent Strings → HashSet, Bitmasking
+Largest 3-Same-Digit Number in String → String Parsing, Sliding Window
+Monotonic Array → Array, One-pass Check
+Number of Good Pairs → HashMap, Counting
+Redistribute Characters to Make All Strings Equal → HashMap, Frequency Counting
+Set Mismatch → Array, HashMap/Math
+Sort Array by Increasing Frequency → Sorting, HashMap
+Special Array With X Elements Greater Than or Equal X → Array, Counting
+Time Needed to Buy Tickets → Queue Simulation
+Next Greater Element I → Stack, Monotonic Stack, HashMap
+Longest Strictly Increasing or Decreasing Subarray → Array, Sliding Window, Greedy
+Group Anagrams → String, HashMap (char count as key), Sorting
+Sort Colors → Array, Two Pointers, Dutch National Flag
+Can Place Flowers → Array, Greedy
+Find the Duplicate Number → Array, Binary Search / Floyd’s Cycle Detection
+Find Peak Element → Binary Search, Array
+Find All Numbers Disappeared in an Array → Array, In-place Marking
+Product of Array Except Self → Array, Prefix-Suffix, O(1) extra space
+Longest Consecutive Sequence → HashSet, Sorting
+Subarray Sum Equals K → Prefix Sum, HashMap
+Maximum Subarray → Kadane’s Algorithm, DP
+First Missing Positive → Array, Index Placement / Bucket
+Intersection of Two Arrays → HashSet, Sorting
+Plus One → Array, Math / Carry Simulation
+Merge Sorted Array → Array, Two Pointers (backward)
+Reverse String → Two Pointers, String
+Rotate Array → Array, Reversal Method / Extra Array
+Move Zeroes → Two Pointers, In-place, Array
+Next Permutation → Array, Math, Two Pointers
+Remove Nth Node From End of List → Linked List, Two Pointers
+Linked List Cycle → Linked List, Two Pointers (Floyd’s)
+Reverse Linked List → Linked List, Iteration/Recursion
+Add Two Numbers → Linked List, Math
+Reorder List → Linked List, Two Pointers + Reverse + Merge
+Palindrome Linked List → Linked List, Two Pointers + Reverse Half
+Valid Palindrome → String, Two Pointers
+Palindrome Number → Math, String (optional)
+Minimum Number of Moves to Make Palindrome → Greedy, Two Pointers
+Intersection of Two Linked Lists → Linked List, Two Pointers
+Valid Parentheses → Stack
+Squares of a Sorted Array → Two Pointers, Array
+Search Insert Position → Binary Search, Array
+Find the Index of the First Occurrence in a String → String, KMP, Sliding Window
+Contains Duplicate II → HashMap, Sliding Window
+Intersection of Two Arrays II → HashMap, Sorting
+3Sum → Sorting + Two Pointers
+Maximum Product Subarray → DP, Greedy
+Search in Rotated Sorted Array → Binary Search
+Top K Frequent Elements → Heap, HashMap
+Missing Number → Math, XOR, Array
+Merge Intervals → Sorting, Greedy
+Insert Interval → Sorting, Interval Merge
+Meeting Rooms → Sorting, Greedy
+Count Primes → Sieve of Eratosthenes
+Pascal’s Triangle II → Array, DP
+Minimum Size Subarray Sum → Sliding Window, Prefix Sum
+Combination Sum → Backtracking
+Combination Sum II → Backtracking
+Permutations → Backtracking
+Maximum Gap → Bucket Sort, Radix Sort
+Trapping Rain Water → Two Pointers, Stack
+Word Search → DFS, Backtracking
+Search a 2D Matrix → Binary Search
+Kth Largest Element in an Array → Heap/Quickselect
+Wiggle Sort → Greedy, Sorting
+Subsets → Backtracking, Bitmask
+Subsets II → Backtracking (deduplicate)
+Permutations II → Backtracking
+Median of Two Sorted Arrays → Binary Search, Divide & Conquer
+Maximum Length of Repeated Subarray → DP, Binary Search+Hashing
+Longest Palindromic Substring → Expand Around Center, DP
+Implement strStr() → String, KMP, Sliding Window
+Count and Say → String, Simulation
+Add Binary → Binary Addition Simulation
+Longest Substring Without Repeating Characters → Sliding Window, HashMap
+Decode Ways → DP (string decode)
+Palindrome Partitioning → Backtracking + DP pruning
+Generate Parentheses → Backtracking
+Multiply Strings → Math, String
+String Compression → Two Pointers, String
+Count Binary Substrings → Counting, String
+Reverse Words in a String → String, Split and Reverse
+Regular Expression Matching → DP
+Wildcard Matching → DP, Greedy
+Simplify Path → Stack, String
+Excel Sheet Column Title → Math, Base Conversion
+Excel Sheet Column Number → Math, Base Conversion
+Palindrome Pairs → Hash, Trie, String
+Check if Word Occurs as Prefix → String, Parsing
+Reorganize String → Heap, Greedy
+Zigzag Conversion → String, Simulation
+Valid Palindrome II → String, Two Pointers
+Longest Happy Prefix → KMP, String
+String Without AAA or BBB → Greedy, String
+Remove All Adjacent Duplicates in String → Stack, String
+Buddy Strings → String, HashSet
+Longest Substring With At Most K Distinct Characters → Sliding Window
+Find All Anagrams in a String → Sliding Window
+Minimum Number of Steps to Make Two Strings Anagram → HashMap, Counting
+Split Array Largest Sum → Binary Search, DP
+Max Consecutive Ones → Array, Counting
+Reverse Words in a String III → String, Two Pointers
+Minimum Remove to Make Valid Parentheses → Stack
+Valid Number → Parsing, Simulation
+Number of Islands → DFS, BFS, Union-Find
+Flood Fill → DFS, BFS
+Basic Calculator → Stack, String Parsing
+Basic Calculator II → Stack, Parsing
+Decode String → Stack, DFS
+Longest Palindromic Subsequence → DP
+Partition to K Equal Sum Subsets → Backtracking, DP (bitmask)
+Valid Parenthesis String → Greedy, DP
+Smallest Range Covering Elements from K Lists → Heap, Sliding Window
+Maximum Binary Tree → Stack (Monotonic), Recursion
+Longest Valid Parentheses → Stack, DP
+Happy Number → Math, HashSet, Cycle Detection
+Single Number II → Bit Manipulation
+First Unique Character in a String → HashMap, String
+Number of Boomerangs → HashMap, Geometry
+Word Pattern → HashMap, String
+Lowest Common Ancestor of BST → DFS + BST Property
+Merge Two Sorted Lists → Linked List
+Copy List With Random Pointer → HashMap, Linked List
+Odd Even Linked List → Linked List
+Remove Linked List Elements → Linked List
+Rotate List → Linked List, Two Pointers
+Swap Nodes in Pairs → Linked List
+Partition List → Linked List, Two Pointers
+Sort List → Merge Sort, Linked List
+Insertion Sort List → Linked List, Sorting
+Remove Duplicates From Sorted List → Linked List
+Remove Duplicates From Sorted List II → Linked List
+Merge K Sorted Lists → Heap, Linked List, Divide & Conquer
+Flatten Multilevel Doubly Linked List → Linked List, DFS
+Find First and Last Position of Element in Sorted Array → Binary Search
+Longest Increasing Subsequence → DP, Binary Search
+Find Minimum in Rotated Sorted Array → Binary Search
+Binary Search → Binary Search
+Minimum Number of Arrows to Burst Balloons → Sorting, Greedy
+Find K Closest Elements → Binary Search, Two Pointers
+Largest Number → Sorting
+Sort Characters By Frequency → HashMap, Heap, Sorting
+Search in BST → DFS, BST Traversal
+Climbing Stairs → DP (Fibonacci)
+Range Sum Query - Immutable → Prefix Sum
+Counting Bits → DP, Bit Manipulation
+Middle of Linked List → Linked List, Two Pointers
+Find Smallest Letter Greater Than Target → Binary Search
+Average of Levels in Binary Tree → BFS
+Minimum Depth of Binary Tree → BFS, DFS
+Same Tree → DFS, BFS
+Path Sum → DFS
+Maximum Depth of Binary Tree → DFS, BFS
+Diameter of Binary Tree → DFS
+Merge Two Binary Trees → DFS
+Subtree of Another Tree → DFS, String Hashing (alt)
+Invert Binary Tree → DFS, BFS
+Backspace String Compare → Stack, Two Pointers
+Index Pairs of a String → String, Trie
+Convert 1D Array Into 2D Array → Array
+Binary Tree Paths → DFS, BFS
+Maximum Average Subarray I → Sliding Window
+Find All Duplicates in Array → Array, Index Placement
+Letter Case Permutation → Backtracking, BFS
+Combinations → Backtracking
+Combination Sum III → Backtracking
+Target Sum → DP (subset sum)
+Letter Combinations of a Phone Number → Backtracking
+Generalized Abbreviation → Backtracking, String
+House Robber → DP
+House Robber II → DP, Circular Array
+Coin Change → DP
+Word Break → DP, Trie
+Combination Sum IV → DP
+Unique Paths → DP (grid)
+Jump Game → Greedy, DP
+Palindromic Substrings → Expand Around Center, DP
+Number of Longest Increasing Subsequence → DP
+Partition Equal Subset Sum → DP (Knapsack)
+Best Time to Buy & Sell Stock with Cooldown → DP (state machine)
+Linked List Cycle II → Two Pointers (Floyd’s detected node)
+Pacific Atlantic Water Flow → DFS, BFS
+Graph Valid Tree → Union-Find, BFS
+Connected Components Undirected Graph → Union-Find, BFS
+Reverse Linked List II → Linked List, Reversal
+Find K Pairs With Smallest Sums → Heap, Array
+Interval List Intersections → Two Pointers, Interval
+Non-overlapping Intervals → Greedy, Sorting
+Meeting Rooms II → Heap, Sorting, Greedy
+Task Scheduler → Heap, Greedy
+Peak Index in Mountain Array → Binary Search
+Search Matrix II → Binary Search in 2D, Greedy Walk
+Fruit Into Baskets → Sliding Window
+Permutation in String → Sliding Window
+Longest Repeating Character Replacement → Sliding Window
+Kth Smallest Element in BST → DFS, Inorder Traversal
+K Closest Points to Origin → Heap, Sorting
+Course Schedule → Topological Sort, Graph
+Course Schedule II → Topological Sort, Graph
+Minimum Height Trees → Graph, BFS
+Binary Tree Level Order Traversal → BFS
+Binary Tree ZigZag Level Order Traversal → BFS
+Binary Tree Right Side View → BFS, DFS
+All Nodes Distance K → BFS, Tree, HashMap
+Path Sum II → DFS (backtracking in tree)
+Path Sum III → DFS, Prefix Sum
+Lowest Common Ancestor in Binary Tree → DFS
+Maximum Width Binary Tree → BFS, DFS
+Construct BT from Preorder & Inorder → Recursion, DFS
+Validate BST → DFS, Inorder Traversal
+Implement Trie (Prefix Tree) → Design, Trie
+3Sum Closest → Sorting, Two Pointers
+Subarray Product Less Than K → Sliding Window
+Container With Most Water → Two Pointers
+Longest Word in Dictionary → Trie, Sorting
+Split String Into Unique Substrings → Backtracking
+Gas Station → Greedy
+Reverse Nodes in K Group → Linked List, Recursion
+Employee Free Time → Interval, Heap
+Count of Range Sum → Fenwick Tree, Divide and Conquer
+Maximum Frequency Stack → Heap, HashMap
+Binary Tree Maximum Path Sum → DFS, DP
+Serialize / Deserialize Binary Tree → BFS, DFS, Design
+Find Median from Data Stream → Heap, Design
+Sliding Window Median → Heap, Sliding Window
+Concatenated Words → Trie, DFS, DP
+Single Element in Sorted Array → Binary Search
+Pairs of Songs Divisible by 60 → HashMap, Math
+Reorder Data in Log Files → Sorting, String
+Top K Frequent Words → Heap, Sorting
+Maximum Units on a Truck → Greedy, Sorting
+Slowest Key → String, Simulation
+Maximum Average Pass Ratio → Heap, Greedy
+
+AlgoMonster Problems (76)
+Product of Array Except Self → Array, Prefix-Suffix Trick
+Move Zeroes → Two Pointers, Array
+Linked List Cycle → Linked List, Two Pointers (Floyd’s)
+Remove Duplicates From Sorted List → Linked List, Pointers
+Merge K Sorted Lists → Heap, Divide & Conquer, Linked List
+Middle of Linked List → Two Pointers, Linked List
+Binary Tree Minimum Depth → BFS, DFS
+Tree Maximum Depth → BFS, DFS
+Subtree of Another Tree → DFS, String Hash (alt)
+Invert Binary Tree → DFS, BFS
+Lowest Common Ancestor on BST → DFS + BST property
+Lowest Common Ancestor (general) → DFS, Recursion
+Construct Binary Tree from Preorder and Inorder → DFS, Recursion
+Validate BST → DFS, Inorder Traversal
+String Encode and Decode → Serialization, Design
+Find All Anagrams → Sliding Window, HashMap
+Palindrome Partitioning → Backtracking, DFS, DP
+Reorganize String → Heap, Greedy
+Number of Islands → DFS, BFS, Union-Find
+Flood Fill → DFS, BFS
+Coin Change (backtracking) → Backtracking, DFS, Pruning
+Word Break → DP, Trie/HashSet
+Subsets (backtracking) → Backtracking, Bitmask
+Container With Most Water → Two Pointers
+Gas Station → Greedy
+Task Scheduling → Heap, Greedy
+Peak of Mountain Array → Binary Search
+Find Minimum in Rotated Sorted Array → Binary Search
+Kth Largest Element in Array → Heap, Quickselect
+K Closest Points → Heap, Sorting
+Course Schedule → Graph, Topological Sort
+Binary Tree Level Order Traversal → BFS
+Binary Tree Zig Zag Traversal → BFS
+Binary Tree Right Side View → BFS
+Serialize Tree → BFS, DFS, Design
+Median of Data Stream → Heap, Two Heaps
+Binary Search Boundary → Binary Search
+Binary Search: First Element Not Smaller Than Target → Binary Search
+Binary Search with Duplicates → Binary Search
+Square Root (sqrt) → Binary Search, Newton’s Method
+Newspapers Split → Binary Search, Greedy
+Remove Duplicates (SLL) → Linked List, Pointers
+Two Sum Sorted → Two Pointers, Binary Search
+Subarray Sum Fixed → Prefix Sum, Sliding Window
+Subarray Sum (longest) → Prefix Sum, HashMap
+Subarray Sum (shortest) → Sliding Window
+Least Consecutive Cards to Match → Sliding Window, HashMap
+Subarray Sum (general) → Prefix Sum, HashMap
+Minimum Window Substring → Sliding Window, HashMap
+Get Maximum Score → DP, Prefix Sums
+Amazon OA - Split Into Primes → DP, String, Prime Sieve
+Two Sum Unique Pairs → HashMap, Two Pointers, Set
+Max Network Rank → Graph, Degree Counting
+Lexicographically Smallest String → Greedy, String, Heap
+Longest Substring Without 3 Contiguous Occurrences → Sliding Window
+Min Moves No Three Consecutive Chars → Greedy, Counting
+String Without 3 Identical Consecutives → Greedy
+Min Steps to Make Piles Equal Height → Greedy, Sorting
+Day of Week → Math, Calendar
+Max Inserts To Avoid 3 Consecutive a → String, Greedy
+Concatenated String Length With Unique Characters → Backtracking, Bitmask
+Largest k Positive and Negative → HashMap, Greedy
+Max Length of Concatenated String With Unique Chars → Backtracking, Bitmask
+Unique Integers That Sum to 0 → Math
+Min Deletions to Obtain Valid String Format → String, Greedy
+Particle Velocity → Math, Time Series, Sliding Window variant
+Jump Game (AlgoMonster) → DP, Greedy
+Fair Indexes → Prefix Sum, Greedy
+Partition Array Into N Subsets Balanced Sum → DP, Backtracking
+Google OA - Compare Strings → String, Sorting
+Google OA - Largest Subarray → Array, Sliding Window
+Google OA - Max Area Cake → Greedy, Sorting
+Google OA - Min Decreasing Partitions → Greedy
+Google OA - Pick Up Coupons → Greedy, Intervals
+Google OA - Rose Garden → Greedy, Scheduling
+Google OA - Smallest Integer → String, Greedy
+Google OA - Water Plants → Greedy, Simulation
+Google OA - Split Strings → Backtracking, String
+Google OA - Rings on Rods → HashMap, String Parsing
+Twitter OA - K Difference → Two Pointers, HashMap
+Twitter OA - Weird Faculty → Prefix Sums, Simulation
+Twitter OA - Social Network → Graph, BFS
+Twitter OA - University Career Fair → Greedy, Sorting
+Twitter OA - Final Discounted Price → Stack, Next Smaller Element
+Twitter OA - Partition Array → DP, Greedy
+Twitter OA - Auth Token → HashMap
+Twitter OA - Parking Dilemma → Sliding Window, Sorting
+Twitter OA - Efficient Job Processing Service → Greedy, Scheduling
+Twitter OA - Unique User ID Set → HashMap, Set
+Visible Tree Node → DFS, Tree Traversal
+Balanced Binary Tree → DFS, Recursion
+Letter Combinations (AlgoMonster) → Backtracking
+Generate Parentheses (AlgoMonster) → Backtracking
+Permutations (AlgoMonster) → Backtracking
+Decode Ways (AlgoMonster) → DP
+Shortest Path (Unweighted) → BFS
+Knight Shortest Path → BFS, Graph
+Walls and Gates → BFS (multi-source)
+Open the Lock → BFS, Graph
+Word Ladder → BFS, Graph
+Sliding Puzzle → BFS, Graph State Search
+Sequence Reconstruction → Graph, Topological Sort
+Task Scheduling 2 → Greedy, Heap
+Alien Dictionary → Topological Sort, Graph
+MST Forest → Graph, MST (Kruskal/Prim)
+Ugly Number II → DP, Heap
+DSU Account Merge → DSU, Graph
+Number of Connected Components (AlgoMonster) → Union-Find, DFS
+Umbristan → Graph (custom OA)
+Autocomplete → Trie, String
+Prefix Count → Trie, String
+LRU Cache → HashMap + Doubly Linked List
+Daily Temperatures → Monotonic Stack
+Next Greater Element II → Monotonic Stack, Circular Array
+Count of Smaller Numbers After Self → BIT (Fenwick), Merge Sort, BST
+Closest BST Values II → BST Traversal, Priority Queue
+Nth Prime → Sieve, Math
+
+Sorting Algorithm Visualizations (7)
+Bubble Sort — HackerEarth → Sorting, Simulation, O(n²)
+Selection Sort — Sorting, Simulation, O(n²)
+Insertion Sort — Sorting, Simulation, O(n²)
+Insertion Sort (duplicate link) — Sorting, Simulation
+Merge Sort — Divide & Conquer, Sorting, O(n log n)
+Quick Sort — Divide & Conquer, Sorting, O(n log n) average
+Sort Colors (LeetCode ref) → Two Pointers, Dutch National Flag
+
+Custom Data Structure / Algorithm Lists (18)
+Singly Linked List ops (createSSL, deleteSSL, insert, search, traverse, inverse) → Linked List operations, Pointers
+Doubly Linked List ops (createDLL, deleteDLL, deleteNode, insert, traverse, reverseTraverse, search) → Linked List, Pointers (bidirectional)
+Circular SLL ops → Linked List, Pointers, Cycle structure
+Circular DLL ops → Linked List, Pointers, Circular Doubly Linked List
+Queue Array Ops (deleteQueue, enqueue, dequeue, isEmpty, peek, isFull) → Queue, Array, Simulation
+Queue variations → Queue, Linked List/Array simulation
+Stack Ops (push, pop, peek, delete, isEmpty, isFull) → Stack, Array/Linked List
+Stack variations → Stack
+BST ops (insert, search, preorder, inorder, postorder, delete) → Binary Search Tree, DFS Traversals
+BST extended (deleteBST, insert(BinaryNode,int), etc.) → BST, DFS
+AVL Tree ops → Self-Balancing BST, DFS, Rotations
+Binary Heap ops (heapify, insert, delete, extract, peek, levelOrder) → Binary Heap, Priority Queue

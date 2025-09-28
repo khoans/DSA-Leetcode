@@ -142,13 +142,13 @@ nums is the input array, so the auxiliary space used is O(1).
 
     public static void main(String[] args) {
         Solution solution = new FirstMissingPositive().new Solution();
-        int[] nums1 = {1, 2, 0};
-        System.out.println(solution.firstMissingPositive(nums1)); // Output: 3
+//        int[] nums1 = {1, 2, 0};
+//        System.out.println(solution.firstMissingPositive(nums1)); // Output: 3
 
         int[] nums2 = {3, 4, -1, 1};
         System.out.println(solution.firstMissingPositive(nums2)); // Output: 2
 
-        int[] nums3 = {7, 8, 9, 11, 12};
-        System.out.println(solution.firstMissingPositive(nums3)); // Output: 1
+//        int[] nums3 = {7, 8, 9, 11, 12};
+//        System.out.println(solution.firstMissingPositive(nums3)); // Output: 1
     }
 }

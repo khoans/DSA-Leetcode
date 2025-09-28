@@ -73,4 +73,12 @@ Space complexity : O(1). Constant space is used.
             return count;
         }
     }
+
+    public static void main(String[] args) {
+        Solution solution = new SubarraySumEqualsK().new Solution();
+//        System.out.println(solution.subarraySum(new int[]{1, 1, 1}, 2)); // 2
+//        System.out.println(solution.subarraySum(new int[]{1, 2, 3}, 3)); // 2
+//        System.out.println(solution.subarraySum(new int[]{3, 4, 7, 2, -3, 1, 4, 2}, 7)); // 4
+        System.out.println(solution.subarraySum(new int[]{1, -1, 0}, 0)); // 3
+    }
 }
