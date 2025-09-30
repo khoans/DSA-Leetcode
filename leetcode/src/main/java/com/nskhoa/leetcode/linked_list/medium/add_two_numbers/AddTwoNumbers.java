@@ -47,22 +47,18 @@ Space complexity : O(1). The length of the new list is at most max(m,n)+1 Howeve
             ListNode curr = dummyHead;
             int carry = 0;
             while (l1 != null || l2 != null || carry != 0) {
-                int x = (l1 != null)
-                        ? l1.val
-                        : 0;
-                int y = (l2 != null)
-                        ? l2.val
-                        : 0;
-                int sum = carry + x + y;
-                carry = sum / 10;
-                curr.next = new ListNode(sum % 10);
-                curr = curr.next;
+                int sum = carry;
                 if (l1 != null) {
+                    sum += l1.val;
                     l1 = l1.next;
                 }
                 if (l2 != null) {
+                    sum += l2.val;
                     l2 = l2.next;
                 }
+                carry = sum / 10;
+                curr.next = new ListNode(sum % 10);
+                curr = curr.next;
             }
             return dummyHead.next;
         }
