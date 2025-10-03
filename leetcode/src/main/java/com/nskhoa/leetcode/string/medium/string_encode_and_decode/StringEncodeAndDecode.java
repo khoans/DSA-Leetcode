@@ -1,4 +1,4 @@
-package com.nskhoa.leetcode.string.medium;
+package com.nskhoa.leetcode.string.medium.string_encode_and_decode;
 
 import java.util.ArrayList;
 import java.util.List;
