@@ -71,8 +71,8 @@ public class InsertIntervals {
 
     public static void main(String[] args) {
         Solution solution = new InsertIntervals().new Solution();
-        int[][] intervals = {{1, 3}, {6, 9}};
-        int[] newInterval = {2, 5};
+        int[][] intervals = {{1, 3}, {8, 9}};
+        int[] newInterval = {5, 6};
         int[][] result = solution.insert(intervals, newInterval);
         for (int[] interval : result) {
             System.out.println("[" + interval[0] + ", " + interval[1] + "]");
