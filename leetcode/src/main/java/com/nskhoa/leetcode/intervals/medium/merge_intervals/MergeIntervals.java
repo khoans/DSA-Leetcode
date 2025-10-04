@@ -49,10 +49,7 @@ public class MergeIntervals {
                 // otherwise, there is overlap, so we merge the current and previous
                 // intervals.
                 else {
-                    merged.getLast()[1] = Math.max(
-                            merged.getLast()[1],
-                            interval[1]
-                                                  );
+                    merged.getLast()[1] = Math.max(merged.getLast()[1], interval[1]);
                 }
             }
             return merged.toArray(new int[merged.size()][]);
