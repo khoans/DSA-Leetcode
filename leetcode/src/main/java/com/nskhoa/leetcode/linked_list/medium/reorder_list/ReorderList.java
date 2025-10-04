@@ -79,6 +79,60 @@ Space complexity: O(1), since we do not allocate any additional data structures.
         }
     }
 
+    class Solution2 {
+        public void reorderList(ListNode head) {
+            if (head == null) {
+                return;
+            }
+
+            // Step 1: Find the middle of the linked list
+            ListNode middle = findMiddle(head);
+
+            // Step 2: Reverse the second half of the list
+            ListNode secondHalf = reverseList(middle);
+
+            // Step 3: Merge the two halves
+            mergeLists(head, secondHalf);
+        }
+
+        // Helper to find the middle node (Problem 876)
+        private ListNode findMiddle(ListNode head) {
+            ListNode slow = head, fast = head;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            return slow;
+        }
+
+        // Helper to reverse a linked list (Problem 206)
+        private ListNode reverseList(ListNode head) {
+            ListNode prev = null, curr = head, tmp;
+            while (curr != null) {
+                tmp = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = tmp;
+            }
+            return prev;
+        }
+
+        // Helper to merge two lists as per reorder requirement
+        private void mergeLists(ListNode first, ListNode second) {
+            ListNode tmp1, tmp2;
+            while (second.next != null) {
+                tmp1 = first.next;
+                first.next = second;
+                first = tmp1;
+
+                tmp2 = second.next;
+                second.next = first;
+                second = tmp2;
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         Solution solution = new ReorderList().new Solution();
         ListNode head = new ListNode(1);
