@@ -1,7 +1,7 @@
 package com.nskhoa.sorting_algo.selection_sort;
 
 public class SelectionSort {
-    static void swap(int[] arr, int i, int j) {
+    public static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
