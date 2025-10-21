@@ -1,5 +1,6 @@
 package com.nskhoa.sorting_algo.insertion_sort;
 
+// InsertionSort : traverse the array and compare each item with all the i tems on its left and find the insertion index
 public class InsertionSortPractice {
     static void insertionSort(int[] arr) {
     }
