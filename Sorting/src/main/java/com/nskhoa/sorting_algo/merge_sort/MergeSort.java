@@ -3,18 +3,20 @@ package com.nskhoa.sorting_algo.merge_sort;
 public class MergeSort {
 
   static void merge(int[] arr, int left, int middle, int right) {
-    int[] leftTempArr=  new int[middle-left +2];
-    int[] rightTempArr = new int[right-middle +1];
+      int leftArrLength = middle - left + 1;
+      int rightArrLength = right - middle;
+    int[] leftTempArr=  new int[leftArrLength + 1];
+    int[] rightTempArr = new int[rightArrLength + 1];
 
-    for (int i = 0 ; i <= middle-left ;i++) {
+    for (int i = 0 ; i < leftArrLength ;i++) {
       leftTempArr[i] = arr[left+i];
     }
-    for (int i = 0 ; i < right - middle ; i++) {
+    for (int i = 0 ; i < rightArrLength; i++) {
       rightTempArr[i] = arr[middle+i+1];
     }
 
-    leftTempArr[middle-left+1] = Integer.MAX_VALUE;
-    rightTempArr[right-middle] = Integer.MAX_VALUE;
+    leftTempArr[leftArrLength] = Integer.MAX_VALUE;
+    rightTempArr[rightArrLength] = Integer.MAX_VALUE;
 
     int i = 0, j = 0 ;
     for (int k = left; k <= right; k++) {
