@@ -3,6 +3,7 @@ package com.nskhoa.sorting_algo.quick_sort;
 public class QuickSortPractice {
 
     public static int partition(int[] arr, int start, int end) {
+        return 0;
     }
 
     public static void quickSort(int[] arr, int start, int end) {
