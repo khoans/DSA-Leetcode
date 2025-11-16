@@ -725,211 +725,67 @@ It supports Java KeyStore's CA handling.[11]
 ### 90. Network Security Factory
 Firewall configurations employ abstract factories to produce families of monitors and blockers for intrusion or firewall rules.[4]
 ```java
-interface NetworkSecurityAbstractFactory {
+public interface NetworkSecurityAbstractFactory {
     Monitor createMonitor();
+
     Blocker createBlocker();
 }
 
-class IntrusionFactory implements NetworkSecurityAbstractFactory {
-    public Monitor createMonitor() { return new IntrusionMonitor(); }
-    public Blocker createBlocker() { return new IntrusionBlocker(); }
+public class IntrusionFactory implements NetworkSecurityAbstractFactory {
+    public Monitor createMonitor() {
+        return new IntrusionMonitor();
+    }
+
+    public Blocker createBlocker() {
+        return new IntrusionBlocker();
+    }
 }
 
-class FirewallFactory implements NetworkSecurityAbstractFactory {
-    public Monitor createMonitor() { return new FirewallMonitor(); }
-    public Blocker createBlocker() { return new FirewallBlocker(); }
+public class FirewallFactory implements NetworkSecurityAbstractFactory {
+    public Monitor createMonitor() {
+        return new FirewallMonitor();
+    }
+
+    public Blocker createBlocker() {
+        return new FirewallBlocker();
+    }
 }
 
-interface Monitor { boolean detect(String packet); }
-class IntrusionMonitor implements Monitor { public boolean detect(String packet) { return false; } }
-class FirewallMonitor implements Monitor { public boolean detect(String packet) { return false; } }
+public interface Monitor {
+    boolean detect(String packet);
+}
 
-interface Blocker { void block(String ip); }
-class IntrusionBlocker implements Blocker { public void block(String ip) { System.out.println("Intrusion Blocked: " + ip); } }
-class FirewallBlocker implements Blocker { public void block(String ip) { System.out.println("Firewall Blocked: " + ip); } }
+public class IntrusionMonitor implements Monitor {
+    public boolean detect(String packet) {
+        return false;
+    }
+}
 
-// Usage: NetworkSecurityAbstractFactory factory = new IntrusionFactory(); Monitor monitor = factory.createMonitor(); boolean threat = monitor.detect("suspicious packet");
+public class FirewallMonitor implements Monitor {
+    public boolean detect(String packet) {
+        return false;
+    }
+}
+
+public interface Blocker {
+    void block(String ip);
+}
+
+public class IntrusionBlocker implements Blocker {
+    public void block(String ip) {
+        System.out.println("Intrusion Blocked: " + ip);
+    }
+}
+
+public class FirewallBlocker implements Blocker {
+    public void block(String ip) {
+        System.out.println("Firewall Blocked: " + ip);
+    }
+}
+
+// NetworkSecurityAbstractFactory factory = new IntrusionFactory(); 
+// Monitor monitor = factory.createMonitor(); 
+// boolean threat = monitor.detect("suspicious packet");
 ```
 This coordinates network protection layers.[4]
 
-### 91. Application Firewall Factory
-WAF systems use abstract factories for families of filters and loggers for OWASP or custom rules.[9]
-```java
-interface ApplicationFirewallAbstractFactory {
-    Filter createFilter();
-    Logger createLogger();
-}
-
-class OWASPFactory implements ApplicationFirewallAbstractFactory {
-    public Filter createFilter() { return new OWASPFilter(); }
-    public Logger createLogger() { return new OWASPLogger(); }
-}
-
-class CustomFactory implements ApplicationFirewallAbstractFactory {
-    public Filter createFilter() { return new CustomFilter(); }
-    public Logger createLogger() { return new CustomLogger(); }
-}
-
-interface Filter { boolean block(String request); }
-class OWASPFilter implements Filter { public boolean block(String request) { return false; } }
-class CustomFilter implements Filter { public boolean block(String request) { return false; } }
-
-interface Logger { void log(String attack); }
-class OWASPLogger implements Logger { public void log(String attack) { System.out.println("OWASP Logged: " + attack); } }
-class CustomLogger implements Logger { public void log(String attack) { System.out.println("Custom Logged: " + attack); } }
-
-// Usage: ApplicationFirewallAbstractFactory factory = new OWASPFactory(); Filter filter = factory.createFilter(); boolean blocked = filter.block("sql-injection attempt");
-```
-
-
-
-### 93. Bot Detection Factory
-Security scanners use abstract factories for families of detectors and challengers for CAPTCHA or behavioral bots.[4]
-```java
-interface BotDetectionAbstractFactory {
-    Detector createDetector();
-    Challenger createChallenger();
-}
-
-class CAPTCHAFactory implements BotDetectionAbstractFactory {
-    public Detector createDetector() { return new CAPTCHATDetector(); }
-    public Challenger createChallenger() { return new CAPTCHACChallenger(); }
-}
-
-class BehavioralFactory implements BotDetectionAbstractFactory {
-    public Detector createDetector() { return new BehavioralDetector(); }
-    public Challenger createChallenger() { return new BehavioralChallenger(); }
-}
-
-interface Detector { boolean isBot(String userAgent); }
-class CAPTCHAEDetector implements Detector { public boolean isBot(String userAgent) { return false; } }
-class BehavioralDetector implements Detector { public boolean isBot(String userAgent) { return false; } }
-
-interface Challenger { void challenge(String session); }
-class CAPTCHACChallenger implements Challenger { public void challenge(String session) { System.out.println("CAPTCHA Challenged: " + session); } }
-class BehavioralChallenger implements Challenger { public void challenge(String session) { System.out.println("Behavioral Challenged: " + session); } }
-
-// Usage: BotDetectionAbstractFactory factory = new CAPTCHAF actory(); Detector detector = factory.createDetector(); boolean bot = detector.isBot("bot-agent");
-```
-It coordinates bot mitigation.[4]
-
-### 94. Security Information Factory
-SIEM systems employ abstract factories to produce families of collectors and analyzers for logs or events.[9]
-```java
-interface SecurityInformationAbstractFactory {
-    Collector createCollector();
-    Analyzer createAnalyzer();
-}
-
-class LogFactory implements SecurityInformationAbstractFactory {
-    public Collector createCollector() { return new LogCollector(); }
-    public Analyzer createAnalyzer() { return new LogAnalyzer(); }
-}
-
-class EventFactory implements SecurityInformationAbstractFactory {
-    public Collector createCollector() { return new EventCollector(); }
-    public Analyzer createAnalyzer() { return new EventAnalyzer(); }
-}
-
-interface Collector { void collect(String data); }
-class LogCollector implements Collector { public void collect(String data) { System.out.println("Log Collected: " + data); } }
-class EventCollector implements Collector { public void collect(String data) { System.out.println("Event Collected: " + data); } }
-
-interface Analyzer { String analyze(String input); }
-class LogAnalyzer implements Analyzer { public String analyze(String input) { return "Log Analysis: " + input; } }
-class EventAnalyzer implements Analyzer { public String analyze(String input) { return "Event Analysis: " + input; } }
-
-// Usage: SecurityInformationAbstractFactory factory = new LogFactory(); Collector collector = factory.createCollector(); collector.collect("login event");
-```
-This supports ELK Stack's SIEM flows.[9]
-
-### 95. Event Correlation Factory
-Monitoring tools use abstract factories for families of correlators and notifiers for rule or AI-based correlation.[7]
-```java
-public interface EventCorrelationAbstractFactory {
-    Correlator createCorrelator();
-
-    Notifier createNotifier();
-}
-
-public class RuleFactory implements EventCorrelationAbstractFactory {
-    public Correlator createCorrelator() {
-        return new RuleCorrelator();
-    }
-
-    public Notifier createNotifier() {
-        return new RuleNotifier();
-    }
-}
-
-public class AIFactory implements EventCorrelationAbstractFactory {
-    public Correlator createCorrelator() {
-        return new AICorrelator();
-    }
-
-    public Notifier createNotifier() {
-        return new AINotifier();
-    }
-}
-
-public interface Correlator {
-    boolean correlate(String event1, String event2);
-}
-
-public class RuleCorrelator implements Correlator {
-    public boolean correlate(String event1, String event2) {
-        return true;
-    }
-}
-
-public class AICorrelator implements Correlator {
-    public boolean correlate(String event1, String event2) {
-        return true;
-    }
-}
-
-public interface Notifier {
-    void notify(String correlation);
-}
-
-public class RuleNotifier implements Notifier {
-    public void notify(String correlation) {
-        System.out.println("Rule Notified: " + correlation);
-    }
-}
-
-public class AINotifier implements Notifier {
-    public void notify(String correlation) {
-        System.out.println("AI Notified: " + correlation);
-    }
-}
-
-// Usage: EventCorrelationAbstractFactory factory = new RuleFactory(); Correlator correlator = factory.createCorrelator(); boolean related = correlator.correlate("error1", "error2");
-```
-
-
-
-[1](https://viblo.asia/p/design-pattern-abstract-factory-implement-trong-spring-va-java-khac-gi-nhau-m2vJPrdoVeK)
-[2](https://www.digitalocean.com/community/tutorials/abstract-factory-design-pattern-in-java)
-[3](https://www.baeldung.com/spring-framework-design-patterns)
-[4](https://java-design-patterns.com/patterns/abstract-factory/)
-[5](https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html)
-[6](https://dev.to/srishtikprasad/abstract-factory-design-pattern-18h3)
-[7](https://java-design-patterns.com/patterns/pipeline/)
-[8](https://dzone.com/articles/enabling-behaviour-driven-service-discovery-a-ligh)
-[9](https://refactoring.guru/design-patterns/abstract-factory/java/example)
-[10](https://www.geeksforgeeks.org/system-design/abstract-factory-pattern/)
-[11](https://www.baeldung.com/java-abstract-factory-pattern)
-[12](https://stackoverflow.com/questions/65879813/factory-design-pattern-and-spring)
-[13](https://gpcoder.com/4365-huong-dan-java-design-pattern-abstract-factory/)
-[14](https://javatechonline.com/abstract-factory-design-pattern-in-java/)
-[15](https://www.geeksforgeeks.org/java/spring-when-to-use-factory-design-pattern-instead-of-dependency-injection/)
-[16](https://viblo.asia/p/abstract-factory-design-pattern-trong-java-RnB5p3bblPG)
-[17](https://www.youtube.com/watch?v=RE3StJihr34)
-[18](https://viblo.asia/p/abstract-factory-design-pattern-tro-thu-dac-luc-cua-developers-maGK7B4M5j2)
-[19](https://stackoverflow.com/questions/5698026/is-the-service-locator-pattern-any-different-from-the-abstract-factory-pattern)
-[20](https://dev.to/zeeshanali0704/abstract-factory-design-pattern-in-java-complete-guide-with-examples-1kld)
-[21](https://dzone.com/articles/design-patterns-abstract-factory)
-[22](https://stackoverflow.com/questions/12592520/example-of-factory-pattern-in-java-jdk)
-[23](https://stackoverflow.com/questions/2280170/why-do-we-need-abstract-factory-design-pattern)
-[24](https://topdev.vn/blog/tim-hieu-java-design-pattern-service-locator/)
