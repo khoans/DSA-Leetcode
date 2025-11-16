@@ -13,7 +13,7 @@
         <module>leetcode</module>
         <module>Sorting</module>
         <module>DesignPattern/java</module>
-
+        <module>InterviewQuestions</module>
     </modules>
 
     <properties>

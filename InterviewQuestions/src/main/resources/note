@@ -1,0 +1,31 @@
+1/ Sự khác biệt giữa ArrayList và LinkedList
+2/ Giải thích về Hash Collision và Hash Table
+3/ Giải thích SOLID principles và nêu ví dụ
+4/ Nêu các design pattern đã áp dụng? Nêu ví dụ
+=> Follow up: trong 1 câu, hãy nêu ra mục đích của singleton, và factory pattern
+5/ Index trong database là gì? Các loại index?
+6/ Bạn sử dụng data framework nào (JDBC, hibernate, etc)
+7/ Nêu các component hay các method mà bạn sử dụng khi sử dụng JDBC?
+8/ Giải thích về prepareStatement và ResultSet
+9/ Theo bạn thì microervice là gì? Khi chúng ta nghĩ đến microservice thì chúng ta tưởng tượng nó là 1 cục monolith bự tách ra thành nhiều cục microservice nhỏ. Vậy thì tiêu chí hay điều gì mà bạn có thể nói service đó là microservice?
+10/ Hỏi về ApplicationContext trong spring boot
+11/ Hỏi về các annotations như @SpringBootApplication làm gì behind the scenes
+12/ @Component, @Repository, @Service khác nhau như thế nào?
+13/ Các loại dependency injection trong spring boot? Tại sao nên sử dụng constructor injection
+14/ Hỏi về Spring boot test slices trong unit test
+15/ Hỏi parameterlized test là gì?
+16/ Sự khác nhau giữa mock và spy trong unit test
+17/ Spring boot nó nâng cấp gì từ Spring framework
+18/ Docker là gì?
+19/ Sự khác nhau giữa dockerfile và docker-compose
+20/ Làm sao để kết nối các container trong docker-compose
+21/ giải thích Overloading và Overidding?
+...
+Front end:
+1/ Các thành phần chính trong react
+2/ Giải thích về state và hook
+3/ react lifecycle
+
+Other:
+1/ Kinh nghiệm sử dụng AI của bạn như thế nào? Đã từng sử dụng AI dể phát triển feature chưa?
+2/ Kinh nghiệm làm việc remote của bạn như thế nào?
