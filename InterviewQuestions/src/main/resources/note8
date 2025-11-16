@@ -26,7 +26,7 @@ Các chia sẻ này mình đã nêu trong post Backend TipTricks, document liên
 👉Điều kiện tiên quyết
 - Tôi đang hiểu bạn đọc post này đã hiểu biết cơ bản về cơ sở dữ liệu; và hệ quản trị cơ sở dũ liệu quan hệ; 03 chuẩn csdl cơ bản
 - Tôi đang hiểu là bạn đọc đã va vấp nhiều việc thiết kế một Cấu trúc dữ liệu và đã biết lập trình hướng đối tượng với nó, ví dụ: lớp đối tượng, mảng, danh sách, hàng đợi, ngăn xếp, cây... và các định dạng đi kèm cấu trúc: oop class, struct, json, xml, csv, key-value...
-Như vậy bạn đọc các gợi ý dưới sẽ dễ hiểu hơn. Nếu cần cập nhật kiến thức trên, bạn vào dathoc .net/cntt, tìm đọc kiến thức cơ bản liên quan, rất cơ bản thôi ạ.
+Như vậy bạn đọc các gợi ý dưới sẽ dễ hiểu hơn. Nếu cần cập nhật kiến thức trên, bạn vào /cntt, tìm đọc kiến thức cơ bản liên quan, rất cơ bản thôi ạ.
 .
 .
 👉Gợi ý 1: Khi nào tôi cần sử dụng in-mem db, relational database, khi nào tôi cần nosql database
@@ -129,7 +129,7 @@ Xem https://github .com/Mohammad-Faisal/nodejs-security-best-practices
 .
 .
 👉Tip #003 Chống các bảo mật cho máy server Ubuntu của bạn, đang chạy Nodejs - chỉ Ubuntu, còn server khác chắc bạn cũng có nhiều tiptrick khác.
-Xem dathoc .net/dsetup, phần bảo mật Ubuntu
+Xem /dsetup, phần bảo mật Ubuntu
 ----------> Vì sao tôi lại bảo bạn sử dụng lib này - Ưu điểm:
 - Ngoài việc bạn bảo mật cho hệ thống phần mềm nodejs của bạn; bạn cần lưu ý bảo mật cho máy server có lẽ chỉ có bạn hoặc 1-2 người admin vào con server đó. Và đây cũng là trải nghiệm riêng cá nhân mình. Sẽ còn có nhiều update cập nhật mới.
 .
@@ -171,7 +171,7 @@ Segment: hiểu là ví dụ e list danh sách người mua và quay lại trên
 .
 .
 Nếu Batch
-0. Nếu ít e cứ tổng hợp truy vấn bảng user, bảng post, bảng comment ra power pi, tableau làm tiếp. Hoặc tạo view trong db. Anh vẫn làm, ví dụ dathoc .net/stat, hay bài toán Honda: dảhoc .net/honda
+0. Nếu ít e cứ tổng hợp truy vấn bảng user, bảng post, bảng comment ra power pi, tableau làm tiếp. Hoặc tạo view trong db. Anh vẫn làm, ví dụ /stat, hay bài toán Honda: dảhoc .net/honda
 1. Nếu e segment bảng và filter theo batch, vậy cần là db đó cần trìgger đc.
 2. Vì sao lại trigger. Vì đơn giản em.muốn batch analysis tự động: tức là cứ 5h chiều e truy vấn và filter ra cái em cần.
 3. A khuyên là e đưa ra view để client lấy ra; tức là tạo view (một dạng table) để html js hoac powerbi hoac tableau lấy ra
@@ -212,7 +212,7 @@ Câu 3: Bạn control thế nào với ram, cpu khi tăng tới một thời đi
 - Tạo module gửi email từ nodejs modemailer, xem ví dụ: https:// dev .to/documatic/send-email-in-nodejs-with-nodemailer-using-gmail-account-2gd1
 - Tạo module local notification gửi từ server nodejs sang app mobile lấy message: https:// www. notjust .dev/blog/2023-02-02-react-native-local-push-notifications
 - Tạo websocket (như project mẫu https:// github. com/koolj/willnftorai/blob/main/web/server.js) hoặc ảnh dưới. Tất nhiên kết nối socket với mobile: socket io, xem: https:// dev .to/novu/building-a-chat-app-with-socketio-and-react-native-k1b
-- Tạo mqtt theo guide dathoc .net/dsetup phần EMQX
+- Tạo mqtt theo guide /dsetup phần EMQX
 - Nối lại: khi có lỗi, chuyến message sang hàm send email từ nodemailer (chú ý gmail cần 2 authentication, và lấy đc 8 secret code, thì mới gửi đc)
 - Nối lại: khi có lỗi, chuyến message sang mqtt, đặt tên topic là "errorSvr"; trên mobile cấu hình socket capture topic tên là "errorSvr", và cứ khi nào gặp cái này thì bật localNotification lên (trong reactnative việc chuyển màn hình, gọi servervice cụ thể đã làm rất chặt chẽ phần, Navigator)
 - Cấu hình khi router không tồn tại, xem ảnh 2
@@ -247,13 +247,13 @@ Code đọc và check nội dung ảnh có nội dung vi phạm: Hàm checkGPimg
 Có thể tip này có nhiều bạn xử lý mượt hơn. Nếu bạn làm mượt hơn cho mình giải pháp nhé.
 Ví dụ cách làm của mình (ảnh 1).
 Mục tiêu của tip là:
-- Giảm tải truy vấn từ client mọi nơi (ví dụ view xem statistic: dathoc .net/stat), về server, đẩy data về localstorage, từ localstorage vẽ chart data ra (chứ ko phải cứ mỗi lần view lại truy vấn server)
-- Giảm tải free crawl api từ các bot; ví dụ view xem statistic: dathoc .net/stat , thì đang gọi 6-7 api, trong đó có api về mem (xem stat của ram, cpu của máy) là dathoc .net/ctmem. Api này nếu crawler phát hiện ra họ sẽ đưa bot vào lấy đêm ngày.
+- Giảm tải truy vấn từ client mọi nơi (ví dụ view xem statistic: /stat), về server, đẩy data về localstorage, từ localstorage vẽ chart data ra (chứ ko phải cứ mỗi lần view lại truy vấn server)
+- Giảm tải free crawl api từ các bot; ví dụ view xem statistic: /stat , thì đang gọi 6-7 api, trong đó có api về mem (xem stat của ram, cpu của máy) là /ctmem. Api này nếu crawler phát hiện ra họ sẽ đưa bot vào lấy đêm ngày.
 - Tất nhiên khi đưa về localstorage thì mình đã hạn chế việc got tự động lấy data rồi. Còn không thể ngăn đc manual crawl copy paste.
 - Bổ sung thêm là: bạn làm đoạn js encrypte cái localstorage với key bạn tạo từ server thì... crawler mình nghĩ sẽ hết cách.
 - Nếu bạn cần bảo mật che nội dung data trên localstorage thì đơn giản viết client js rsa và mã hoá nó dùng key từ server. Xem https:// www. npmjs. com/package/crypto-js
 Xử lý:
-- Giảm tải tổng thể site như post trước, Tip #025 về cách dùng request-limiter. Xem toàn văn: dathoc .net/ntk. Xong đôi khi từng api vẫn bị bot crawl làm tốn tài nguyên server
+- Giảm tải tổng thể site như post trước, Tip #025 về cách dùng request-limiter. Xem toàn văn: /ntk. Xong đôi khi từng api vẫn bị bot crawl làm tốn tài nguyên server
 - Api /ctmem, là lấy data cpu, ram từ server, rồi tính toán view tại chart lên html theo dõi hàng ngày. Vậy có thể bot crawler data sẽ soi và sẽ lấy data, kèm việc bot call quá nhiều vào server sẽ gây tốn tài nguyên server
 - Xem ảnh, phần 1: đây là hàm view (code js client, và thể hiện trên browser chart) khi nhận đc data và vẽ chart ra các data từ api /ctmem
 - Xem ảnh, phần 2: đây là tổ hợp hàm xử lý (client) localstorage của Google, khi bạn tạo một key và value; và quan điểm là: check client Chrome nếu có localstorage thì lấy data từ storage, còn không thi call api /ctmem
@@ -272,7 +272,7 @@ Xử lý:
 
 - Một việc khó nữa là, nếu n worker của bạn trên 1 máy vậy nó đơn giản, tức là từ ip haproxy bạn có thể phân tản vào LAN trên 1 máy của bạn. Xong nếu các worker trên các máy khác nhau, ip khác nhau, lại còn qua internet. Vậy đơn giản bạn tạo tls 1.2 let encrypt cho từng máy worker (cái này Google luôn sẽ có 2-3 step thôi)
 - Tạo đơn giản một server node, và tạo kết nối với couchdb, xem Google npm nano, để hiểu cách connect từ nodejs vào couchdb thế nào. Tạo 03 host abd với 03 port 123, 124, 125
-- Để tạo kiến trúc n server đưa và sync vào n database server. Bạn cài thử CouchDB lên (xem dathoc .net/dsetup) để xem docker couchdb thế nào, đọc thêm doc couchdb để xem nó replica và sync giữa các replica thế nào. Gợi ý https:// docs .couchdb .org/en/stable/replication/intro.html, việc này có thể mất bạn từ 2-3 giờ xem cơ chế. Để đơn giản check xem db của bạn có làm đc tương tự không. Nếu không bạn sẽ phải tạo kiến trúc: n server đưa request vào 1 db.
+- Để tạo kiến trúc n server đưa và sync vào n database server. Bạn cài thử CouchDB lên (xem /dsetup) để xem docker couchdb thế nào, đọc thêm doc couchdb để xem nó replica và sync giữa các replica thế nào. Gợi ý https:// docs .couchdb .org/en/stable/replication/intro.html, việc này có thể mất bạn từ 2-3 giờ xem cơ chế. Để đơn giản check xem db của bạn có làm đc tương tự không. Nếu không bạn sẽ phải tạo kiến trúc: n server đưa request vào 1 db.
 - Không hạn chế truy vấn cũng như xử lý trên db ý nghĩa ở đây là: vậy bạn đã tạo ra n worker để hứng truy vấn. Lưu ý 1 máy server 4gb ram, và core 2 lõi, chỉ có thể hứng đc 600-1000 user đồng thời cùng lúc với data gửi lên từ 20-200kb. Vậy nếu bạn cần server xử lý cả triệu user đồng thời, vậy bạn đã tính ra đc bạn cần bao nhiêu server và bao nhiêu cpu rồi. Nếu muốn giám sát, bạn xem doc haproxy, nó cả gui web admin control panel đầu cuối cho bạn xem ra vào từng worker mà haproxy cấu hình
 - Xong, như vậy bạn đã test hoặc implement đc kiến trúc n nodejs server đưa và sync vào n database server, xử lý distributed db, distributed worker, với KHÔNG HẠN CHẾ số lượng người dùng truy vấn cả web lẫn db.
 
