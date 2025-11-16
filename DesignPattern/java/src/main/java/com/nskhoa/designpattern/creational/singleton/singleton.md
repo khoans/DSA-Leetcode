@@ -13,6 +13,13 @@
 - Lịch tiêm chủng gia đình, chỉ một lịch thống nhất.
 - Quỹ tiết kiệm chung của nhóm bạn.
 - Bảng theo dõi sức khỏe hàng ngày, chỉ một bản để theo dõi.
+- Quản lý connection pool trong ứng dụng.
+- Quản lý cấu hình ứng dụng.
+- Quản lý logging trong hệ thống.
+- Quản lý cache dữ liệu.
+- Quản lý phiên làm việc người dùng.
+- Quản lý tài nguyên hệ thống.
+- Quản lý kết nối cơ sở dữ liệu.
 
 **Câu hỏi để xác định sử dụng Singleton**:
 - Bạn có cần đảm bảo chỉ một instance duy nhất cho toàn bộ ứng dụng (như quản lý tài nguyên toàn cục) để tránh lãng
