@@ -1,0 +1,7 @@
+1. Java core cơ bản, vài cấu trúc dữ liệu hay gặp. Có 1 câu mình không thích là ông pv mình hỏi mấy thứ hàn lâm kiểu như khi run một file jar thì cụ thể JVM nó làm những cái gì, với khi compile thì JDK làm cái gì :ops: cá nhân mình không đánh giá cao những câu hỏi kiểu này, tuy nhiên vẫn trả lời ok nhưng phải chỉnh ổng vì ổng nói sai JDK với JVM (lộn nhau)
+2. hỏi framework, các thành phần của SpringBoot, DI là gì, các annotation, ...
+3. Hỏi các công nghệ khác như kiểu CI/CD, git, kiến thức về microservice, ...
+4. Hỏi vài câu về tình huống đã gặp trong thực tế
+5. Hỏi về năng lực tiếng Anh, bắn vài câu cơ bản giới thiệu bản thân
+
+

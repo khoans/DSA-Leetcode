@@ -1,0 +1,84 @@
+1.
+Mình được hỏi 1 câu thế này, trong hệ thống ví điện tử, có cách nào để đảm bảo các event của mỗi địa chỉ ví, luôn luôn được thực hiện duy nhất đúng 1 lần & phải đúng thứ tự! *** Input data
+-Môi trường microservice, sử dụng message queue giữa các service
+-Message queue được setup nhiều partition Event sẽ ứng với 1 message được producer gửi đi
+- Và có nhiều consumer cùng xử lý đồng thời các message (high concurency).
+
+2.Tình huống một service A cần gọi API bên thứ ba để xử lý. Nếu bên thứ ba do quá tải nên không xử lý được, các request của A gọi sang bên thứ 3 đó sẽ bị timeout sau 5 giây, dẫn đến thread của service A bị treo để đợi timeout, càng nhiều request như vậy khiến service A bị cạn kiệt thread pool, và kéo theo đó service B, C, D khi cần gọi service A cũng bị timeout và bị cạn kiệt thread tương tự. Khiến cho lỗi lan truyền làm cho tất cả các service trên hệ thống bị treo. Và hỏi cần cải thiện như nào để không bị sập cả hệ thống khi chỉ 1 thành phần bị hỏng như vậy
+
+3,Trong một jwt token sẽ có một thời gian để hết hạn cái token đó. Tuy nhiên vì một lý do mà token đấy bị lộ ra ngoài. Có cách nào "logout" user ra khỏi token không? Và thiết kế như nào để hỗ trợ việc đó?
+4,yêu cầu thiết kế tính năng trên web cho phía vận hành tìm ra danh sách Top K sản phẩm được xem nhiều nhất trong một khoảng thời gian (tính theo phút, ngày hoặc tháng). Yêu cầu thiết kế có thể scale được để xử lý được lượng dữ liệu cho khoảng 10 triệu sản phẩm và có tổng 10 tỷ lượt xem mỗi ngày
+5. Liệu mình nên save data vào cache trước r lưu vào database hay làm ngược lại. Best practice cho 2 case này là như nào ạ ?
+6. update
+Cho một file khoảng 200GB, mỗi dòng là một xâu ký tự không quá 1KB. Trong file đó chỉ có duy nhất hai xâu trùng nhau. Bạn được cấp một máy tính có dung lượng bộ nhớ là 16GB. Hãy tìm giải pháp để tìm ra xâu trùng nhau một cách nhanh nhất?
+7. nếu dùng sha256 nhưng hash liên tiếp 1000 lần để nó chậm thì có tốt hơn bcrypt không?
+8.
+Người dùng gửi một request đến service Order, service Order xử lý xong gửi yêu cầu đến Service Payment thông qua message queue. Service Payment xử lý xong là hoàn thành quá trình đặt hàng. Làm sao để service Payment trả kết quả xử lý đến client khi mà quá trình hoàn thành ?
+
+
+9.download multiple files và zip lại. Hiện tại, trên UI người dùng có rất nhiều audio/video file, xấu nhất có thể lên đến hàng trăm nghìn files (~500GB). Người dùng expect nhấn nút 'Bulk Download' và output ra 1 hoặc nhiều file zip để tải về.
+
+  Mỗi audio/video file hiện đều có 1 url download riêng (k có sẵn trong hệ thống mình). Như vậy input của mình là 1 đống url, mình đang thử 3 phương án:
+  Xử lý ở Frontend. Tạo worker ở frontend để download data, xong zip dần mỗi khi 1 file được lấy về. Này chỉ khả thi khi lượng data ít, tầm vài trăm MB, k thì process này sẽ bị nặng -> co thể treo browser. Mà trong trường hợp tổng quát thì có vài trăm nghìn files sẽ ko khả thi.
+  Xử lý ở Backend. Ném đống urls cho backend xử lý. Frontend sẽ tuần hoàn gọi api check status xem xử lý xong chưa. (E thấy google drive đang dùng) Nhưng khó là chưa biết server nên xử lý download and zip như thế nào. Có cơ chế nào streaming data dần dần, thay vì zip hết rồi trả về thì trả về từng chunk cho frontend k ạ? Hay có cách nào zip dần mà không bị tràn Ram ở server không? Vì nếu cử load data về hết rồi mới zip lại thì chắc chắn bị tràn Ram trong khi xử lý.
+  2 hướng tiếp cận trên đều buộc người dùng k dc direct hoặc đóng page khi đang nén file.
+  - Tạo Engine Job. (Khả thi nhất) Ném đống urls cho engine. Engine sẽ tải, zip và upload files zip lên S3. Upload xong thì emit 1 event trả về url trên S3 cho người dùng download. Vẫn câu hỏi giống ở trên, quá trình tải và zip data có kỹ thuật gì để k bị tràn Ram không ạ? Và việc upload lên S3 bulket thì nên đẩy từng phần như thế nào ạ?
+
+  10. một hệ thống socket.io khi mà traffic ngày càng nhiều lên, thì có cách nào monitor việc push msg đến client không ạ? Kiểu là push có thành công hay không ấy
+
+  11.
+  cách thiết kế luồng xử lý trong hệ thống đặt hàng kiểu microservices. Flow của em là như sau:
+  User → Order → Inventory → Payment → Shipping
+  Em có một vài thắc mắc muốn nhờ mọi người giải thích giúp:
+  ⸻
+  1. Với luồng trên thì chỗ nào nên dùng HTTP/gRPC, chỗ nào nên dùng Kafka?
+  • Em thấy có người nói:
+  • Các bước chính như Order → Inventory → Payment nên dùng HTTP/gRPC vì nghiệp vụ cần chặt chẽ, xử lý tuần tự, có rollback.
+  • Còn Kafka thì chỉ nên dùng cho các tác vụ không quan trọng như gửi email, notification, logging…
+  ⸻
+  2. Nếu em áp dụng Saga Pattern thì có thể dùng Kafka hết luôn không?
+  Ví dụ:
+  Order → Kafka → Inventory → Kafka → Payment → Kafka → Shipping
+  • Em hiểu rằng Saga có thể xử lý rollback thông qua các event stock-failed, payment-failed, v.v.
+  • Vậy dùng full Kafka như trên có ổn không? Có rủi ro gì cần lưu ý không?
+
+
+  12.
+  Mình cần tạo tài khoản ảo (alias name) để gắn với từng giao dịch có sẵn nhằm tạo QR thanh toán. Khi đối tác gửi yêu cầu, hệ thống sẽ kiểm tra số lượng tài khoản trong kho. Nếu số lượng này ít hơn 50, hệ thống sẽ tạo thêm tài khoản và gắn các tài khoản mới với những giao dịch chưa có tài khoản.
+  Vấn đề là khi đối tác gửi một lúc nhiều request (khoảng 100-500 yêu cầu), việc kiểm tra và cập nhật tài khoản có thể gặp xung đột. Nhiều request có thể cùng lúc tạo tài khoản mới và vô tình gắn vào cùng một giao dịch, dẫn đến việc một giao dịch bị gắn nhiều tài khoản ảo khác nhau(tk ảo bị đè)
+  Mình đã thử sử dụng queue để xử lý tuần tự nhưng điều này làm chậm hệ thống và không đáp ứng được yêu cầu phản hồi nhanh của đối tác. Mình đang nghĩ đến việc tách ra thành hai API: một để tạo tài khoản ảo và một để gắn tài khoản ảo với giao dịch
+
+  13.
+  thực hiện dự án về real-time video chat. Mình có tìm hiểu được một bài viết thực hiện theo mô hình như sau:
+  Yêu cầu:
+  Người dùng có thể tạo phòng và tham gia. Người tạo sẽ là host và những người tham gia sẽ là Listener. Các thành viên có thể là host và tham gia ẩn danh các meeting hoặc dưới dạng authenticated user. Phần xử lý P-2-P sẽ dùng WebRTC, các vấn đề truyền nhận dữ liệu sẽ dùng WebSockets. Các chủ phòng có thể kick các viewer ra khỏi phòng. Có thể share các tệp hình ảnh, document trong room. Có thể share các action của chuột khi share màn hình.
+  Mình có tìm hiểu 1 kiến trúc như sau, không biết như thế có thể đáp ứng được các yêu cầu trên hay không, vì team mình cũng cân nhắc về mặt chi phí và hiệu suất.
+
+
+  14.tìm kiếm danh sách tài khoản người dùng, có các trường query lấy dữ liệu thì có 3 trường lấy query trực tiếp từ database chính, 2 trường hợp là phải query thông qua 1 con service khác. Sau đó kết quả được merge lại và trả ra cho người dùng với dữ liệu được phân trang. Vấn đề là phân trang dữ liệu ở đây. Hệ thống 1 có N bản ghi, hệ thống 2 có M bản ghi map với n bản ghi ở database chính. Mong muốn khi query sang service 2 kia thì mong muốn lấy phân trang và từ kết quả phân trang đó sẽ mapping với dữ liệu trong database chính, nếu đủ bản ghi phân trang mong muốn thì trả kết quả người dùng, nếu không thì phải lấy trang tiếp theo.
+     Giải pháp hiện tại của em là : đồng bộ các trường cần search về database chính và làm thêm 1 luồng đồng bộ.
+     Mong các bác có giải pháp nào tốt hơn không ạ.
+     Vấn đề của em cơ bản là:
+     TH1: người dùng chỉ truy vấn các trường có sẵn ở account thì sẽ search account ra danh sách tài khoản ( đã được phân trang), sau đó lấy các mã UserID query sang profile account để làm giàu dữ liệu.
+     TH2: người dùng truy vấn các trường dữ liệu ở bên User service, user service sẽ phân trang trả ra dữ liệu, dữ liệu trả về account service, ở kết quả này sẽ lấy ra các UserId để lấy danh sách các account tương ứng ( 1 user nhiều account) và phân trang trả ra cho người dùng. Vấn để ở chỗ này, việc phân trang nếu không đủ dữ liệu thì sẽ phải lấy trang tiếp theo ở dữ liệu user và về bên service account mapping tiếp đến khi đủ dữ liệu phân trang người dùng yêu cầu.
+     Giải pháp hiện tại của em là sync các dữ liệu đang được query ở user service về account service và tạo thêm luồng đồng bộ dữ liệu. ( mỗi service trỏ 1 db khác nhau).
+
+
+
+
+
+
+     15. Giả sử người A trong tài khoản có 50k, họ dùng 2 máy điện thoại để chuyển 50k đồng thời cho 2 người khác nhau cùng một lúc. Hỏi hệ thống cần xử lí như nào để tránh việc chuyển cho mỗi người 50k đều thành công gây thiệt hại tiền cho ứng dụng ?
+
+     16.Mô hình sao chép cơ sở dữ liệu bất đồng bộ (async database replication). Trong trường hợp máy chủ chính master đã nhận yêu cầu và cập nhật 1 row thành công nhưng chưa kịp đồng bộ sang các máy chủ phụ (slave) thì bị crash. Sau đó, một trong các slave sẽ được chọn làm master mới. Như vậy dữ liệu vừa được ghi trên master cũ lại không có trên master mới, dẫn đến sai lệch dữ liệu. Không biết mọi người có giải pháp nào để xử lý tình huống này không ?
+
+
+     17. Trên mobile app có một con game quay sổ xố nhận quà, sẽ có nhiều loại quà và mỗi loại quà chỉ có một số lượng nhất định trong thời gian chạy chương trình, mỗi ngày mỗi người chỉ được tham gia quay 2 lần, và một tài khoản có thể đăng nhập trên nhiều thiết bị, nên có thể xảy ra câu chuyện cùng một tài khoản nhưng có thể quay xổ số một lúc ở nhiều nơi. Vì app này có số lượng người dùng khá lớn nên ở dưới Back-end phải làm cách nào để xử lí hơn 500k request gửi đến cùng lúc và liên tục nhưng không bị treo server, phải đảm bảo giới hạn số lượt quay của mỗi người trong một ngày chính xác(2 lần trở xuống) cho dù có xảy ra trường hợp một tài khoản quay xổ số cùng lúc ở nhiều thiết bị khác nhau và cũng phải đảm bảo số lượng của từng loại quà không bị trừ sai (ví dụ: bị trừ âm hoặc trừ sai số lượng). Trong trường hợp xảy ra lỗi trong lúc quay thì lần quay đó sẽ được hoàn lại, và số quà phải được bảo toàn
+
+
+
+
+     18.
+     e đang làm 2 service là Authen (Quản lý User) và Post (Quản lý bài đăng). Mọi chuyện sẽ dễ dàng nếu 2 service này dùng chung 1 DB tuy nhiên e muốn thiết kế theo hướng mỗi service là 1 DB độc lập.
+     - Tuy nhiên đời k như là mơ thì ở DB của thằng Post cần phụ thuộc vào table User để biết ai tạo bài đăng và thực hiện 1 số tác vụ khác => Cần thông tin User => Giải pháp lúc đầu của e là tạo 1 Table User temp(rep 1:1 với User) bên DB Post và kết hợp vs event driven architure (cụ thể là dùng MQ để bắn event khi CRUD user và update User temp)
+     => Hoàn toàn xử lý được nhưng về dài e thấy không lẽ nếu hệ thống phát triển các service khác có liên quan đến User thì mình lại duplicate ra 1 table User rep 1 1 nữa?

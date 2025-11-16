@@ -1,0 +1,13 @@
+1. Trong luồng và quản trị session đăng nhập, làm thế nào để đảm bảo khi user đăng nhập mà client không lưu session; dẫn tới việc bị bên thứ 3 lấy cắp session này và đánh middle-attack? Và nếu họ có lấy cắp, cũng ko làm gì đc. Hãy xem các truy vấn của api từ zalo
+2. Trong quá trình thanh toán. Bây giờ toàn 1 chạm qr. User ấn nút PAY, vi dụ. Sau đó luồng có thể đi qua 1-2-3-4 bước. Vậy làm sao để tới bước 3, nó có vấn đề, mà ko phải do lỗi từ user, vậy nó quay lại bước 1 làm lại?
+.
+.
+3. Trong quá trình chu chuyển dữ liệu nhỏ, 25kb tới 100kb 1 luồng. Vậy hệ thống bình thường 8gb ram có thể xử lý 200k-500k luồng cùng lúc. Vậy lấy cái gì để bạn đảm bảo máy của bạn hứng 500k luồng cùng lúc như vậy. Cỡ nhỏ hơn 1 giây. Mà đảm bảo không luồng nào bị rớt? Nếu 1 trong 500k luồng bị rớt, vậy nó có quay lại từ đầu ko? Bạn lấy cái gì để làm nó replay lại?
+4. Tôi có 03 hệ thống. Một rasberry, một mobile android, một nodejs. Vậy tôi cần chu chuyển một ảnh động, cỡ 1.5-2mb size, khung hình full hd. Vậy cần dùng cái gì để đi qua 03 thiết bị trên với độ trễ là 60 hình/giây?
+.
+.
+5. Tôi dùng rất giỏi express, mongoose, redis...vậy tôi triển khai thử 15 dịch vụ (api), và tôi đưa lên 15 docker khác nhau. Vậy làm thế nào để tôi debug api nào đang bị tắc cái gì. Và đẩy lỗi của nó về một nơi? Thêm nữa làm thế.nào để tôi biết ram và cpu từng con máy đang chạy với mỗi api trên?
+.
+.
+6. Đang có khái niệm Đăng nhập không pasdword (ko phải dùng AI) vậy bên bạn đã thử trải nghiệm nào chưa? Hay phải dùng bên thứ 3 (gần như 98% dev backend đang dùng)? Vậy nếu bên thứ 3 ăn cắp thông tin vậy bạn định phát triển Đăng nhập không password ra sao?
+Vài câu hỏi và gợi ý!

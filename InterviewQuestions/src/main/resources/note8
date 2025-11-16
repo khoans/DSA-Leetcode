@@ -1,0 +1,424 @@
+Got into a disagreement? Hop on a 15-minute meeting with the concerned person. This not only helps find a middle ground, but also helps you see things from their perspective.
+
+Complex merge conflicts are a sign that something is fundamentally wrong with the way in which your team operates. Too many devs working on the same thing, or poor code structuring, or a lack of communication/coordination.
+
+Distributing focus to multiple things at a time brings down productivity. Remember - one thing at a time. Leave parallel processing to the CPUs.
+
+Under-promise and over-deliver. Quote slightly more time than what'll be needed. You now have the head room to accommodate mishaps, plus it creates the illusion that you deliver ahead of the deadline if there are no mishaps.
+
+Early burnout symptoms vary from person to person (for me, it’s extreme inertia - even simple tasks feel hard to start). Recognize your own, take some time off to recharge.
+
+Processes are inevitable in a corporate environment. Sometimes you might spend more time updating documentation/tickets than actually writing code.
+
+Never settle for poorly defined requirements. Push back and gain more clarity. The blame rarely falls on the client/PM when things go wrong.
+
+Before you build something, understand its outcome. The sense of belonging and motivation that gives is immense.
+
+As a fresher, your CTC is not under your control. You gain control over it with experience.
+
+
+[Về xử lý database và làm việc với nghiệp vụ]
+Mình xin có vài chia sẻ về xử lý database liên quan tới một số nghiệp vụ backend, mà ít nhiều anh chị đang chưa tìm thấy hướng đi; hoặc anh chị em đang có những trải nghiệm hoặc khái niệm hiểu nhầm.
+Tất nhiên đây là trải nghiệm của mình làm việc nhiều với db MSSQL từ 2009, posgreSQL, oracle 2010, mysql, couchdb, cassandra, hive, dynamodb, redshift  2017
+Các chia sẻ này mình đã nêu trong post Backend TipTricks, document liên quan, ai chưa rõ có thể tìm lại post xem.
+.
+.
+👉Điều kiện tiên quyết
+- Tôi đang hiểu bạn đọc post này đã hiểu biết cơ bản về cơ sở dữ liệu; và hệ quản trị cơ sở dũ liệu quan hệ; 03 chuẩn csdl cơ bản
+- Tôi đang hiểu là bạn đọc đã va vấp nhiều việc thiết kế một Cấu trúc dữ liệu và đã biết lập trình hướng đối tượng với nó, ví dụ: lớp đối tượng, mảng, danh sách, hàng đợi, ngăn xếp, cây... và các định dạng đi kèm cấu trúc: oop class, struct, json, xml, csv, key-value...
+Như vậy bạn đọc các gợi ý dưới sẽ dễ hiểu hơn. Nếu cần cập nhật kiến thức trên, bạn vào dathoc .net/cntt, tìm đọc kiến thức cơ bản liên quan, rất cơ bản thôi ạ.
+.
+.
+👉Gợi ý 1: Khi nào tôi cần sử dụng in-mem db, relational database, khi nào tôi cần nosql database
+- Bạn cần DB key value - in memory DB khi: Với các ứng dụng giới hạn chức năng; phục vụ nghiệp vụ; cần có tăng tốc tối đa ra vào db, quản trị nhanh nhất có thể, cho dù bạn ở Hà Nội, server thì ở Châu Phi, ví dụ:
+Tôi muốn search 1:1 tỷ, gõ ra và hiện ngay gợi ý tức thì, tốc độ < 0,1 mili giây
+Tôi muốn làm ứng dụng nghiệp vụ kiểu kiểu chatgpt, phản hồi 1:170 tỷ điểm trong 2-12 giây
+Tôi muốn làm ứng dụng tra cứu nhanh bản đồ địa lý Quốc gia, địa chỉ nhà, tìm đường nhanh
+Tôi muốn làm ứng dụng tính toán nhanh cảnh báo gian lận trong đặt lệnh mua bán forex, chứng khoán
+----------> Gợi ý tên tuổi db: Redis, Ignite, Memcached, kiến trúc Ontology, kiến trúc Cây
+----------> Gợi ý trên front-end web: Google Chrome cache/ storage
+----------> Gợi ý trên mobile reactnative: Vasern, Dragonfly, Realm, WatermelonDB
+- Bạn cần DB quan hệ - Relational DB khi: Với các ứng dụng giới hạn chức năng; với ứng dụng phục vụ nghiệp vụ; với ứng dụng cần có tăng tốc tối đa ra vào db, quản trị nhanh nhất có thể, nhiều triệu bản ghi, table thường là 10-100 trường dữ liệu, phản hồi xử lý update/delete/new cho 1 bản ghi 4-12 giây, ví dụ:
+Tôi có 3-4-100 chức năng, quản trị xyz; hàng ngày tôi có 500-100k người dùng sử dụng
+Tôi có 3-4-100 chức năng quản trị văn bản, file; đôi khi có 1000-50000k người dùng lần lượt
+Tôi là bán lẻ; tôi là bank; tôi là giao hàng; tôi là giáo dục
+----------> Gợi ý tên tuổi db: MSSQL, Oracle, PostgreSQL, MariaDB, Cassandra
+- Bạn cần DB nosql khi: với các hệ thống cần sự Phân tích dữ liệu; cần sự tính toán song song trên nhiều GB, TB dữ liệu; cần sự tính toán song song trên gb,tb dữ liệu,ví dụ
+Tôi có 2-3 tuần chạy 1 báo cáo từ 1000 - 500k khách hàng: xem họ làm gì, chi tiêu bao nhiêu; ai lỗi ai lãi
+Tôi có 2-3 tuần chạy thống kê hàng ngày 100k bài báo tin tức/ tuần ; phân nhóm nó; tổng kết tìm ý nghĩa từng bài viết theo thời gian thực
+Tôi có 2-3 tuần chạy và cố tạo ra mô hình ngôn ngữ 7-15 tỷ biến, từ trăm ngàn bài viết, bài nói, video clip, hình ảnh
+Tôi có 2-3 tuần chạy và cố tạo ra mô hình nhận diện hình ảnh; để xử lý bài toán ra quyết định thông minh
+ ----------> Gợi ý tên tuổi db: Cassandra, Trino, CouchDB, Couchbase, Hive, Scylla
+.
+.
+👉Gợi ý 2:
+- Với Relational DB; bạn nên hiểu rõ khái niệm quan hệ, tách biệt domain data, tạo quan hệ và bảng biểu để tính toán; không được dựa vào tính "quen thuộc" id primary key, rồi cắt ghép id key để theo đó tính toán, ví dụ
+VD1: domain data lý lịch cá nhân, khác với domain hàng hóa nhập để bán, khác với domain đơn hàng, khác với domain thanh toán.
+VD2: domain data lý lịch học sinh, khác với domain lớp, khác domain chuyên ngành, khác domain môn học, khác domain
+VD3: bạn tạo quan hệ bảng học sinh (mssv, họ tên, địa chỉ), và bảng lớp học (tên lớp, khối, ms giáo viên phụ trách, mssv), trên quan hệ mã sinh viên - mssv. Xong khi tính toán: Có bao nhiêu học viên thuộc năm lớp 8, khối D, thuộc giáo viên X phụ trách, mà họ Nguyễn, thì bạn làm làm kiểu: đặt mã sv, ai có họ Nguyễn thành mssv = ng0080001sv; để khi bạn truy vấn bạn sẽ cắt ghép ký tự "ng" để hiểu người đó là họ Nguyễn. Không nên làm thế. Hãy tạo riêng bảng Dòng Họ, và Quan hệ, sau đó tạo quan hệ với bảng Học Sinh. Vì lý do nào đó bạn không tách Ho tên, hoặc tạo thêm bảng quan hệ
+VD4: bạn tạo bảng bán hàng (mshh - mã hàng, mhd - mã hóa đơn, mkh- mã khách, date), liên kết bảng hàng hóa (mshh, tên hàng, giá, chủ nhâp), và với logic đơn hàng đó từ khách hay bỏ ship, bạn gán ký tự "drop1" vào mã đơn hàng, mdh = drop10001 chẳng hạn. Và sau đó bạn xử lý tiếp bằng cách bóc tách ký tự trên key. Điều này sẽ làm chậm logic xử lý. Hoặc bạn làm mẹo nào đó mà bạn không chịu tạo thêm bảng quan hệ vì lý do nào đó.
+.
+.
+👉Gợi ý 3:
+ - Với Relational DB; có procedure (tạo hàm xử lý riêng cho một logic truy vấn từ nhiều bảng, kết quả là một view hoặc json có sẵn data), có trigger (tạo hàm để khi 1 bảng một nhóm row của bảng thay đổi, hoặc db thay đổi sẽ log sang 1 bảng khác) - vì ko phải db nào cũng có 2 cái này, giả sử bạn có A,B,C,D điều kiện cần xử lý lần lươt, và phải xử lý hàng ngày, và ko phải lúc nào cũng cùng lúc A,B,C,D thực thi được; vậy đây là lợi thế rất lớn để bạn xử lý trước một sô logic A,B,C trước khi bạn gọi kết quả logic cuối D. Còn khi client truy vấn sau 4 logic ABCD trên thì có thể họ truy vấn sau 5h chiều, hoặc 9h sáng. Điều này cũng làm giảm tải 2 thứ:
++ Giảm tải xử lý ABCD khi client truy vấn view
++ Giảm tải data thừa nếu không có view
+Ngược lại: dễ làm phình to db.
+- Với Relational DB; không có trigger, xong bạn nên tạo một logic để hỗ trợ thành một trigger tương ứng. Vì sẽ rất có ích khi bạn kiểm soát thay đổi từ table hoặc db nào đó.
+- Với NoSQL DB: theo mình đều không có trigger. Xong ngược lại, các db đó luôn có cách gợi ý tạo view kèm thủ tục, để update realtime thủ tục theo logic sang view đó.
+.
+.
+👉Gợi ý 4:
+Dù là DB relational hoặc noSQL, bạn cũng nên tạo script backup cứ 2h một lần và lưu 5-10 bản backup gối nhau, nếu thiếu tài nguyên.
+Dù là DB relational hoặc noSQL, bạn cũng bỏ thời gian ra chu đáo để xem thiết kế db, đây là một số quy tắc tạo quan hệ:
+- Khi bạn thấy 02 domain data mà: hoàn toàn 1 bản ghi trong bảng học sinh có thể mua nhiều loai sách trong bảng sách; 1 loại sách có thể bán cho nhiều học sinh; vậy là quan hệ nhiều nhiều; điều đó có nghĩa bạn cần thêm 1 bảng nữa để gắn 2 bảng trên. Đó là chuẩn.
+- Khi bạn thấy 02 domain data là: 1 bản ghi trong bảng xe đạp, chỉ gắn 1 biển xe; vậy nó là 1:1. Ko thể có bảng khác chen ngang
+
+- Khi ban thấy 02 domain data là: 1 mã hoc sinh có thể đăng ký nhiều lớp ; xong 1 lớp có thể 1 mã học sinh thôi ko thể trùng. Vậy quan hệ 1 nhiều.
+.
+.
+👉Gợi ý 5:
+- Truy vấn SQL, gần như là khuôn mẫu của cả relational DB, và noSQL, do vậy bên cạnh tiếp cận DB đó, bạn cần xem trước hoặc tìm hiểu trước: truy vấn SQL với db đó thế nào cho tối ưu nhất.
+- Truy vấn SQL, bạn cần hiểu rõ: sẽ có phần lệnh, phần các biến, phần đuôi tổ hợp; vậy cái bạn cần học là: phần nào nên xử trước; và phần nào không nên gộp để xử lý. MSSQL có tiptrick tối ưu truy vấn khác với Google BigQuery SQL, khác với SQL của MySQL, khác với SQL của Cassandra. Cái này bạn chịu khó Google nhiều lắm.
+- Truy vấn SQL, bạn có thể tạo sql lồng ghép; bạn có thể vẽ ra câu SQL từ đầu bờ tường nhà bạn bên này sang bên kia. Xong theo trải nghiệm của mình bạn nên cố găng thiết kế db để đơn giản câu truy vấn. Nếu câu truy vấn quá dài tức là bạn có vấn đề trong thiết kế db, hoặc bạn quá cố chấp. Hoặc bạn cần một hệ thống khác để tính toán song hành với truy vấn
+- Truy vấn SQL, thông thường là tuần tự; bạn xửa và xóa hay cập nhật cùng lúc với db trên một hàng; đây là yếu điểm của các db cho ứng dụng nghiệp vụ; xong với ứng dụng phân tích, lại có những hỗ trợ để họ tính toán cùng lúc trên nhiều hàng bản ghi
+.
+.
+👉Gợi ý 6: Bạn dùng Nodejs- Nên dùng đặc chủng chuyên biệt middleware với db đó. Nên dùng các package đã verify hoặc đc update bảo mật. Lưu ý cập nhật package, và.theo.dõi lỗi rò.rỉ
+(Ảnh dưới là loạt tiptrick rò rỉ, lỗ hổng từ db lớn)
+.
+Có bạn có câu hỏi hay về xử lý db
+[Về xử lý database]
+anh Tuan:
+Chào mọi người, chõ mình hỏi 1 vấn đề về data, bên mình đang gặp phải mà chưa có hướng giải quyết, nhờ mn hỗ trợ và tư vấn giải pháp giúp, m xin cảm ơn
+vấn đề là khi quá nhiều event, m xử lý song song—>dẫn đến bị dulicated bản ghi trong mongo
+-------------------
+Theo mình hiểu
+1. Đã gọi là db thì nó không create/update/delete...song song dc. Cho dù bạn nhìn thấy 20-30 lệnh create cùng lúc vào pool db đó để xử lý. Xong cái pool đó nó cũng sắp xếp để lần lượn xử lý hàng đợi. Đây là chuẩn mọi db nhé!
+2. Còn bạn hay nghe ai đó nói biến đổi song song data. Tức là, tôi lấy data ra khỏi db, và tôi dùng tool kỹ thuật nhiều luồng để biến đổi song song trên ram. Cái này hay, một số tool làm đc. Và điển hình sql cũng làm đc biến đổi, nhưng ko đa luồng đc. Có thể có vài db cấp tiến làm cái này đc: vd couchbase, scylla, bigquery. Nhưng hãy nhớ: nếu sql có biến đổi song song, vây nó sẽ làm trên ram. Và khi ghi lại vào db, nó sẽ làm lần lượt
+3. Vậy bạn đang hỏi: bạn nhận nhiều event, và bạn đang song song xu lý cho nhanh, và bạn bị doublicate row trong db, vậy có thể là: 01 event bạn đưa bị doublicate, hoặc 02 cách xử lý bạn đang bị lặp. Tức là bạn tưởng nó song song tách biệt, thực ra nó dublicate.
+Ví.dụ bạn check trong 10 giây, event của bạn ra 5 bản ghi, vd: cam, chuối, bưởi, lê, táo.
+Vậy nhờ bạn test hộ: bạn setup xử lý 3 luồng. Vậy bạn kiểm tra đầu ra hộ mình (chưa ghi vào db) là
+- Luồng nào xử lý: cam, táo, bưởi, chuối, lê,
+- Luồng ra có bị dublicate ko
+Chào anh chị em, hiện mình cũng dân backend từ 2018, mình làm chủ yếu java từ 2008, .Net, tới 2018 mới tìm hiểu học nodejs, cũng đã đặt nhiều câu hỏi trên GROUP, cũng sớm thôi, mình trải qua nhiều dự án và cũng từ những dự án cơ bản tới dự án thương mại phức tạp. Nay chia sẻ cho anh chị em vài tip để bảo mật ứng dụng có nodejs làm backend. Cũng như chia sẻ trải nghiệm xử lý và implement coding đi kèm. Tất nhiên mình đã từng apply và sẽ đưa ra nơi git project mà mình học theo.
+Vì nodejs là tập hợp trải nghiệm dài, và nhiều tip trick, nên có thể 1-2 bài viết không thể hết được. Vậy mình chia sẻ vài điểm nổi trội trong bài viết này. Còn đa phần các tip tricks anh chị em xem văn bản dưới đây (xin phép admin đặt link share).
+Đây là trải nghiệm cá nhân đã từng MỚI VAÒ NGHỀ backend nodejs từ 2018 - cách đây 5 năm, mình biết có bạn 10 năm, 20 năm, nên không tránh khỏi thiếu sót. Nhờ anh chị em ai trải nghiệm nhiều, thì alert và support bổ sung vào best practices này. Mình cám ơn!
+Link văn bản google drive: https://drive .google .com/drive/folders/1LdMZa1GgUeRe4R0VkxDOXwS5I6zNByhJ?usp=sharing
+(Tất nhiên đây là những cái mình đã làm từ 2022 trở về trước, với 2023 và các năm tiếp theo, nhờ anh chị em cập nhật, ai cần acct để edit văn bản này inbox mình)
+.
+.
+👉Tip#001. Đầu tiên, bây giờ nhà nhà dùng microservice, vậy khuyến cáo anh chị em dùng moleculer nodejs
+https://github .com/moleculerjs/moleculer
+----------> Vì sao tôi lại bảo bạn sử dụng framework này - Ưu điểm:
+- Gần như nó sẽ giải quyết thêm nhiều component đặc trưng; xử lý đặc thù từng nghiệp vụ cho một hệ thống backend; nhiều thắc mắc nhiều cái anh chị em chưa từng gặp khi định áp dụng nodejs vào một dự án thương mại.
+- Microservice ai cũng hiểu nó đa dạng có lợi thế nào rồi; và hỗ trợ bài toán xử lý udpate nhanh; mở rộng nhanh; dễ tránh rủi ro khi server sập 1 phần; khó khi debug api khi quá nhiều logic
+- Nó rất nhất quán, dễ cài đặt, dễ triển khai, các service api là một nơi, có thể để 1 service logic 1 máy ip riêng biệt, có sẵn nhiều db, middleware tiện để anh chị em secure hệ thống. Có nhiều practice để anh chị em nhìn và hoc theo, và triển khai nhanh.
+----------> Nhược điểm:
+- Khó khi debug api khi quá nhiều logic, vì mỗi api mỗi logic ở một docker, máy ip khác nhau, nên việc tổ chức monitor service xử lý từng bước, báo lỗi về trung tâm cần giám sát chặt
+- Vì nó là cấp kiến thức mở rộng. Nên nhiều anh em mới học nodejs sẽ ko rõ tường tận. Vậy tôi khuyên anh chị em cứ học các bài học cơ bản ở w3school về nodejs về database đã.
+.
+.
+👉Tip #002 chống các bảo mật cơ bản, hijack, ddos 1 ip, rate limit, cors, sql inject, csrf
+Xem https://github .com/Mohammad-Faisal/nodejs-security-best-practices
+----------> Vì sao tôi lại bảo bạn sử dụng lib này - Ưu điểm:
+- Bạn lo lắng vì format template html mình đã đúng quy chuẩn chưa; lo lắng kẻ xấu vẫn đọc và lưu session, hoặc tấn công từ html input. Vậy đây là các thư viện gần gũi nhất để bạn triển khai từ backend những cái cần thiết bảo mật cơ bản - từng thư viện đã có giải thích cặn kẽ. Bạn áp dụng hết những cái này, đa phần backend về phần mềm, về nodejs của bạn đã tương đối an toàn
+- Bạn implement theo đây thì gần như đa phần các hệ thống đơn giản nhất hay phức tạp nhất của bạn cũng tránh khỏi nhiều bất cập sơ hở không đáng có: về mất mát dữ liệu; về đánh cửa sau; về ăn cắp token, session.
+----------> Nhược điểm:
+- Tất nhiên nó không thể bao trùm nhiều vấn đề bảo mật. Tốt nhất bạn làm xong ứng dụng backend, bạn hãy làm vài bài test về OWASP xem backend của bạn có chống đỡ được ko nhé: dùng tool gì, làm thao tác gì đã nêu hết ở tài liệu Quốc Tế chống bảo mật hệ thống web này: https://owasp .org/www-project-web-security-testing-guide/assets/archive/OWASP_Testing_Guide_v4.pdf
+.
+.
+👉Tip #003 Chống các bảo mật cho máy server Ubuntu của bạn, đang chạy Nodejs - chỉ Ubuntu, còn server khác chắc bạn cũng có nhiều tiptrick khác.
+Xem dathoc .net/dsetup, phần bảo mật Ubuntu
+----------> Vì sao tôi lại bảo bạn sử dụng lib này - Ưu điểm:
+- Ngoài việc bạn bảo mật cho hệ thống phần mềm nodejs của bạn; bạn cần lưu ý bảo mật cho máy server có lẽ chỉ có bạn hoặc 1-2 người admin vào con server đó. Và đây cũng là trải nghiệm riêng cá nhân mình. Sẽ còn có nhiều update cập nhật mới.
+.
+.
+👉Tip#004 An toàn và bảo mật khi làm chức năng đăng ký, rồi đăng nhập
+Xem https://www. freecodecamp. org/news/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52/
+Xem: https://github .com/jwtk/njwt
+Xem: https://github .com/GonzaloHirsch/jwt-nodejs-security
+Xem: https://auth0 .com/blog/adding-salt-to-hashing-a-better-way-to-store-passwords/
+----------> Vì sao tôi lại bảo bạn sử dụng lib này - Ưu điểm:
+- Đó, bạn đọc đi, bạn làm đúng hộ tôi ví dụ trên; nhiều bạn đặt câu hỏi, ví dụ một implement thực tế để bảo mật Đăng Nhập; tránh bị ăn cắp; hoặc nếu có ăn cắp, nó truy cập từ nơi khác cũng tránh được là các ví dụ trên.
+- Tôi nghĩ đơn giản: bạn chỉ cần apply tip#002, thì gần như mọi tấn công từ nơi khác domain của bạn, khác ip của bạn ...hệ thống cũng chặn rồi, chứ chưa nói tới tip#004 này.
+- Trong JWT một lưu ý là, nếu bạn sợ hash có thể bị phá; vậy bạn thêm salt
+.
+
+Có bạn có câu hỏi.hay về dùng Gmail để tạo mới gmail khác, rồi dùng email mới tạo đó để gửi spam (xem ảnh).
+Kèm theo đó là Nhóm có nhiều bạn reply.
+------------
+Theo trải nghiệm của mình:
+1. Từ 2012 trở về trước, thì bạn hoàn toàn có thể dùng bất cứ một bên thứ 3 (phpmail, javamail, nodeemailer....) để hoàn toàn tự động tạo một email có đuôi @gmail để bạn làm cái trò là:Từ email tạo mới đó, bạn gửi tứ tung thương mại tới các gmail khác. Vì thế nên các loại Helpdesk, rồi Gian hàng, Hôi chợ... tự tạo User, thế là cứ dùng email user gửi phăng phăng.... Xong sau này Google nó thấy các bên Tổ chức lợi dụng điều đó, gây spam tứ tung từ nhiều nguồn Nó (Google) ko xác định được, thậm chí làm giảm thương hiệu của nó. Thế là nó KHÔNG CHO PHÉP cái kiểu tạo mới email đuôi gmail và cho bên thứ 3 gửi.
+.
+.
+2. Sau đó Google ra ngay quy định là: Mỗi email tạo mới đuôi gmail; hoặc đuôi domain (.abc, .xyz...) mà có dùng gmail làm engine, sẽ không được tự do khơi khơi dùng bên thứ 3 (phpmail, javamail, nodeemailer....) để gửi nữa. Mà nếu muốn gửi từ các email gmail vừa tạo, thì các email gmail cần 2 điểm: 01 là xác thực bảo mật 2 lớp gmail đó - đơn giản là để xác nhận email đó chính chủ, và không đảm bảo là spammer. 02 Google sẽ có một secret key, 8 ký tự để bạn dùng bên thứ 3  (phpmail, javamail, nodeemailer....) cùng với secret key đó để gửi.
+.
+.
+3. Việc gửi email có kèm secretkey sẽ không bị mail rơi vào spam của người khác.
+4. Việc programming đăng ký google mail và xác thực 2 lớp: có lẽ chỉ có thể manually. Có thể có automation. Bạn chịu khó học thêm UIpath hoặc Ansible.
+
+
+Có bạn hỏi câu hỏi về segment data, khi data trong db quá rối rắm và lớn, nhiều
+(Xem ảnh)
+----------
+E nên tìm hiểu và làm theo
+Bóc tách segment db rồi show ra client
+Segment: hiểu là ví dụ e list danh sách người mua và quay lại trên 3 lần; list danh sách người hay vào xem mỗi ngày trên 3 lần; còn lại list ra ds ng rời bỏ hệ thống. Làm thế nào đó có thể sql, có thể power bi, tableau, hoặc python hoặc spark
+E tìm hiểu và là theo
+Bóc tách segment db rồi show ra client
+Segment: hiểu là ví dụ e list danh sách người mua và quay lại trên 3 lần; list danh sách người hay vào xem mỗi ngày trên 3 lần; còn lại list ra ds ng rời bỏ hệ thống
+.
+.
+Nếu Batch
+0. Nếu ít e cứ tổng hợp truy vấn bảng user, bảng post, bảng comment ra power pi, tableau làm tiếp. Hoặc tạo view trong db. Anh vẫn làm, ví dụ dathoc .net/stat, hay bài toán Honda: dảhoc .net/honda
+1. Nếu e segment bảng và filter theo batch, vậy cần là db đó cần trìgger đc.
+2. Vì sao lại trigger. Vì đơn giản em.muốn batch analysis tự động: tức là cứ 5h chiều e truy vấn và filter ra cái em cần.
+3. A khuyên là e đưa ra view để client lấy ra; tức là tạo view (một dạng table) để html js hoac powerbi hoac tableau lấy ra
+4. E có thể xem clip sau để hiểu xử lý trigger, giây thứ 40, https://youtu .be/zI329Do4LcQ?si=q3TUcCvdwd6tTZfj
+Cái này nhược là
+- Biến đổi trên sql, hay power bi hay tableau là 1 luồng, dữ liệu bé thì ok
+- Nếu bảng hay data lớn quá (500gb-1tb) bảng 1-200 trường. Sẽ khó sql bóc tác segment
+.
+.
+Nếu Realtime hoặc dữ liệu lớn (500gb data, 1-2 tb)
+1. Nếu e segment bảng và filter theo realtime, vậy cần stream message với mqtt và db đó cần trìgger ra mqtt là đc.
+2. Vì sao lại trigger. Vì đơn giản em.muốn realtime analysis tự động: tức là cứ có gì thay đoi e truy vấn và filter ra cái em cần.
+3. E toạ mqtt và bảo mật qua authen (google.ra)
+4. E bắn từ db của em qua trigger bảng em cần ra mqtt
+5. Từ mqtt, e có thêt nối vào python dask hoặc spark để gom data phân tích segment.
+6. Rồi đầy json ra client
+Cái này nhược là:
+- Tuy tốc độ cao, phân tích mọi thứ, xong đòi hỏi e học nhiều công nghệ, lập trình nhiều ng ng. Đòi hỏi mức độ kỹ sư cao tay.
+
+
+Xin phép hỏi các bạn lâu năm làm NodeJS - mình mới làm Node đc 1 tháng:
+Câu 1: Thông thường các bạn handling thế nào với 1 triệu request/phút? khi các bạn đang có 3 server 4 lõi, 8GB ram. Thông thường 1 server 4 lõi, 8 gb ram chỉ handle cùng lúc 1.500 session đc thôi.
+Đếm 1tr request/phút thường dùng cách này:
+https://youtu.be/4mdY8Bs3k5I
+Câu 2: Qua Node các bạn dùng cách nào để biết được bao nhiêu request failed? tức là request tới mà chưa được xử lý, server đang bận do quá tải.
+Câu 3: Bạn control thế nào với ram, cpu khi tăng tới một thời điểm nào đó, bạn thêm queue mới tự động? vì với các list queue đang có có thể đã lụt.
+
+1. Mình không biết con số 1k5 sessions kia bạn lấy ở đâu ra hay là thử nghiệm thực tế. Nhưng chỉ đưa cấu hình server không thì có quá ít thông tin để đi đến kết luật là server như vậy chỉ phục vụ đc nhiêu đó request. Ngoài cấu hình server ra thì nó còn phụ thuộc rất nhiều yếu tố khác nhau, như là request của bạn để làm mục đích gì, bạn dùng gì để lưu trữ dữ liệu, bạn đưa dữ liệu xuống nơi lưu trữ như thế nào. Rõ ràng 1 request gửi tin nhắn nó xử lý khác hoàn toàn 1 request lấy thông tin user. Để trả lời câu hỏi này, mình đưa 1 số giải pháp như sau:
+- Đối với những request get những thông tin có tần số thay đổi dữ liệu thấp (bảng xếp hạng, sản phẩm bán chạy,...) thì dùng cơ chế cache ở Ram để đỡ phải truy vấn xuống cơ sở dữ liệu.
+- Đối với những request mà không cần nhận response từ server hoặc những request có tần suất gọi rất nhiều lần trong thực tế (gửi tin nhắn chat, update location liên tục đối với những app vận chuyển realtime) thì ko xử lý request ở API mà ném body và những thông tin cần thiết khác vào Message Queue để worker tự lấy message (chính là nội dung request) xử lý rồi cập nhật cơ sử dữ liệu hoặc tạo message khác cho worker khác xử lý tiếp. Cách xử lý này giảm tải rất nhiều cho API vì API ko cần phải xử lý gì cả, chỉ việc ném request xuống queue rồi response lại cho client ngay lập tức. Đồng thời mình cũng có thể dễ dàng scale up số lượng worker trong trường hợp message trong queue quá nhiều.
+- Đối với những request mà cần xử lý phức tạp, tốn thời gian và phía client cần response về để xử lý tiếp trên giao diện (chuyển tiền, thanh toán...) có thể sử dụng cách 2 ở trên nhưng có thêm 1 số thay đổi, là khi nhận request, ném request xuống queue, response về cho client 1 giá trị để định danh request đó (tạm gọi là message_id), trong khi chờ worker xử lý request thì ở phía client sẽ hiển thị màn hình waiting/loading/vòng xoay đồng thời interval gọi 1 api truyền lên message_id để check xem request đã xong chưa, thành công hay thất bại. Có thể kết hợp với Caching để xử lý trong trường hợp này.
+Áp dụng 1 cách hợp lý cả 3 cách trên đảm bảo sẽ giảm tải rất nhiều cho server, hạn chế tối đa tình trạng timeout, nghẽn cổ chai ngay tại API (vì mình đã phân tán request cho các workers xử lý) dẫn tới sụp cả hệ thống.
+2. Node có sẵn 1 middleware tên connect-timeout để làm việc này. Lưu ý là middleware này nên đc gắn sau cùng.
+
+
+👉Tip #024 Đơn giản nhất debug và throwout nếu hàm, class, xử lý, hoặc router của bạn không tồn tại:
+Đúng rồi, ví dụ ảnh dưới, bạn mới học tập các bước sau. Bạn đã sành sỏi thì nên áp dụng Moleculer có module log và error riêng. Sau đó đưa ngay sang alert mobile và gửi email, cách sau:
+- Tạo module gửi email từ nodejs modemailer, xem ví dụ: https:// dev .to/documatic/send-email-in-nodejs-with-nodemailer-using-gmail-account-2gd1
+- Tạo module local notification gửi từ server nodejs sang app mobile lấy message: https:// www. notjust .dev/blog/2023-02-02-react-native-local-push-notifications
+- Tạo websocket (như project mẫu https:// github. com/koolj/willnftorai/blob/main/web/server.js) hoặc ảnh dưới. Tất nhiên kết nối socket với mobile: socket io, xem: https:// dev .to/novu/building-a-chat-app-with-socketio-and-react-native-k1b
+- Tạo mqtt theo guide dathoc .net/dsetup phần EMQX
+- Nối lại: khi có lỗi, chuyến message sang hàm send email từ nodemailer (chú ý gmail cần 2 authentication, và lấy đc 8 secret code, thì mới gửi đc)
+- Nối lại: khi có lỗi, chuyến message sang mqtt, đặt tên topic là "errorSvr"; trên mobile cấu hình socket capture topic tên là "errorSvr", và cứ khi nào gặp cái này thì bật localNotification lên (trong reactnative việc chuyển màn hình, gọi servervice cụ thể đã làm rất chặt chẽ phần, Navigator)
+- Cấu hình khi router không tồn tại, xem ảnh 2
+- Cấu hình khi router tồn tại, xong hàm xử lý cho api router đó failed, xem ảnh 3
+Lợi là:
+- Bạn sẽ không lo trong team, có ai viết api gì có vấn đề, và vấn đề ở đâu, tracing và thông báo tới email bạn và mobile bạn rất dễ. Giải quyết vấn đề cấp thiết là xử lý lỗi NGAY TỨC THÌ và
+- Tránh show lỗi ra bên ngoài người dùng cuối.
+.
+.
+👉Tip #025 Tường minh một cấu hình server.js
+Xem ảnh 1. Giải thích
+Phần 1: middleware chính thống express, kèm phần parser những gì tải lên xuống server
+Phần 2: cấu hình mũ bảo hiểm các vấn đề rủi ro cross site, strictly closed trong giao tiếp client servẻ
+Phần 3: cấu hình cho phép giới hạn hoặc cho vào blacklist tốc độ truy vấn
+Phần 4: cấu hình cho phép nhiều bên cụ thể (ip nào, domain name nào, host nào) được phép ra vào server
+
+Phần 5: size kích cỡ file ra vào với server
+Phần 6: trang bị thư mục host, thư mục share, chuẩn file javascript render từ server
+Phần 7: cấu hình khai báo router
+Phần 8: cấu hình lỗi nếu có từ bất kỳ router hoặc phần nào của server nếu có
+Phần 9: chuyển tiếp message qua server, với socket
+.
+.
+👉Tip #026 Check định dạng file gửi lên, check kích cỡ, check nội dung text, ảnh. Nếu vi phạm theo quy tắc nào đó, loại bỏ.
+Project: https:// github .com/koolj/willnftorai/
+https:// github .com/koolj/willnftorai/blob/main/web/implements/implements.js
+Code gửi file và check định dạng file: Hàm FileType
+Code đọc và check nội dung có nội dung text vi phạm: Hàm nftfilesend
+Code đọc và check nội dung ảnh có nội dung vi phạm: Hàm checkGPimg, nftsendimg
+
+👉Tip #033 Đưa data về Google localstorage, giảm tải view từ db, khi lấy 6-7 api data request từ server, chặn bot crawl tự động vào 6-7api này
+Có thể tip này có nhiều bạn xử lý mượt hơn. Nếu bạn làm mượt hơn cho mình giải pháp nhé.
+Ví dụ cách làm của mình (ảnh 1).
+Mục tiêu của tip là:
+- Giảm tải truy vấn từ client mọi nơi (ví dụ view xem statistic: dathoc .net/stat), về server, đẩy data về localstorage, từ localstorage vẽ chart data ra (chứ ko phải cứ mỗi lần view lại truy vấn server)
+- Giảm tải free crawl api từ các bot; ví dụ view xem statistic: dathoc .net/stat , thì đang gọi 6-7 api, trong đó có api về mem (xem stat của ram, cpu của máy) là dathoc .net/ctmem. Api này nếu crawler phát hiện ra họ sẽ đưa bot vào lấy đêm ngày.
+- Tất nhiên khi đưa về localstorage thì mình đã hạn chế việc got tự động lấy data rồi. Còn không thể ngăn đc manual crawl copy paste.
+- Bổ sung thêm là: bạn làm đoạn js encrypte cái localstorage với key bạn tạo từ server thì... crawler mình nghĩ sẽ hết cách.
+- Nếu bạn cần bảo mật che nội dung data trên localstorage thì đơn giản viết client js rsa và mã hoá nó dùng key từ server. Xem https:// www. npmjs. com/package/crypto-js
+Xử lý:
+- Giảm tải tổng thể site như post trước, Tip #025 về cách dùng request-limiter. Xem toàn văn: dathoc .net/ntk. Xong đôi khi từng api vẫn bị bot crawl làm tốn tài nguyên server
+- Api /ctmem, là lấy data cpu, ram từ server, rồi tính toán view tại chart lên html theo dõi hàng ngày. Vậy có thể bot crawler data sẽ soi và sẽ lấy data, kèm việc bot call quá nhiều vào server sẽ gây tốn tài nguyên server
+- Xem ảnh, phần 1: đây là hàm view (code js client, và thể hiện trên browser chart) khi nhận đc data và vẽ chart ra các data từ api /ctmem
+- Xem ảnh, phần 2: đây là tổ hợp hàm xử lý (client) localstorage của Google, khi bạn tạo một key và value; và quan điểm là: check client Chrome nếu có localstorage thì lấy data từ storage, còn không thi call api /ctmem
+- Xem ảnh, phần 3: đây là tổ hợp function gọi http get, api /ctmem (client) và router api /ctmem (từ server). Tất nhiên nếu gọi không đc, bạn thêm ELSE và alert gì đó ra client.
+- Xem ảnh, phần 4,5: đây là hàm xử lý (server) về tạo api /ctmem, và nếu axios gọi bên thứ 3 database có vấn đề, hoặc các vấn đề khác từ cú gọi ngoại lai api không thuộc view /stat; việc bóc tách xem gọi từ view /stat hay gọi từ bên ngoại lai cần tính toán chỉ cho phép run api từ view /stat, ví dụ mình dùng var statStep, cacheStep để xác nhận gọi từ /stat hay từ ngoại lai; và message thông báo ra client nếu vi phạm
+.
+.
+👉Tip #034 Xử lý distributed db, distributed worker, với KHÔNG HẠN CHẾ số lượng người dùng truy vấn cùng lúc, với CouchDB, áp dụng replica để deal với n node của server
+Có thể tip này có nhiều bạn xử lý mượt hơn. Nếu bạn làm mượt hơn cho mình giải pháp nhé.
+Mục tiêu:
+- Để Xử lý distributed db, distributed worker, với KHÔNG HẠN CHẾ số lượng người dùng truy vấn: Bạn có n node worker để hứng và chờ request, tạo từ haproxy, nghiêm túc gợi ý bạn nghiên cứu kỹ việc share nhiều worker từ node, và cấu hình haproxy để giảm tải, học 1 giờ từ clip này: https:// www .youtube .com/watch?v=qYnA2DFEELw
+- Sau khi bạn có n node worker chạy, ví dụ có 03 worker node trên host: abc:123, abc:124, abc:125, và bây giờ bạn hứng request và theo cơ chế RoundRobin (challenge .zalo .ai/portal/elementary-maths-solving) - tức là haproxy sẽ check nếu có 3 worker node nó sẽ chia đều tải cho 3 worker này; nếu có 1 worker bị die, nó sẽ chia tải cho 02 worker còn lại. Tất nhiên việc cấu hình roundrobin là cấu hình trên haproxy, bạn check google tìm hiểu thêm
+- Tiếp theo để xử lý request có liên quan tới db trọn vẹn. Thông thưòng các bạn sẽ trỏ cả 03 worker trên vào 01 db. Vậy sẽ làm giảm tải xử lý db server. Cách hay hơn là nhân rộng (replica) db ra. Và để nhân rộng db sẽ kèm 02 cơ chế: một là replica, hai là sync giữa các replica realtime. Ở đây Couchdb (https:// couchdb .apache .org/) hỗ trợ tốt việc này (tất nhiên có nhiều db khác cũng làm tốt, như mongodb, cassandra...). Và nếu bạn muốn xử lý việc này mà ko dùng Couchdb bạn cần tìm một db mà nó vừa replica và sync giữa các replica. Và thủ tục bạn làm tương tự.
+Xử lý:
+- Xem video guide haproxy trên, bạn sẽ tạo đc cấu hình haproxy roundrobin với n worker của host bạn cần trên n port mở rộng.
+
+- Một việc khó nữa là, nếu n worker của bạn trên 1 máy vậy nó đơn giản, tức là từ ip haproxy bạn có thể phân tản vào LAN trên 1 máy của bạn. Xong nếu các worker trên các máy khác nhau, ip khác nhau, lại còn qua internet. Vậy đơn giản bạn tạo tls 1.2 let encrypt cho từng máy worker (cái này Google luôn sẽ có 2-3 step thôi)
+- Tạo đơn giản một server node, và tạo kết nối với couchdb, xem Google npm nano, để hiểu cách connect từ nodejs vào couchdb thế nào. Tạo 03 host abd với 03 port 123, 124, 125
+- Để tạo kiến trúc n server đưa và sync vào n database server. Bạn cài thử CouchDB lên (xem dathoc .net/dsetup) để xem docker couchdb thế nào, đọc thêm doc couchdb để xem nó replica và sync giữa các replica thế nào. Gợi ý https:// docs .couchdb .org/en/stable/replication/intro.html, việc này có thể mất bạn từ 2-3 giờ xem cơ chế. Để đơn giản check xem db của bạn có làm đc tương tự không. Nếu không bạn sẽ phải tạo kiến trúc: n server đưa request vào 1 db.
+- Không hạn chế truy vấn cũng như xử lý trên db ý nghĩa ở đây là: vậy bạn đã tạo ra n worker để hứng truy vấn. Lưu ý 1 máy server 4gb ram, và core 2 lõi, chỉ có thể hứng đc 600-1000 user đồng thời cùng lúc với data gửi lên từ 20-200kb. Vậy nếu bạn cần server xử lý cả triệu user đồng thời, vậy bạn đã tính ra đc bạn cần bao nhiêu server và bao nhiêu cpu rồi. Nếu muốn giám sát, bạn xem doc haproxy, nó cả gui web admin control panel đầu cuối cho bạn xem ra vào từng worker mà haproxy cấu hình
+- Xong, như vậy bạn đã test hoặc implement đc kiến trúc n nodejs server đưa và sync vào n database server, xử lý distributed db, distributed worker, với KHÔNG HẠN CHẾ số lượng người dùng truy vấn cả web lẫn db.
+
+Lần này chúng ta tìm hiểu vài điều thú vị về "kiến trúc tìm kiếm" [Backend searching - Frontend searching 101], điều mà gần như tất cả các loại ứng dụng đều cần chứ không riêng backend NodeJS. Thêm nữa nhiều bài toán khác nhau sẽ sử dụng những kiến trúc tìm kiếm khác nhau. Vì sao mình gọi là "kiến trúc tìm kiếm" vì đơn giản chứng năng tìm kiếm ko đơn giản, bạn cần chuẩn bị tài nguyên, cấu hình, kiến trúc hệ thống, in-mem caching, database, indexing..., sau đó  "kiến trúc tìm kiếm" sẽ vận hành trơn tru.
+Đây là trải nghiệm của cá nhân, có thể nó đúng hoặc chưa hiệu quả với bạn. Nếu bạn có cách làm hiệu quả hơn, vậy show cho mình và các anh chị em xem nhé.
+👉Giải quyết các vấn đề searching tối ưu liên quan nodejs, ví dụ:
+- Bạn tìm kiếm âm thanh, hình ảnh này với các âm thanh, hình ảnh khác bằng...nodejs
+- Bạn tìm kiếm nhanh khi search trên ô text, tức là gõ tới đâu nó ra giá trị tới đó trên web, trên mobile
+- Bạn tìm kiếm nhanh nhiều bảng nhiều trường data trong csdl quan hệ
+- Bạn tìm kiếm nhanh nhiều bảng nhiều trường data trong csdl phi quan hệ
+- Bạn tìm kiếm nhanh với khối dữ liệu 1,2 tb và 7 tỷ bản ghi trong 1-12 giây.
+- Bạn tìm kiếm nhanh với khối dữ liệu 5-30 gb, 13 tỷ biến đầu vào (ví dụ chat gpt) trong 1-12 giây.
+.
+.
+👉Chuẩn bị kiến thức CƠ BẢN để tạo một "kiến trúc tìm kiếm" tối ưu.
+- Kiến thức binary search, nguyên lý cache, tiến trình xử lý lệnh truy vấn sql (google ra nhiều lắm)
+- Kiến thức vector hoá data 2 chiều -2d (ảnh, âm thanh, văn bản) dễ cho việc so sánh và tìm kiếm (google pytorch torchvision torchaudio torchtext), tạo mô hình, và inference (google pytorch inference) tìm kiếm so sánh data 2d
+- Kiến thức về cơ sở dữ liệu, quản trị quan hệ, phi quan hệ - nosql (xem trong tài liệu link trên)
+- Kiến thức về xử lý dữ liệu, và lưu trữ dữ liệu trên bộ nhớ đệm - in-mem processing, cache processing (xem trong tài liệu link trên)
+- Kiến thức triển khai GUI search với frontend là web và mobile (ở đây mình sẽ dùng đơn giản bootstrap và reactnative)
+.
+.
+👉Gợi ý 1: Các quy chuẩn bước tiến hành việc tìm kiếm TỐI ƯU với backend và frontend
+- Bước 0: Chọn kiến trúc thiết kế với đa dạng nhóm loại dữ liệu cần tìm kiếm. Phù hợp với mật độ dữ liệu, và kích cỡ dữ liệu. Ví dụ:
++ Cần tìm hoặc nên làm việc với loại database mà có sẵn api search
+
++ Cần tìm hoặc nên làm việc với database mà có thể làm partition: vì nhiều dữ liệu, sẽ chia dữ liệu nhiều cụm nhiều máy nhiều nhóm. Rồi search song song 1 keyword trên mỗi nhóm. Vậy sẽ hiệu quả hơn là 1 cụm, và search song song hoặc duyẹt lần lượt lên nó.
++ Cần tìm db mà có thể làm clustering: vì nhiều dữ liệu, và dữ liệu giống nhau sẽ để trên nhiều cluster khác nhau. Vậy cũng tối ưu hơn khi chia mảnh keyword search và tìm kiếm song song mỗi cluster một nhóm key.
++ Cần tìm db có in-mem để quicksearch tối ưu hơn.
++ Cần vector hoặc mảng hoá 2 chiều cho dữ liệu 2 chiều như: ảnh, audio, văn bản.. để thuật toán tìm kiếm phân loại nhanh hơn
++ Vơi db cho ứng dụng nghiệp vụ thì cần đạt chuẩn thiết kế để tối ưu search. Với db cho phan tích hoặc báo cáo, vậy cũng cần đạt chuẩn datawarehouse để tìm kiếm được tối ưu
+.
+.
+- Bước 1 (backend/frontend - database): tạo vùng bộ nhớ tìm kiếm, có thể là in-mem/cache, hoặc có thể là phân khu storage hdd, ssd, hoạc browser storage. Xong nó cần là vùng riêng, có thể là 1 bảng riêng, một view riêng, hoặc một cột riêng, một vùng bộ nhớ riêng. Cần cập nhật tới nó thường xuyên. Và nó cần ít dữ liệu liên đới. Ví dụ:
++ Có 3 bảng quan hệ với nhau 1:n, vậy sẽ tối ưu hơn khi bạn tạo 1 view, có 1 cột, index cột đó, và lưu những cái gì cần search lên view đó, cột đó, và truy vấn input key tìm kiếm vào cột, vào view đó thôi. Hơn là việc bạn sql đưa truy vấn kèm input vào các quan hệ rồi đưa ra kết quả tìm kiếm. Tất nhiên điều kiện view này, cột này liên tục cập nhật. Và vì nó index nên bạn yên tâm các dữ liệu bạn đưa vào sẽ đc: sort (sắp xếp) và định chỉ mục địa chỉ (indexing)
++ Bảng có 11 trường dữ liệu. Vậy cần thêm cột "từ khoá gợi ý" hoặc "từ khoá searching", và lập chỉ mục hoặc sorting cột đó để mapping với 11 trường dữ liệu chính. Không nên cùng lúc chỉ mục hoặc sorting tới 2-3-5 trường dữ liệu, mà chỉ nên chỉ mục trường "từ khoá gợi ý", dành riêng cho việc searching, chức năng searching. Nó sẽ tránh việc query hoặc đặt index hoặc sort cào các cột, vùng khác chồng chéo. Hoặc chỉ để đó tạm thời. Nên để riêng vùng riêng, cột riêng, vậy truy vấn tìm kiếm sẽ tránh đc join, tránh đc gọi nhiều bảng.
+
+- Bước 2: Cần index/sort lên data lên vùng, lên trường data mìn tìm kiếm. Index khác sort, xong với khối data bạn chậm index, vậy đơn giản là sort nó.  Thường là vùng được lập chỉ mục, hoặc xắp sếp dang số hoặc chữ. Tức là dữ liệu trên đó được điều chỉnh tự động theo nguyên lý logic a-z hoặc cao-thấp, hoặc nhỏ-bé.... Vì cái này sẽ tối ưu tuyệt đối cho duyệt và search hoặc mapping tìm kiếm nhanh với dữ liệu sạng số/chữ để so sánh.Vector hoá đối với data 2d. Việc training model 2d chính là việc đang indexing cho việc chuẩn bị mapping các nhóm data giống nhau, sau này dễ đặt lọc hoặc truy cập. Các db thế hệ mới bạn không thể run query lên trường lên vùng mà bạn không indexing. Không nên index hoặc sort lên trường có dữ liệu dài, ví dụ: Họ tên, Tên hàng hoá, Tên và địa chỉ shop, Lý do tới, Nguyên nhân tồn kho, Địa chỉ, Lý lịch... Mà cần tách nhỏ ra hoặc lấy đặc trưng, và index lên, như vậy việc search từng hạng mục sẽ nhanh hơn, ví dụ:
++ Họ và tên: vd: Nguyễn Văn Tâm ------> nên tách ra: Họ, Tên đệm, Tên, từ khoá tìm kiếm
++ Tên hàng hoá: vd: "Xe đạp Việt Nhật hàng mới giảm 30% mua 3 chiếc, động cơ từ TungSeng, còn 3 chiếc" ------> nên tách ra: tên hàng, mã trong kho, mã số lượng, mã giảm giá, mã nhập, đặc trưng, từ khoá tìm kiếm
++ Lý do tới: vd: "Đi sửa xe máy, kèm thay dầu máy, kèm theo xem xe máy mới, nếu được mắt sẽ đặt cọc" ------> nên tách ra những từ khoá nổi trội: vd: sửa xe, thay dầu, đặt cọc. Để searching dễ tìm tới.
++ Một bức ảnh 2D, âm thanh, văn bản text dài ------> Mảng hoá 2 chiều các dữ liệu này, rồi mapping bằng tay xem những loại nhóm điểm (hàng, cột) vào của ảnh/âm thanh nào của file nào trùng với file nào.
+.
+.
+- Bước 3: Nếu cần tìm kiếm câu chữ gì đó sẽ chậm khi cần connect pool rồi ssd/hdd đưa lên ram. Vậy sẽ nhanh hơn là tạo ra một view hoặc table trên ram/in-mem để tìm kiếm ngay trên đó. Nếu ko cần tìm kiếm nhanh, chỉ là search thông thường vậy lại như Bước 1, xong cần hiểu rõ với db dạng quan hệ và db phi quan hệ.
+- Bước 4: Chuẩn bị câu truy vấn. Nên cần hiểu rõ câu truy vấn: phần nào vào trước, vào sau. Phần nào bị ràng buộc và không hiệu quả khi chạy cùng nhau. Phần nào nên đặt chỉ mục rồi truy vấn. Nên đặt lồng truy vấn hay chia làm 2 câu truy vấn rồi union?
+
+👉Gợi ý 2: quicksearch
+- Anh chị em cứ google tìm nodejs mongoose quicksearch nhiều lắm. Cần xử lý frontend một chút. Và tạo model từ mongoose rồi lợi dụng hàm find của mongo hoặc model có hàm find của mongoose để cấu hình (link ví dụ cuối bài)
++ Nhiều anh chị gần như 90% anh chị làm quicksearch theo tutor, và trên model của mongoose. Cái này chưa hiệu quả. Hiệu quả hơn là dùng redis cache hoặc search trực tiếp trên redis. Vì đơn giản mongo không phải là in-mem, nên dù bạn xử lý nhanh thế nào khi contact vào mongo nó sẽ load từ hdd lên ram. Song với redis - nó là ram.
++ Bên cạnh redis, hoàn toàn có thể dùng Memcached, Google storage và với mobile các db in-mem dành riêng (xem doc, phần database tham khảo thêm)
+vd: xem: https:// www. weblearningblog .com/nodejs/how-to-use-redis-as-cache-for-mongodb-queries-in-nodejs/
+.
+.
+👉Gợi ý 3: triển khai search thông thường và NHANH NHẤT có thể
+- Anh chị có thể áp dụng ngay elastic search, vì sao?
++ ElastichSearch - ES là một sản phẩm kèm database và api search đi kèm, cho nên nó gần như a chị em ko cần làm gì cả. Chỉ cần hỏi nó anh chị em search trường dữ liệu nào hoặc cần tổng hợp gì, là nó tự index và search. ES có lợi là: có thể partition, clustering đc - phục vụ dữ liệu lớn, người dùng lớn. Và cho tốc độ kết quả và chi tiết kết quả tương đối cao.
++ Nếu ko dùng những sp như ES, tương tự ES, thì với db thông thường chưa có cơ chế seach và tìm kiếm, vậy anh chị em lại xem lại Gợi ý 1 để chuẩn bị kiến trúc bảng biểu, indexing và câu truy vấn kết hợp với ngôn ngữ backend nodejs để tạo ra api search.
+vd: https:// www. npmjs .com/package/@elastic/elasticsearch
+.
+.
+👉Gợi ý 4: triển khai search với SQL và NOSQL
+- Bạn thiết kế csdl quan hệ tốt bao nhiêu vậy nó sẽ giảm tải truy vấn cũng như tìm kiếm dữ liệu. Mình có mấy gợi ý trên dữ liệu quan hệ:
++ Bạn theo nghiệp vụ để tạo trường, tạo bảng
++ Cần tạo view và dữ liệu riêng cho chức năng search, tất nhiên index nó, và cập nhật nó. Vì đơn giản truy vấn vào view sẽ nhẹ nhàng đỡ loằng ngoằng khi  thủ tục và khỏi chờ đợi. Ngược lại, tạo thêm view là phình to db quan hệ
++ Đôi khi có db cập nhật realtime vào view. Đôi khi có db ko có chức năng này. Vậy cách khác là giám sát thay đổi bảng biểu và đưa ra ngoài qua stream (kafka, mqtt..) rồi search trên đó
+(xem link ví dụ cuối bài thiết kế db quan hệ thế nào cho tối ưu)
+
+- Với nosql thì gần như view là cập nhật tự động với hàm dựng sẵn. Nên khi bạn tạo view của nosql như (mongo, couchdb, cassandra..) Có thể một số db chưa có cập nhật live. Vậy bạn sẽ phải tạo cơ chế hoặc tìm plugin thay thế.
++ Bạn đọc nghiệp vụ, tạo câu truy vấn, rồi theo câu truy vấn để tạo bảng, tạo trường dữ liệu (chứ không phải tạo bảng xong rồi mới tạo câu truy vấn)
++ Nosql, db là thường 1 bảng duy nhất, và không có quan hệ. 99% db nosql là bạn có thể đưa mọi domain data vào 1 bảng, và tự đặt lọc để truy vấn nhanh ra (ví dụ Lý lịch học sinh có thể để cùng Hàng hoá nhập, có thể để cùng Phiếu xuất kho...)
++ Cái hay của nosql, là khi bạn tạo db và trường dữ liệu, vận bạn cần chỉ rõ trường cần index first, index second, cần partition, cần cluster? vậy như thế đủ để bạn truy vấn từng nhóm trường phù hợp và ra được dữ liệu cần
++ 90% db nosql không đc phép truy vấn hoặc scan trên trường dữ liệu mà ..không index, không partition, không cluster. Vậy cái cần tìm là: bạn chiểu theo câu truy vấn để tạo bảng tạo trường. Hơi ngược với SQL quan hệ.
+(xem link ví dụ cuối bài về thiết kế nosql thế nào cho dễ truy vấn)
+.
+.
+👉Gợi ý 5: triển khai search phức tạp và cho dữ liệu lớn
+(đang viết)
+👉Gợi ý 6: triển khai search dữ liệu data 2d
+(đang viết)
+.
+.
+👉Anh chị em có thể xem tham khảo youtube rất nhiều, qua:
+HackerRank, có giảng giải trực quan về binary search https:// www. youtube .com/watch?v=P3YID7liBug
+ByteByteGo, có nguyên lý của cache, https:// www. youtube .com/watch?v=dGAgxozNWFE
+Tips Javascript, có elasticsearch: https:// www. youtube .com/watch?v=hUOgRS6dEVQ
+Qixotl LFC, có quicksearch với mongoose: https:// www. youtube .com/watch?v=991fdnSllcw
+Nodemy, có tìm điều kiện phức tạp với mongoose: https:// www. youtube .com/watch?v=h7H9M4umuaQ
+Easy Frontend, hook gui frontend tối ưu cho việc gõ và chờ khi nào submit quickserch: https:// www. youtube .com/watch?v=WF3pUtvC01M
+CyberWolves, build search, sort, pagination with mongoose: https:// www. youtube .com/watch?v=0T4GsMYnVN4
+Database Star, các mistakes khi thiết kế db, qua: https:// www. youtube .com/watch?v=s6m8Aby2at8
+CockroachDB thiết kế index tối ưu sql: https:// www. youtube .com/watch?v=BIlFTFrEFOI
+Essential SQL, thiết kế db quan hệ để tối ưu truy vấn, https:// www. youtube .com/watch?v=9nDepE57oU4
+ByteByteGo, thiết kế câu sql để tối ưu truy vấn sql: https:// www. youtube .com/watch?v=BHwzDmr6d7s
+FooBar Serverless, thiết kế tối ưu truy vấn nosql với dynamodb hoặc bất kỳ nosql db nào khác: https:// www. youtube .com/watch?v=Q6-qWdsa8a4&t=12s
+
+Pragmatic Works, Datawarehouse và thiết kế cho truy vấn dữ liệu lớn tối ưu sql relational: https:// www. youtube .com/watch?v=patBYUGwsHE&t=1860s
+Databricks, có Datawarehouse và BI, https:// www. youtube .com/watch?v=jlEdoVpWwNc
+Rock the JVM, thiết kế để truy vấn tối ưu với Spark: https:// www. youtube .com/watch?v=UZt_tqx4sII
+Learning & Development: Stream & State trong realtime truy vấn với Flink: https:// www. youtube .com/watch?v=v-L8CzxWC6o
+Pyimagesearch với so sánh ảnh 2d, https:// pyimagesearch .com/2014/07/14/3-ways-compare-histograms-using-opencv-python/
+Huggingface với tìm kiém 1:13 tỷ biến: https:// huggingface .co/learn/nlp-course/chapter1/3?fw=pt
+Gluk!
+
+1. Hệ thống trang web đó LÀM NHỮNG GÌ PHÍA SAU khi user request kiểu: Like, View, Comm, hay Buff view?
+2. Làm sao để NẠP TIỀN từ một QRcode (có thể từ mobile hoặc web), thì hệ thống bắt event thế nào để báo cho cả web/mobile là nạp thành công?
+3. Từ web lấy thông tin từ tin nhắn, kiểu web thuê sim, thì hoạt động thế nào?
+-------------------
+Theo trải nghiệm của mình.
+👉1. Với trh này, hiệu quả nhất là bạn dùng nodejs socket. cụ thể bạn xem project và cấu hình các gói middleware mình truyền các bên, https:// github. com/koolj/willnftorai
+- Đơn giảm socket thôi bạn. Nếu m trả lời ko đúng câu hỏi bạn cứ alert lại
+- Nodejs với Socket google phương pháp coding thế nào nhiều lắm. Cấu hình client server. Rồi bảo mật đầu cuối. Ví dụ mình từ router, mình khi truyền sang sock một thông tin gì đó thì mình emit(); và bất cứ client (web hoặc mobile), khi lắng nghe chờ thì đều sẽ nhận được ngay tức thì thông tin đó. Kiểu như chatting. Vậy kiến thức ở đây là bạn học cách kết hợp nhận gửi: socket với nodejs và client là web và mobile
+- Vậy áp dụng vào khi 1 User A ấn LIKE/VIEW/SHARE/COMMENT gì đó, vậy mình sẽ truyền qua sock. Vì sao truyền qua sock mà lại không truyền theo get/post. Vì đơn giản đây là thông tin ngắn, và thông tin live; tức là tôi xử lý một đầu cuối thì tôi muốn tất cả các đầu cuối khác đều biết. Và tôi muốn các bên sẵn sàng lắng nghe và cập nhật thay đổi thông tin ngay lập tức. Vậy sock là tốt nhất.
+- Tất nhiên việc sau khi bạn truyền thông tin LIKE/VIEW/SHARE/COMMENT gì đó, qua sock, rồi load lại để thấy thông tin cập nhật, vậy cần làm thêm là lưu các thông tin đó sau khi truyền qua sock xuống db. Có thể bạn lưu vào đâu đó tạm rồi 20-30 giây lưu xuống db. Do vậy sock chỉ là đường truyền giúp bạn làm nhanh các xử lý, chứ ko lưu data.
+- Ví dụ dự án trên mình:
+Server dùng gói: npm socket.io
+Web client Bootstrap dùng: https:// cdn. socket. io/4.7.2/socket.io.esm.min.js
+Mobile client Android với ReactNative dùng: "react-native": "0.72.6", "socket.io-client": "^2.1.1" - cái cần xem kỹ version thì từng ver của RN sẽ hợp với Sock nào.
+- Lưu ý cần bảo mật thì làm riêng hệ cluster mqtt và đặt authen để ko ai can thiệp xem hoặc biết đưa cái gì đi về giữa socket (google emqx  với tls v1.2 hoặc cao hơn.)
+.
+,
+👉2. Đơn giản nhất bạn triển khai thử nodejs post gửi tin với QR code
+- QRcode là một dạng data mã hoá; nó có thể chứa bất kể thông tin gì; có thể là một link post/get; có thể là một bức ảnh, có thể âm thanh... có thể dạng data khác. Vậy kiến thức ở đây: bạn google nodejs qrcode, để tìm hiểu:
+Tôi dùng nodejs đọc một ảnh QRcode thế nào
+Tôi dùng nodejs tạo QRcode thế nào
+Tôu nodejs và mã hoá chỉ app tôi sau khi scan QRcode đọc và post data từ data nhận qr
+Tôi post/get data với nodejs khi tôi nhận được data từ một ảnh từ qrcode.
+.
+.
+- Tất nhiên nếu QRcode free ngoài mà bạn scan bằng những ứng dụng miễn phí thì nó...ko ý nghĩa gì. Cho nên 99% các ứng dụng ngoài kia khi trao đổi QRcode có ý nghĩa (chuyển tiền,xác thực) vậy bạn cần làm một Ứng dụng scan riêng QR cho nó. Ví dụ: tôi có mã QRcode từ ứng dụng A, vậy nếu các scan QR thường khác sẽ chỉ ra chuỗi số; xong với Ứng dụng B, chuyên để đọc QRcode từ ứng dụng A, thì nó vừa đọc vừa giải mã code đó.
+- Vì QRcode là một data mã hoá; nên khi được giải mã, và thực thi phù hợp, nó có thể làm một câu post. Ví dụ: B muốn chuyển sang A, vậy:
+A tạo QRcode
+B đọc QRcode mà A đã tạo, và chỉ có B mới đọc và truyền tin đi đc
+B  đọc và giải mã đc QRcode sau đó thực thi lệnh post/get từ B (tất nhiên kèm token B và số tiền chuyển)
+Theo đó server nhận đc thông tin từ cả A và B và xử lý: tiền chuyển từ B sang A.
+- Cách thức truyền tin nhanh và bảo mật là socket với tls v1.2 hoặc cao hơn. Nếu làm thế này thì bất cứ khi nào xử lý xong thì qua sock, cả client và mobile hoặc web đều nhận đc.
+.
+.
+👉3. Nhận gửi tin từ hệ thống SMS
+Bạn đọc bài này: https://www .courier .com/guides/nodejs-send-sms/
+- Backend http và sms là 02 protocol khác biệt. Để viết một cầu nối giữa 2 cái, vậy cần thư viện và coding tầng dưới hệ thống máy chủ viễn thông, sau đó out ra các api
+- Vậy bạn có thể kết luận: bản thân nodejs và http ko thể xiên ngang protocole của sms. Vậy chỉ có thể khi ai đó nhắn tin sms hoặc nhận tin sms, để bạn gửi nhận sms thì bắt buộc bạn phải qua các api từ NƠI CUNG CẤP SMS, như bài viết trên.
+- Hoặc nếu bạn tự chủ: vậy bạn cần lắp ăng ten, đăng ký băng tần, và mua server trạm thu phát viễn thông, sau đó viết C++ để tạo thư viện out ra các api từ sim thẻ của chính bạn và bán cho các bên backend dùng.
+- Để ví dụ b dùng ngay Google Firebase sms authen, free đó. Hoặc đăng ký trả phí để nhânh gửi sms từ nodejs.
+
+ông toàn giải thích tào lao vì ông chưa làm mấy cái đó bao giờ, với người đã làm tất cả 3 cái trên thì nó sẽ thế này.
+1. Buff Like/sub... Người ta phía sau có 1 hệ thống facebook users và cái web buff like nó chỉ đơn giản là lên đơn thôi. ở sau sẽ có chạy like bằng token hoặc phone farm tuỳ hệ thống.
+2. QR thì dùng API của VietQR hết, từ đây có chuẩn ngân hàng. khi tạo QR thì có 1 cái mã thanh toán, mã này là nội dung chuyển khoản. khi tạo ra mã thì server lưu nó lại. bên bank thì 1 là curl tới bank login rồi check lịch sử. 2 là dùng dịch vụ thứ 3 ở ngoài để đọc lịch sử và đọc cái nội dung chuyển khoản để so sánh.
+3. Cái thuê sim là cắm SIM vào GSM rồi đọc tin nhắn gửi tới rồi trả về cho API theo socket.
