@@ -2,36 +2,6 @@
 
 The Abstract Factory pattern is highly applicable to complex software architectures like microservices, cloud-native applications, and security systems, where it creates families of interdependent components (e.g., clients and configurations) without exposing concrete implementations, enabling seamless switching between providers or modes. This promotes loose coupling in enterprise Java environments, such as Spring Boot for DI or Kubernetes for orchestration, aligning with patterns in frameworks like Spring and Apache. Below are simple Java code examples for the specified scenarios, each demonstrating a family of related objects for consistency across variants.[1][2][3][4]
 
-### 66. Dependency Injection Factory
-In IoC containers like Spring, abstract factories create families of injectors and resolvers for constructor or setter injection.[5][3]
-```java
-interface DIAbstractFactory {
-    Injector createInjector();
-    Resolver createResolver();
-}
-
-class ConstructorFactory implements DIAbstractFactory {
-    public Injector createInjector() { return new ConstructorInjector(); }
-    public Resolver createResolver() { return new ConstructorResolver(); }
-}
-
-class SetterFactory implements DIAbstractFactory {
-    public Injector createInjector() { return new SetterInjector(); }
-    public Resolver createResolver() { return new SetterResolver(); }
-}
-
-interface Injector { void inject(Object bean); }
-class ConstructorInjector implements Injector { public void inject(Object bean) { System.out.println("Constructor Injected: " + bean); } }
-class SetterInjector implements Injector { public void inject(Object bean) { System.out.println("Setter Injected: " + bean); } }
-
-interface Resolver { Object resolve(String dependency); }
-class ConstructorResolver implements Resolver { public Object resolve(String dependency) { return new Object(); } }
-class SetterResolver implements Resolver { public Object resolve(String dependency) { return new Object(); } }
-
-// Usage: DIAbstractFactory factory = new ConstructorFactory(); Injector injector = factory.createInjector(); injector.inject(new Object());
-```
-This mirrors Spring's BeanFactory for flexible injection strategies.[1]
-
 ### 67. Microservice Client Factory
 Microservices architectures use abstract factories to produce families of clients and load balancers for REST or gRPC communication.[6]
 ```java
@@ -605,187 +575,28 @@ It ensures compliance in data handling.[9]
 ### 86. Data Encryption Factory
 Data protection layers employ abstract factories to instantiate families of encryptors and key generators for AES or RSA.[11]
 ```java
-interface DataEncryptionAbstractFactory {
+public interface DataEncryptionAbstractFactory {
     Encryptor createEncryptor();
     KeyGenerator createKeyGenerator();
 }
 
-class AESFactory implements DataEncryptionAbstractFactory {
+public class AESFactory implements DataEncryptionAbstractFactory {
     public Encryptor createEncryptor() { return new AESEncryptor(); }
     public KeyGenerator createKeyGenerator() { return new AESKeyGenerator(); }
 }
 
-class RSAFactory implements DataEncryptionAbstractFactory {
+public class RSAFactory implements DataEncryptionAbstractFactory {
     public Encryptor createEncryptor() { return new RSAEncryptor(); }
     public KeyGenerator createKeyGenerator() { return new RSAKeyGenerator(); }
 }
 
-interface Encryptor { String encrypt(String data); }
-class AESEncryptor implements Encryptor { public String encrypt(String data) { return "AES Encrypted: " + data; } }
-class RSAEncryptor implements Encryptor { public String encrypt(String data) { return "RSA Encrypted: " + data; } }
+public interface Encryptor { String encrypt(String data); }
+public class AESEncryptor implements Encryptor { public String encrypt(String data) { return "AES Encrypted: " + data; } }
+public class RSAEncryptor implements Encryptor { public String encrypt(String data) { return "RSA Encrypted: " + data; } }
 
-interface KeyGenerator { String generateKey(); }
-class AESKeyGenerator implements KeyGenerator { public String generateKey() { return "AES Key 256"; } }
-class RSAKeyGenerator implements KeyGenerator { public String generateKey() { return "RSA Key 2048"; } }
+public interface KeyGenerator { String generateKey(); }
+public class AESKeyGenerator implements KeyGenerator { public String generateKey() { return "AES Key 256"; } }
+public class RSAKeyGenerator implements KeyGenerator { public String generateKey() { return "RSA Key 2048"; } }
 
 // Usage: DataEncryptionAbstractFactory factory = new AESFactory(); Encryptor enc = factory.createEncryptor(); String ciphertext = enc.encrypt("sensitive data");
 ```
-This supports JCE's encryption families.[11]
-
-### 87. Key Management Factory
-Key management systems use abstract factories for families of managers and rotators for hardware or software keys.[4]
-```java
-interface KeyManagementAbstractFactory {
-    Manager createManager();
-    Rotator createRotator();
-}
-
-class HardwareFactory implements KeyManagementAbstractFactory {
-    public Manager createManager() { return new HardwareManager(); }
-    public Rotator createRotator() { return new HardwareRotator(); }
-}
-
-class SoftwareFactory implements KeyManagementAbstractFactory {
-    public Manager createManager() { return new SoftwareManager(); }
-    public Rotator createRotator() { return new SoftwareRotator(); }
-}
-
-interface Manager { String storeKey(String key); }
-class HardwareManager implements Manager { public String storeKey(String key) { return "Hardware Stored: " + key; } }
-class SoftwareManager implements Manager { public String storeKey(String key) { return "Software Stored: " + key; } }
-
-interface Rotator { void rotate(String oldKey); }
-class HardwareRotator implements Rotator { public void rotate(String oldKey) { System.out.println("Hardware Rotated from " + oldKey); } }
-class SoftwareRotator implements Rotator { public void rotate(String oldKey) { System.out.println("Software Rotated from " + oldKey); } }
-
-// Usage: KeyManagementAbstractFactory factory = new HardwareFactory(); Manager mgr = factory.createManager(); String id = mgr.storeKey("key123");
-```
-It coordinates key lifecycle in Spring Vault.[4]
-
-### 88. Secret Management Factory
-Secret storage tools apply abstract factories to create families of vaults and retrievers for HashiCorp or AWS Secrets.[9]
-```java
-interface SecretManagementAbstractFactory {
-    Vault createVault();
-    Retriever createRetriever();
-}
-
-class HashiCorpFactory implements SecretManagementAbstractFactory {
-    public Vault createVault() { return new HashiCorpVault(); }
-    public Retriever createRetriever() { return new HashiCorpRetriever(); }
-}
-
-class AWSFactory implements SecretManagementAbstractFactory {
-    public Vault createVault() { return new AWSVault(); }
-    public Retriever createRetriever() { return new AWSRetriever(); }
-}
-
-interface Vault { void store(String secret); }
-class HashiCorpVault implements Vault { public void store(String secret) { System.out.println("HashiCorp Stored: " + secret); } }
-class AWSVault implements Vault { public void store(String secret) { System.out.println("AWS Stored: " + secret); } }
-
-interface Retriever { String retrieve(String id); }
-class HashiCorpRetriever implements Retriever { public String retrieve(String id) { return "HashiCorp Secret: " + id; } }
-class AWSRetriever implements Retriever { public String retrieve(String id) { return "AWS Secret: " + id; } }
-
-// Usage: SecretManagementAbstractFactory factory = new HashiCorpFactory(); Vault vault = factory.createVault(); vault.store("db-password");
-```
-This integrates with Spring Cloud Vault.[9]
-
-### 89. Certificate Authority Factory
-PKI systems use abstract factories for families of issuers and validators for internal or public CAs.[11]
-```java
-interface CertificateAuthorityAbstractFactory {
-    Issuer createIssuer();
-    Validator createValidator();
-}
-
-class InternalFactory implements CertificateAuthorityAbstractFactory {
-    public Issuer createIssuer() { return new InternalIssuer(); }
-    public Validator createValidator() { return new InternalValidator(); }
-}
-
-class PublicFactory implements CertificateAuthorityAbstractFactory {
-    public Issuer createIssuer() { return new PublicIssuer(); }
-    public Validator createValidator() { return new PublicValidator(); }
-}
-
-interface Issuer { String issue(String csr); }
-class InternalIssuer implements Issuer { public String issue(String csr) { return "Internal Cert for " + csr; } }
-class PublicIssuer implements Issuer { public String issue(String csr) { return "Public Cert for " + csr; } }
-
-interface Validator { boolean validate(String cert); }
-class InternalValidator implements Validator { public boolean validate(String cert) { return true; } }
-class PublicValidator implements Validator { public boolean validate(String cert) { return true; } }
-
-// Usage: CertificateAuthorityAbstractFactory factory = new InternalFactory(); Issuer issuer = factory.createIssuer(); String cert = issuer.issue("csr-data");
-```
-It supports Java KeyStore's CA handling.[11]
-
-### 90. Network Security Factory
-Firewall configurations employ abstract factories to produce families of monitors and blockers for intrusion or firewall rules.[4]
-```java
-public interface NetworkSecurityAbstractFactory {
-    Monitor createMonitor();
-
-    Blocker createBlocker();
-}
-
-public class IntrusionFactory implements NetworkSecurityAbstractFactory {
-    public Monitor createMonitor() {
-        return new IntrusionMonitor();
-    }
-
-    public Blocker createBlocker() {
-        return new IntrusionBlocker();
-    }
-}
-
-public class FirewallFactory implements NetworkSecurityAbstractFactory {
-    public Monitor createMonitor() {
-        return new FirewallMonitor();
-    }
-
-    public Blocker createBlocker() {
-        return new FirewallBlocker();
-    }
-}
-
-public interface Monitor {
-    boolean detect(String packet);
-}
-
-public class IntrusionMonitor implements Monitor {
-    public boolean detect(String packet) {
-        return false;
-    }
-}
-
-public class FirewallMonitor implements Monitor {
-    public boolean detect(String packet) {
-        return false;
-    }
-}
-
-public interface Blocker {
-    void block(String ip);
-}
-
-public class IntrusionBlocker implements Blocker {
-    public void block(String ip) {
-        System.out.println("Intrusion Blocked: " + ip);
-    }
-}
-
-public class FirewallBlocker implements Blocker {
-    public void block(String ip) {
-        System.out.println("Firewall Blocked: " + ip);
-    }
-}
-
-// NetworkSecurityAbstractFactory factory = new IntrusionFactory(); 
-// Monitor monitor = factory.createMonitor(); 
-// boolean threat = monitor.detect("suspicious packet");
-```
-This coordinates network protection layers.[4]
-
