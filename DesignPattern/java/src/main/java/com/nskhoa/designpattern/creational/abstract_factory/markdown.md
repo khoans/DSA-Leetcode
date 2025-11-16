@@ -780,37 +780,8 @@ class CustomLogger implements Logger { public void log(String attack) { System.o
 
 // Usage: ApplicationFirewallAbstractFactory factory = new OWASPFactory(); Filter filter = factory.createFilter(); boolean blocked = filter.block("sql-injection attempt");
 ```
-It supports ModSecurity-like WAF rules.[9]
 
-### 92. DDoS Protection Factory
-Mitigation tools apply abstract factories to create families of detectors and mitigators for SYN flood or HTTP flood.[6]
-```java
-interface DDoSProtectionAbstractFactory {
-    Detector createDetector();
-    Mitigator createMitigator();
-}
 
-class SYNFactory implements DDoSProtectionAbstractFactory {
-    public Detector createDetector() { return new SYNDetector(); }
-    public Mitigator createMitigator() { return new SYNMitigator(); }
-}
-
-class HTTPFactory implements DDoSProtectionAbstractFactory {
-    public Detector createDetector() { return new HTTPDetector(); }
-    public Mitigator createMitigator() { return new HTTPMitigator(); }
-}
-
-interface Detector { boolean detect(String traffic); }
-class SYNDetector implements Detector { public boolean detect(String traffic) { return false; } }
-class HTTPDetector implements Detector { public boolean detect(String traffic) { return false; } }
-
-interface Mitigator { void mitigate(String attack); }
-class SYNMitigator implements Mitigator { public void mitigate(String attack) { System.out.println("SYN Mitigated: " + attack); } }
-class HTTPMitigator implements Mitigator { public void mitigate(String attack) { System.out.println("HTTP Mitigated: " + attack); } }
-
-// Usage: DDoSProtectionAbstractFactory factory = new SYNFactory(); Detector detector = factory.createDetector(); boolean ddos = detector.detect("syn flood");
-```
-This enables Cloudflare-style DDoS handling.[6]
 
 ### 93. Bot Detection Factory
 Security scanners use abstract factories for families of detectors and challengers for CAPTCHA or behavioral bots.[4]
@@ -820,7 +791,7 @@ interface BotDetectionAbstractFactory {
     Challenger createChallenger();
 }
 
-class CAPTCHAF actory implements BotDetectionAbstractFactory {
+class CAPTCHAFactory implements BotDetectionAbstractFactory {
     public Detector createDetector() { return new CAPTCHATDetector(); }
     public Challenger createChallenger() { return new CAPTCHACChallenger(); }
 }
@@ -875,28 +846,63 @@ This supports ELK Stack's SIEM flows.[9]
 ### 95. Event Correlation Factory
 Monitoring tools use abstract factories for families of correlators and notifiers for rule or AI-based correlation.[7]
 ```java
-interface EventCorrelationAbstractFactory {
+public interface EventCorrelationAbstractFactory {
     Correlator createCorrelator();
+
     Notifier createNotifier();
 }
 
-class RuleFactory implements EventCorrelationAbstractFactory {
-    public Correlator createCorrelator() { return new RuleCorrelator(); }
-    public Notifier createNotifier() { return new RuleNotifier(); }
+public class RuleFactory implements EventCorrelationAbstractFactory {
+    public Correlator createCorrelator() {
+        return new RuleCorrelator();
+    }
+
+    public Notifier createNotifier() {
+        return new RuleNotifier();
+    }
 }
 
-class AIFactory implements EventCorrelationAbstractFactory {
-    public Correlator createCorrelator() { return new AICorrelator(); }
-    public Notifier createNotifier() { return new AINotifier(); }
+public class AIFactory implements EventCorrelationAbstractFactory {
+    public Correlator createCorrelator() {
+        return new AICorrelator();
+    }
+
+    public Notifier createNotifier() {
+        return new AINotifier();
+    }
 }
 
-interface Correlator { boolean correlate(String event1, String event2); }
-class RuleCorrelator implements Correlator { public boolean correlate(String event1, String event2) { return true; } }
-class AICorrelator implements Correlator { public boolean correlate(String event1, String event2) { return true; } }
+public interface Correlator {
+    boolean correlate(String event1, String event2);
+}
 
-interface Notifier { void notify(String correlation); }
-class RuleNotifier implements Notifier { public void notify(String correlation) { System.out.println("Rule Notified: " + correlation); } }
-class AINotifier implements Notifier { public void notify(String correlation) { System.out.println("AI Notified: " + correlation); } }
+public class RuleCorrelator implements Correlator {
+    public boolean correlate(String event1, String event2) {
+        return true;
+    }
+}
+
+public class AICorrelator implements Correlator {
+    public boolean correlate(String event1, String event2) {
+        return true;
+    }
+}
+
+public interface Notifier {
+    void notify(String correlation);
+}
+
+public class RuleNotifier implements Notifier {
+    public void notify(String correlation) {
+        System.out.println("Rule Notified: " + correlation);
+    }
+}
+
+public class AINotifier implements Notifier {
+    public void notify(String correlation) {
+        System.out.println("AI Notified: " + correlation);
+    }
+}
 
 // Usage: EventCorrelationAbstractFactory factory = new RuleFactory(); Correlator correlator = factory.createCorrelator(); boolean related = correlator.correlate("error1", "error2");
 ```
