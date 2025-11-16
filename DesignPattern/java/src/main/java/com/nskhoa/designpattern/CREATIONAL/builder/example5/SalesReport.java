@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.builder.example5;
+package com.nskhoa.designpattern.CREATIONAL.builder.example5;
 
 public class SalesReport {
     private String data;

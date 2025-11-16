@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example98.factory.lambda;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example98.factory.lambda;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example98.factory.Handler;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example98.factory.Handler;
 
 public class LambdaHandler implements Handler {
     public String handle(String event) {

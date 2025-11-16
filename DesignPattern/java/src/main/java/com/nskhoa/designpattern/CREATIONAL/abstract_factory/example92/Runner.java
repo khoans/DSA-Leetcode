@@ -1,7 +1,7 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example92;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example92;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example92.http.HTTPFactory;
-import com.nskhoa.designpattern.creational.abstract_factory.example92.syn.SYNFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example92.http.HTTPFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example92.syn.SYNFactory;
 
 public class Runner {
     public static void main(String[] args) {

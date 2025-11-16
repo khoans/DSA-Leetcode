@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.factory_method.example17.factory.redis;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example17.factory.redis;
 
-import com.nskhoa.designpattern.creational.factory_method.example17.factory.Cache;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example17.factory.Cache;
 
 public class RedisCache implements Cache {
     @Override

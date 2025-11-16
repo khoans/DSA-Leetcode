@@ -1,8 +1,8 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example99.factory.github;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example99.factory.github;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example99.factory.Builder;
-import com.nskhoa.designpattern.creational.abstract_factory.example99.factory.Deployer;
-import com.nskhoa.designpattern.creational.abstract_factory.example99.factory.ToolchainAbstractFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example99.factory.Builder;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example99.factory.Deployer;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example99.factory.ToolchainAbstractFactory;
 
 public class GitHubFactory implements ToolchainAbstractFactory {
     public Builder createBuilder() {

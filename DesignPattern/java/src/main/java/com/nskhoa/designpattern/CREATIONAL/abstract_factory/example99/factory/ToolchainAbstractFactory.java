@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example99.factory;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example99.factory;
 
 public interface ToolchainAbstractFactory {
     Builder createBuilder();

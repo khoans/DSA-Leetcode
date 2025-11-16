@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.singleton.example11;
+package com.nskhoa.designpattern.CREATIONAL.singleton.example11;
 
 import java.util.HashMap;
 import java.util.Map;

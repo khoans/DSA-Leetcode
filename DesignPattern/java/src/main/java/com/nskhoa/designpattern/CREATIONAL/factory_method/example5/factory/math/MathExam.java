@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.factory_method.example5.factory.math;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example5.factory.math;
 
-import com.nskhoa.designpattern.creational.factory_method.example5.factory.Exam;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example5.factory.Exam;
 
 public class MathExam implements Exam {
     @Override

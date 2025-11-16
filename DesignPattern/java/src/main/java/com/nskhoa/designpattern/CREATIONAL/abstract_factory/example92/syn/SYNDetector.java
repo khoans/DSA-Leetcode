@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example92.syn;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example92.syn;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example92.Detector;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example92.Detector;
 
 public class SYNDetector implements Detector {
     public boolean detect(String traffic) {

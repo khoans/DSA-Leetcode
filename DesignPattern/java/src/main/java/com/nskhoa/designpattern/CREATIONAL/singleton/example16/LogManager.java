@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.singleton.example16;
+package com.nskhoa.designpattern.CREATIONAL.singleton.example16;
 
 public class LogManager {
     private static LogManager instance;

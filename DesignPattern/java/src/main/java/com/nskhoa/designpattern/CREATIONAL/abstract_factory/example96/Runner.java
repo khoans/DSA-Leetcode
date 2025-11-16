@@ -1,7 +1,7 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example96;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example96;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example96.aws.AWSFactory;
-import com.nskhoa.designpattern.creational.abstract_factory.example96.gcp.GCPFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example96.aws.AWSFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example96.gcp.GCPFactory;
 
 public class Runner {
     public static void main(String[] args) {

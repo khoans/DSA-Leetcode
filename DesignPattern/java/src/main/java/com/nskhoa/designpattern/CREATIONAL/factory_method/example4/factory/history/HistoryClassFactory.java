@@ -1,7 +1,7 @@
-package com.nskhoa.designpattern.creational.factory_method.example4.factory.history;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example4.factory.history;
 
-import com.nskhoa.designpattern.creational.factory_method.example4.factory.ClassFactory;
-import com.nskhoa.designpattern.creational.factory_method.example4.factory.Lesson;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example4.factory.ClassFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example4.factory.Lesson;
 
 public class HistoryClassFactory extends ClassFactory {
     public Lesson createLesson() {

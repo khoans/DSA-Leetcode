@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example86;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example86;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example86.aes.AESFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example86.aes.AESFactory;
 
 public class Runner {
     public static void main(String[] args) {

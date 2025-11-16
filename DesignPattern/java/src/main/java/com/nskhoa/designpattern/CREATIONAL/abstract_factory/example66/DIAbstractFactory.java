@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example66;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example66;
 
 public interface DIAbstractFactory {
     Injector createInjector();
