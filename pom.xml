@@ -12,6 +12,8 @@
         <module>DSA</module>
         <module>leetcode</module>
         <module>Sorting</module>
+        <module>DesignPattern/java</module>
+
     </modules>
 
     <properties>
