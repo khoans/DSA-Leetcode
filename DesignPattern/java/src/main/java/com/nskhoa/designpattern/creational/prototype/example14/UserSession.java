@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.prototype.example14;
+package com.nskhoa.designpattern.CREATIONAL.prototype.example14;
 
 public class UserSession implements Cloneable{
     private String userId;

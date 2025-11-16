@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example92.http;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example92.http;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example92.Detector;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example92.Detector;
 
 public class HTTPDetector implements Detector {
     public boolean detect(String traffic) {

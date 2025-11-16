@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.prototype.example1;
+package com.nskhoa.designpattern.CREATIONAL.prototype.example1;
 
 import java.util.ArrayList;
 import java.util.List;

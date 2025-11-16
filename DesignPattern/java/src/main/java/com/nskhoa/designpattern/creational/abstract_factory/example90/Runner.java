@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example90;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example90;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example90.intrusion.IntrusionFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example90.intrusion.IntrusionFactory;
 
 public class Runner {
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.factory_method.example15.factory.creditcard;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example15.factory.creditcard;
 
-import com.nskhoa.designpattern.creational.factory_method.example15.factory.PaymentProcessor;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example15.factory.PaymentProcessor;
 
 public class CreditCardProcessor implements PaymentProcessor {
     public void process(double amount) {

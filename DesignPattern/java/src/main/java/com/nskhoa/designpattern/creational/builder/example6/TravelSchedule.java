@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.builder.example6;
+package com.nskhoa.designpattern.CREATIONAL.builder.example6;
 
 public class TravelSchedule {
     private String transport;

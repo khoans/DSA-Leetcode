@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.singleton.example8;
+package com.nskhoa.designpattern.CREATIONAL.singleton.example8;
 
 public class FriendsSavings {
     private static FriendsSavings instance;

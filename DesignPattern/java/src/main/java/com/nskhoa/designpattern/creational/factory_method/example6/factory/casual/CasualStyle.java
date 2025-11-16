@@ -1,7 +1,7 @@
-package com.nskhoa.designpattern.creational.factory_method.example6.factory.casual;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example6.factory.casual;
 
-import com.nskhoa.designpattern.creational.factory_method.example6.factory.ClothingStore;
-import com.nskhoa.designpattern.creational.factory_method.example6.factory.Style;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example6.factory.ClothingStore;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example6.factory.Style;
 
 public class CasualStyle extends ClothingStore {
     public Style createStyle() {

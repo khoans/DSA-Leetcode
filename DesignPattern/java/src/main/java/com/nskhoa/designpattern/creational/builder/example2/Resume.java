@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.builder.example2;
+package com.nskhoa.designpattern.CREATIONAL.builder.example2;
 
 public class Resume {
     private String name;

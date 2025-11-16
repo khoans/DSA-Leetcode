@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example88;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example88;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example88.hashicorp.HashiCorpFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example88.hashicorp.HashiCorpFactory;
 
 public class Runner {
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example94;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example94;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example94.log.LogFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example94.log.LogFactory;
 
 public class Runner {
     public static void main(String[] args) {

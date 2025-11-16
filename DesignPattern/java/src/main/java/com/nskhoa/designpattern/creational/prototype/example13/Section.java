@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.prototype.example13;
+package com.nskhoa.designpattern.CREATIONAL.prototype.example13;
 
 public class Section {
     private String title;

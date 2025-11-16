@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example92.http;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example92.http;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example92.Mitigator;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example92.Mitigator;
 
 public class HTTPMitigator implements Mitigator {
     public void mitigate(String attack) {

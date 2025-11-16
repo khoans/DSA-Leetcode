@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example90.firewall;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example90.firewall;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example90.Blocker;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example90.Blocker;
 
 public class FirewallBlocker implements Blocker {
     public void block(String ip) {

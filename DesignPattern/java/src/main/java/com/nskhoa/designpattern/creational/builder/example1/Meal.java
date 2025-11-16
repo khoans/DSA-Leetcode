@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.builder.example1;
+package com.nskhoa.designpattern.CREATIONAL.builder.example1;
 
 public class Meal {
     private String main;

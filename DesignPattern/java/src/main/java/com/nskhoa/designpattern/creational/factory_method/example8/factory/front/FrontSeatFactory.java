@@ -1,7 +1,7 @@
-package com.nskhoa.designpattern.creational.factory_method.example8.factory.front;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example8.factory.front;
 
-import com.nskhoa.designpattern.creational.factory_method.example8.factory.Seat;
-import com.nskhoa.designpattern.creational.factory_method.example8.factory.SeatFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example8.factory.Seat;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example8.factory.SeatFactory;
 
 public class FrontSeatFactory extends SeatFactory {
     @Override

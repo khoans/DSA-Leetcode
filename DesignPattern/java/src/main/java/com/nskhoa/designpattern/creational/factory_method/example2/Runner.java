@@ -1,9 +1,9 @@
-package com.nskhoa.designpattern.creational.factory_method.example2;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example2;
 
-import com.nskhoa.designpattern.creational.factory_method.example2.factory.Bus;
-import com.nskhoa.designpattern.creational.factory_method.example2.factory.BusRoute;
-import com.nskhoa.designpattern.creational.factory_method.example2.factory.ac.ACBusRoute;
-import com.nskhoa.designpattern.creational.factory_method.example2.factory.normal.NormalBusRoute;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example2.factory.Bus;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example2.factory.BusRoute;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example2.factory.ac.ACBusRoute;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example2.factory.normal.NormalBusRoute;
 
 public class Runner {
     public static void main(String[] args) {

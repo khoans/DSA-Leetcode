@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example90;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example90;
 
 public interface NetworkSecurityAbstractFactory {
     Monitor createMonitor();

@@ -1,7 +1,7 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example93;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example93;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example93.behavior.BehavioralFactory;
-import com.nskhoa.designpattern.creational.abstract_factory.example93.captcha.CAPTCHAFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example93.behavior.BehavioralFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example93.captcha.CAPTCHAFactory;
 
 public class Runner {
     public static void main(String[] args) {

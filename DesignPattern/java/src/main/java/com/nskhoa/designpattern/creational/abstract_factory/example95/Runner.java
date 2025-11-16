@@ -1,7 +1,7 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example95;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example95;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example95.ai.AIFactory;
-import com.nskhoa.designpattern.creational.abstract_factory.example95.rule.RuleFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example95.ai.AIFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example95.rule.RuleFactory;
 
 public class Runner {
     public static void main(String[] args) {

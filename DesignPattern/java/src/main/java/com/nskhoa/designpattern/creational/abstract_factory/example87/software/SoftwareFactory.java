@@ -1,8 +1,8 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example87.software;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example87.software;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example87.KeyManagementAbstractFactory;
-import com.nskhoa.designpattern.creational.abstract_factory.example87.Manager;
-import com.nskhoa.designpattern.creational.abstract_factory.example87.Rotator;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example87.KeyManagementAbstractFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example87.Manager;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example87.Rotator;
 
 public class SoftwareFactory implements KeyManagementAbstractFactory {
     public Manager createManager() {

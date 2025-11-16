@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example93.captcha;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example93.captcha;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example93.Detector;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example93.Detector;
 
 public class CAPTCHADetector implements Detector {
     public boolean isBot(String userAgent) {

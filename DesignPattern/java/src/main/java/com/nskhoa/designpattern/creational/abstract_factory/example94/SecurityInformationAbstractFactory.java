@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example94;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example94;
 
 public interface SecurityInformationAbstractFactory {
     Collector createCollector();

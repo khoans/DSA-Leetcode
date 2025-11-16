@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.singleton.example1;
+package com.nskhoa.designpattern.CREATIONAL.singleton.example1;
 
 public class FamilyWallet {
     private static FamilyWallet instance;

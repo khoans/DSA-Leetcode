@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example94.log;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example94.log;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example94.Analyzer;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example94.Analyzer;
 
 public class LogAnalyzer implements Analyzer {
     public String analyze(String input) {

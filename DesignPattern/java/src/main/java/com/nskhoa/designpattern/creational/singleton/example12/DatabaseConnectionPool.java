@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.singleton.example12;
+package com.nskhoa.designpattern.CREATIONAL.singleton.example12;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example95.rule;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example95.rule;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example95.Notifier;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example95.Notifier;
 
 public class RuleNotifier implements Notifier {
     public void notify(String correlation) {

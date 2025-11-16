@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.builder.example4;
+package com.nskhoa.designpattern.CREATIONAL.builder.example4;
 
 public class House {
     private String foundation;

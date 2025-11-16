@@ -1,7 +1,7 @@
-package com.nskhoa.designpattern.creational.factory_method.example4.factory.math;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example4.factory.math;
 
 
-import com.nskhoa.designpattern.creational.factory_method.example4.factory.Lesson;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example4.factory.Lesson;
 
 public class MathLesson implements Lesson {
     public String getSubject() {

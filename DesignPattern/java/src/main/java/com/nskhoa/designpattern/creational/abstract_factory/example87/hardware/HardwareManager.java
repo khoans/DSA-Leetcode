@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example87.hardware;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example87.hardware;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example87.Manager;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example87.Manager;
 
 public class HardwareManager implements Manager {
     public String storeKey(String key) {

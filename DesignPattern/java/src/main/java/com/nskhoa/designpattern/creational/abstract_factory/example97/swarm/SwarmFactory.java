@@ -1,8 +1,8 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example97.swarm;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example97.swarm;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example97.OrchestrationAbstractFactory;
-import com.nskhoa.designpattern.creational.abstract_factory.example97.Scaler;
-import com.nskhoa.designpattern.creational.abstract_factory.example97.Scheduler;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example97.OrchestrationAbstractFactory;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example97.Scaler;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example97.Scheduler;
 
 public class SwarmFactory implements OrchestrationAbstractFactory {
     public Scheduler createScheduler() {

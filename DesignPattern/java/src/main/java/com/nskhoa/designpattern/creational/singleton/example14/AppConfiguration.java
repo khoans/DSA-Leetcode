@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.singleton.example14;
+package com.nskhoa.designpattern.CREATIONAL.singleton.example14;
 
 public class AppConfiguration {
     private static AppConfiguration instance;

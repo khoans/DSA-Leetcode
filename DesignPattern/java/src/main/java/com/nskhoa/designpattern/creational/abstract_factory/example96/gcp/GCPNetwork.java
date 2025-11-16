@@ -1,6 +1,6 @@
-package com.nskhoa.designpattern.creational.abstract_factory.example96.gcp;
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example96.gcp;
 
-import com.nskhoa.designpattern.creational.abstract_factory.example96.Network;
+import com.nskhoa.designpattern.CREATIONAL.abstract_factory.example96.Network;
 
 public class GCPNetwork implements Network {
     public String subnet(String zone) {

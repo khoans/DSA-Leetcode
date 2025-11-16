@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.prototype.example15;
+package com.nskhoa.designpattern.CREATIONAL.prototype.example15;
 
 import java.util.HashMap;
 import java.util.Map;

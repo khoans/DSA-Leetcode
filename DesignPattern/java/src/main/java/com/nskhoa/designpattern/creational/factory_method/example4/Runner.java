@@ -1,9 +1,9 @@
-package com.nskhoa.designpattern.creational.factory_method.example4;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example4;
 
-import com.nskhoa.designpattern.creational.factory_method.example4.factory.ClassFactory;
-import com.nskhoa.designpattern.creational.factory_method.example4.factory.Lesson;
-import com.nskhoa.designpattern.creational.factory_method.example4.factory.history.HistoryClassFactory;
-import com.nskhoa.designpattern.creational.factory_method.example4.factory.math.MathClassFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example4.factory.ClassFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example4.factory.Lesson;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example4.factory.history.HistoryClassFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example4.factory.math.MathClassFactory;
 
 public class Runner {
     public static void main(String[] args) {

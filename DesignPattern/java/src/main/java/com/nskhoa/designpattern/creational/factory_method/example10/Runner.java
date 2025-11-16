@@ -1,9 +1,9 @@
-package com.nskhoa.designpattern.creational.factory_method.example10;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example10;
 
-import com.nskhoa.designpattern.creational.factory_method.example10.factory.Product;
-import com.nskhoa.designpattern.creational.factory_method.example10.factory.ProductFactory;
-import com.nskhoa.designpattern.creational.factory_method.example10.factory.clothing.ClothingProductFactory;
-import com.nskhoa.designpattern.creational.factory_method.example10.factory.electronic.ElectronicsProductFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example10.factory.Product;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example10.factory.ProductFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example10.factory.clothing.ClothingProductFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example10.factory.electronic.ElectronicsProductFactory;
 
 public class Runner {
     public static void main(String[] args) {

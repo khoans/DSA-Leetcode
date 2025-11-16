@@ -1,9 +1,9 @@
-package com.nskhoa.designpattern.creational.factory_method.example12;
+package com.nskhoa.designpattern.CREATIONAL.factory_method.example12;
 
-import com.nskhoa.designpattern.creational.factory_method.example12.factory.Logger;
-import com.nskhoa.designpattern.creational.factory_method.example12.factory.LoggerFactory;
-import com.nskhoa.designpattern.creational.factory_method.example12.factory.console.ConsoleLoggerFactory;
-import com.nskhoa.designpattern.creational.factory_method.example12.factory.file.FileLoggerFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example12.factory.Logger;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example12.factory.LoggerFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example12.factory.console.ConsoleLoggerFactory;
+import com.nskhoa.designpattern.CREATIONAL.factory_method.example12.factory.file.FileLoggerFactory;
 
 public class Runner {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.nskhoa.designpattern.creational.prototype.example12;
+package com.nskhoa.designpattern.CREATIONAL.prototype.example12;
 
 public class DatabaseSchema implements Cloneable {
     private String schemaName;
