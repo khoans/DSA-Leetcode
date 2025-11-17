@@ -103,6 +103,8 @@ hữu ích cho UI toolkit. Các ví dụ hàng ngày:
 99. DevOps Toolchain Factory
 
 
+
+
 **Câu hỏi để xác định sử dụng Abstract Factory**:
 - Bạn có cần tạo họ object liên quan (families) mà không chỉ định concrete class, như bộ UI components?.
 - Ứng dụng có yêu cầu thay đổi toàn bộ họ object theo config (ví dụ: theme hoặc OS)?.
