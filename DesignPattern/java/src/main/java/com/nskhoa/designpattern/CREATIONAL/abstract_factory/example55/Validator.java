@@ -1,0 +1,5 @@
+package com.nskhoa.designpattern.CREATIONAL.abstract_factory.example55;
+
+public interface Validator {
+    boolean validate(Document doc);
+}
