@@ -65,5 +65,9 @@ The Chain of Responsibility (CoR) pattern is a behavioral design pattern that al
 43. Medical Diagnosis Systems: Patient symptoms are processed through a chain of diagnostic handlers that evaluate conditions and suggest treatments.
 44. Automated Code Review: Code changes are processed through a chain of review handlers that check for style, security vulnerabilities, and performance issues.
 45. Financial Transaction Processing: Transactions are processed through a chain of handlers that perform fraud detection, compliance checks, and settlement.
-
+46. Online Exam Proctoring: Exam sessions are monitored through a chain of handlers that check for cheating, log activity, and enforce time limits.
+47. Smart Home Automation: Commands from users are processed through a chain of handlers that control lighting, temperature, and security systems.
+48. Content Recommendation Engines: User interactions are processed through a chain of handlers that analyze behavior, filter content, and generate recommendations.
+49. Supply Chain Management: Orders are processed through a chain of handlers that manage inventory, coordinate suppliers, and track shipments.
+50. Automated Marketing Campaigns: Marketing actions are processed through a chain of handlers that segment audiences, personalize messages, and schedule deliveries.
 
