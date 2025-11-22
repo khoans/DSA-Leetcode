@@ -80,3 +80,22 @@ The Chain of Responsibility (CoR) pattern is a behavioral design pattern that al
 58. Online Voting Systems: Votes are processed through a chain of handlers that validate voter eligibility, record votes, and tally results.
 59. Digital Rights Management (DRM): Content access requests are processed through a chain of handlers that verify licenses, enforce restrictions, and log usage.
 60. Smart Traffic Management: Traffic data is processed through a chain of handlers that analyze flow, adjust signals, and provide route recommendations.
+
+
+
+The core components of the Chain of Responsibility pattern are:
+
+1. **Request**: This is the data or command that needs to be processed. The request contains information relevant for handling by the chain of handlers.
+
+2. **Handler (Abstract Handler)**: This is an abstract class or interface that declares a method for processing requests and maintains a reference to the next handler in the chain. It defines the interface for handling requests and for chaining to the next handler.
+
+3. **Concrete Handlers**: These are the classes that implement the handler interface or extend the abstract handler. Each concrete handler contains the logic for processing a specific type or part of the request. A handler decides whether to handle the request itself or pass it along to the next handler in the chain.
+
+4. **Client**: The client initiates requests by calling the first handler in the chain. The client is unaware of which handler will actually process the request, which allows for loose coupling between client and handlers.
+
+**How it works**:
+- A request is sent to the first handler.
+- Each handler decides either to process the request or pass it along to the next handler.
+- The request travels along the chain until some handler processes it or the chain ends.
+
+This structure provides flexibility and decouples request senders from receivers, allowing dynamic composition of processing chains. Handlers can be reused and chains can be configured at runtime.
