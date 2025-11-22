@@ -26,3 +26,18 @@ builder; xử lý constructor telescoping. Các ví dụ hàng ngày:
 - Ứng dụng có yêu cầu tạo biến thể của object mà không thay đổi class gốc?.
 - Có lo ngại về readability code khi khởi tạo object phức tạp?.
 - Pattern có phù hợp với việc tách logic xây dựng khỏi class chính để dễ bảo trì?.
+
+
+The core components of the Builder pattern are:
+
+1. **Product**: The complex object that is being constructed step by step. This class has multiple attributes and represents the final assembled object.
+
+2. **Builder (Abstract Builder)**: An interface or abstract class that declares methods for creating the different parts of the product. Typically, these methods return the builder itself for chaining.
+
+3. **ConcreteBuilder**: Implements the Builder interface to provide specific implementations for building parts of the product. It also maintains the representation of the current product being built and provides a method to retrieve the finished product.
+
+4. **Director**: (Optional) Controls the construction process by invoking builder methods in a particular sequence. It directs the building steps but is decoupled from the concrete builders and products.
+
+5. **Client**: Creates the builder and director, then uses the director to construct the product or directly controls the builder to retrieve the desired object.
+
+This pattern separates the construction of a complex object from its representation, allowing the same construction process to create different representations.

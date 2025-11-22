@@ -26,3 +26,18 @@ tạo đối tượng đắt đỏ như sao chép sâu trong game hoặc mô ph�
 - Có tình huống class có constructor phức tạp hoặc phụ thuộc bên ngoài, làm clone hiệu quả hơn?.
 - Pattern có giúp giảm thời gian khởi tạo so với new object từ đầu?.
 - Bạn có thể xử lý Cloneable interface và exception mà không làm code phức tạp?.
+
+
+The core components of the Prototype pattern are:
+
+1. **Prototype Interface (or Abstract Class)**: Declares a cloning method, typically `clone()`, which returns a new instance that is a copy of the current object. This interface defines the minimal contract required for cloning.
+
+2. **Concrete Prototype**: Implements the Prototype interface, providing a concrete implementation of the cloning method. It handles copying its own state, including deep copies if necessary, and manages any internal object references or dependencies.
+
+3. **Client**: The component that works with prototypes to create new objects by cloning existing prototype instances instead of instantiating new objects from classes directly. The client remains decoupled from the concrete classes.
+
+Optionally, there can be:
+
+4. **Prototype Registry (optional)**: A centralized storage for pre-built prototype objects. The client can retrieve a prototype from the registry and clone it, helping manage a catalog of prototypical objects.
+
+This pattern facilitates creating new objects efficiently by copying existing instances, useful when object creation is expensive or complex configuration is needed.

@@ -29,3 +29,20 @@ cho tài nguyên như quản lý cấu hình. Các ví dụ hàng ngày:
 - Có lo ngại về thread-safety trong môi trường đa luồng, và bạn sẵn sàng xử lý lazy initialization?.
 - Pattern có phù hợp với yêu cầu đơn giản hóa quản lý trạng thái chung mà không over-engineering?.
 - Bạn có tránh được các vấn đề như testability kém do instance toàn cục?.
+
+
+The core components of the Singleton pattern are:
+
+1. **Private Static Instance**: A static member within the class that holds the single instance of the Singleton. This ensures that memory is allocated only once for the instance.
+
+2. **Private Constructor**: The constructor is made private to prevent others from instantiating the class directly. This restricts object creation strictly to within the class itself.
+
+3. **Public Static Access Method (Factory Method)**: A static method (commonly named `getInstance()`) that provides a global access point to the single instance. This method creates the instance on the first call (lazy initialization) and returns the existing instance on subsequent calls.
+
+These components ensure:
+
+- **Single Instance Guarantee**: Only one instance of the class exists during the lifetime of the application.
+
+- **Global Access Point**: The instance is globally accessible but controlled.
+
+This pattern is commonly used for shared resources like configuration managers, loggers, or connection pools.

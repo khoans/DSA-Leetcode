@@ -111,3 +111,18 @@ hữu ích cho UI toolkit. Các ví dụ hàng ngày:
 - Có tình huống nhiều factory subclass để tạo product variants?.
 - Pattern có giúp đảm bảo tính nhất quán giữa các object trong họ?.
 - Bạn có chấp nhận thêm abstract product interfaces để mở rộng?.
+
+
+The core components of the Abstract Factory pattern are:
+
+1. **Abstract Factory**: Declares an interface with methods for creating abstract product objects. It defines a family of related products that can be created without specifying their concrete classes. This factory interface ensures clients create products consistently within a particular family.
+
+2. **Concrete Factories**: Implement the Abstract Factory interface. Each concrete factory corresponds to one variant or family of products, responsible for instantiating concrete products of that family. Concrete factories encapsulate object creation logic.
+
+3. **Abstract Products**: Define interfaces or abstract classes for a set of related products. Each product type within the family has an abstract product, providing a common interface for that type.
+
+4. **Concrete Products**: Implement the Abstract Product interfaces. These classes represent concrete implementations of products associated with a particular concrete factory.
+
+5. **Client**: The client uses the abstract factory interface to create abstract products. The client remains independent of concrete product and factory implementations, enabling easy substitution among product families.
+
+This pattern encapsulates creation of related objects, promotes consistency among product families, and enables flexibility in changing or adding product variants without modifying client code.

@@ -30,3 +30,20 @@ biến trong framework. Các ví dụ hàng ngày:
     - Có tình huống tạo object dựa trên input runtime (như config hoặc user choice)?.
     - Pattern có giúp tuân thủ Open-Closed Principle (mở rộng mà không sửa)?.
     - Bạn có chấp nhận thêm subclass để override method create mà không làm hierarchy quá sâu?.
+
+
+The core components of the Factory Method pattern are:
+
+1. **Product**: This declares the interface or abstract class for the objects the factories create. It defines the common behavior that all concrete products must implement.
+
+2. **Concrete Product**: These are the actual implementations of the Product interface. Each concrete product corresponds to a specific type of object created by the factory method.
+
+3. **Creator (Factory interface or abstract class)**: Declares the factory method, which returns an object of the Product type. The Creator may also contain some core business logic that uses the product object returned by the factory method.
+
+4. **Concrete Creator (Concrete Factory)**: Implements the factory method to instantiate and return specific concrete products. These subclasses control which concrete product is created.
+
+**Summary**:
+- The Factory Method pattern defines an interface for creating an object, allowing subclasses to decide which class to instantiate.
+- It encapsulates object instantiation, promoting loose coupling between client code and concrete classes.
+- It supports adding new product types by subclassing without modifying existing code.
+- The pattern often uses inheritance: Creator defines the factory method, while subclasses override it.
