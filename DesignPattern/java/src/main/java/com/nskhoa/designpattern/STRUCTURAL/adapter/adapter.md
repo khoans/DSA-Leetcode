@@ -85,3 +85,9 @@ Nếu có, **Adapter Pattern** là lựa chọn phù hợp.
 38. Code Quality Tool Adapter: Kết nối với các công cụ kiểm tra chất lượng mã khác nhau (SonarQube, ESLint, Checkstyle) thông qua một giao diện chuẩn.
 39. Continuous Integration/Continuous Deployment (CI/CD) Adapter: Kết nối với các công cụ CI/CD khác nhau (Jenkins, Travis CI, CircleCI) thông qua một giao diện chuẩn.
 40. Infrastructure as Code (IaC) Adapter: Kết nối với các công cụ IaC khác nhau (Terraform, Ansible, CloudFormation) thông qua một giao diện chuẩn.
+
+## Khác biệt Bridge Pattern và Adapter Pattern:
+- **Mục đích**: Bridge nhằm tách rời trừu tượng và cài đặt để cả hai có thể phát triển độc lập, trong khi Adapter nhằm kết nối hai giao diện không tương thích.
+- **Cấu trúc**: Bridge sử dụng hai lớp riêng biệt (Abstraction và Implementor), trong khi Adapter thường là một lớp duy nhất thực hiện giao diện của lớp cần thích nghi.
+- **Sử dụng**: Bridge thường được sử dụng khi có nhiều biến thể của cả trừu tượng và cài đặt, trong khi Adapter thường được sử dụng để tích hợp các hệ thống hiện có.
+- **Mối quan hệ**: Bridge tạo ra một cầu nối giữa hai phần, trong khi Adapter chuyển đổi giao diện của một phần để phù hợp với phần khác.
