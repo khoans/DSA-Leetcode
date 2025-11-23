@@ -55,39 +55,3 @@ Nếu có, **Bridge Pattern** là lựa chọn phù hợp.
 18. Financial Applications: Tách rời giao diện người dùng khỏi hệ thống xử lý giao dịch.
 19. Healthcare Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý bệnh nhân.
 20. Educational Software: Tách rời giao diện người dùng khỏi hệ thống quản lý khóa học.
-21. Travel Booking Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý đặt chỗ.
-22. Food Delivery Apps: Tách rời giao diện người dùng khỏi hệ thống quản lý đơn hàng.
-23. Fitness Tracking Apps: Tách rời giao diện người dùng khỏi hệ thống theo dõi sức khỏe.
-24. Real Estate Platforms: Tách rời giao diện người dùng khỏi hệ thống quản lý bất động sản.
-25. Event Management Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý sự kiện.
-26. Job Portals: Tách rời giao diện người dùng khỏi hệ thống quản lý việc làm.
-27. Online Marketplaces: Tách rời giao diện người dùng khỏi hệ thống quản lý sản phẩm.
-28. News Aggregators: Tách rời giao diện người dùng khỏi hệ thống quản lý tin tức.
-29. Video Streaming Services: Tách rời giao diện người dùng khỏi hệ thống quản lý video.
-30. Music Streaming Services: Tách rời giao diện người dùng khỏi hệ thống quản lý âm nhạc.
-31. Ride Sharing Apps: Tách rời giao diện người dùng khỏi hệ thống quản lý chuyến đi.
-32. Car Rental Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý xe.
-33. Hotel Booking Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý khách sạn.
-34. Online Learning Platforms: Tách rời giao diện người dùng khỏi hệ thống quản lý khóa học.
-35. Virtual Reality Applications: Tách rời giao diện người dùng khỏi hệ thống quản lý VR.
-36. Augmented Reality Applications: Tách rời giao diện người dùng khỏi hệ thống quản lý AR.
-37. Cryptocurrency Wallets: Tách rời giao diện người dùng khỏi hệ thống quản lý tiền điện tử.
-38. Stock Trading Platforms: Tách rời giao diện người dùng khỏi hệ thống quản lý giao dịch chứng khoán.
-39. Personal Finance Apps: Tách rời giao diện người dùng khỏi hệ thống quản lý tài chính cá nhân.
-40. Budgeting Tools: Tách rời giao diện người dùng khỏi hệ thống quản lý ngân sách.
-41. Tax Preparation Software: Tách rời giao diện người dùng khỏi hệ thống quản lý thuế.
-42. Invoicing Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý hóa đơn.
-43. Payroll Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý lương.
-44. Human Resource Management Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý nhân sự.
-45. Customer Relationship Management Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý khách hàng.
-46. Enterprise Resource Planning Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý tài nguyên doanh nghiệp.
-47. Supply Chain Management Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý chuỗi cung ứng.
-48. Inventory Management Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý tồn kho.
-49. Warehouse Management Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý kho.
-50. Logistics Management Systems: Tách rời giao diện người dùng khỏi hệ thống quản lý logistics.
-
-## Khác biệt Bridge Pattern và Adapter Pattern:
-- **Mục đích**: Bridge nhằm tách rời trừu tượng và cài đặt để cả hai có thể phát triển độc lập, trong khi Adapter nhằm kết nối hai giao diện không tương thích.
-- **Cấu trúc**: Bridge sử dụng hai lớp riêng biệt (Abstraction và Implementor), trong khi Adapter thường là một lớp duy nhất thực hiện giao diện của lớp cần thích nghi.
-- **Sử dụng**: Bridge thường được sử dụng khi có nhiều biến thể của cả trừu tượng và cài đặt, trong khi Adapter thường được sử dụng để tích hợp các hệ thống hiện có.
-- **Mối quan hệ**: Bridge tạo ra một cầu nối giữa hai phần, trong khi Adapter chuyển đổi giao diện của một phần để phù hợp với phần khác.
