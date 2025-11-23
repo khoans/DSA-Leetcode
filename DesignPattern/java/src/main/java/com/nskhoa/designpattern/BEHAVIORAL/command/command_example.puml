@@ -1,0 +1,65 @@
+@startuml Command Pattern Example - Text Editor
+
+interface Command {
+    + execute(): void
+    + undo(): void
+}
+
+class InsertTextCommand implements Command {
+    - editor: TextEditor
+    - text: String
+    - position: int
+    + execute(): void
+    + undo(): void
+}
+
+class DeleteTextCommand implements Command {
+    - editor: TextEditor
+    - text: String
+    - start: int
+    - end: int
+    + execute(): void
+    + undo(): void
+}
+
+class CopyCommand implements Command {
+    - editor: TextEditor
+    + execute(): void
+    + undo(): void
+}
+
+class TextEditor {
+    - content: String
+    - clipboard: String
+    + insertText(text: String, pos: int): void
+    + deleteText(start: int, end: int): void
+    + copy(): void
+    + paste(): void
+}
+
+class EditorInvoker {
+    - commandHistory: List<Command>
+    - undoStack: Stack<Command>
+    + executeCommand(cmd: Command): void
+    + undo(): void
+    + redo(): void
+}
+
+class TextEditorClient {
+    + main()
+}
+
+' Relationships
+EditorInvoker *-- Command : executes
+InsertTextCommand *-- TextEditor : knows
+DeleteTextCommand *-- TextEditor : knows
+CopyCommand *-- TextEditor : knows
+EditorInvoker ..> TextEditor : uses
+TextEditorClient ..> EditorInvoker : uses
+TextEditorClient ..> Command : creates
+
+note right: Supports undo/redo
+note right: Commands can be queued
+note right: Macro commands possible
+
+@enduml

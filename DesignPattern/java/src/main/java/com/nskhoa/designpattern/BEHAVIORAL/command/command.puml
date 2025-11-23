@@ -1,0 +1,44 @@
+@startuml Command Pattern Main Components
+
+interface Command {
+    + execute(): void
+    + undo(): void
+    + redo(): void
+}
+
+class ConcreteCommand implements Command {
+    - receiver: Receiver
+    - state: Object
+    + execute(): void
+    + undo(): void
+    + redo(): void
+}
+
+class Receiver {
+    + action(): void
+}
+
+class Invoker {
+    - commands: List<Command>
+    - history: Stack<Command>
+    + setCommand(command: Command): void
+    + executeCommand(): void
+    + undoCommand(): void
+}
+
+class Client {
+    + main()
+}
+
+' Relationships
+Invoker *-- Command : executes
+ConcreteCommand *-- Receiver : knows
+Client ..> Command : creates
+Client ..> Invoker : uses
+
+note right: Command: encapsulates request
+note right: Receiver: knows how to execute
+note right: Invoker: triggers commands
+note right: Client: creates and configures
+
+@enduml
