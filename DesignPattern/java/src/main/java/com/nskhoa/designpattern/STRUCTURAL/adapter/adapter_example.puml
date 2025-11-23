@@ -1,0 +1,61 @@
+@startuml Adapter Pattern - Report Example
+
+' Giao diện mà client mong muốn (Target)
+interface ReportGenerator {
+    + generateReport(data: List<Data>): String
+}
+
+' Lớp Client sử dụng ReportGenerator
+class ReportService {
+    - generator: ReportGenerator
+    + generateFinalReport(data: List<Data>): String
+}
+
+' Lớp hiện có với giao diện không tương thích (Adaptee)
+class XMLReportTool {
+    + produceXMLReport(data: List<Data>): String
+}
+
+class CSVReportTool {
+    + createCSV(data: List<Data>): String
+}
+
+class JSONReportTool {
+    + buildJSONReport(data: List<Data>): String
+}
+
+' Adapter cho XML
+class XMLReportAdapter implements ReportGenerator {
+    - xmlTool: XMLReportTool
+    + generateReport(data: List<Data>): String
+}
+
+' Adapter cho CSV
+class CSVReportAdapter implements ReportGenerator {
+    - csvTool: CSVReportTool
+    + generateReport(data: List<Data>): String
+}
+
+' Adapter cho JSON
+class JSONReportAdapter implements ReportGenerator {
+    - jsonTool: JSONReportTool
+    + generateReport(data: List<Data>): String
+}
+
+' Dữ liệu mẫu
+class Data {
+    - id: int
+    - name: String
+    - value: double
+}
+
+' Quan hệ
+ReportService ..> ReportGenerator : uses
+XMLReportAdapter ..|> ReportGenerator
+CSVReportAdapter ..|> ReportGenerator
+JSONReportAdapter ..|> ReportGenerator
+XMLReportAdapter *-- XMLReportTool
+CSVReportAdapter *-- CSVReportTool
+JSONReportAdapter *-- JSONReportTool
+
+@enduml

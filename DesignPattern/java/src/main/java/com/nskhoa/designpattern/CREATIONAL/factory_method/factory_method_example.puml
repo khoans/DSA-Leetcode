@@ -1,0 +1,55 @@
+@startuml Factory Method Pattern Example - Report
+
+' Sản phẩm
+interface Report {
+    + generate(): void
+}
+
+' Các sản phẩm cụ thể
+class PDFReport implements Report {
+    + generate(): void
+}
+
+class ExcelReport implements Report {
+    + generate(): void
+}
+
+class HTMLReport implements Report {
+    + generate(): void
+}
+
+' Creator (Lớp trừu tượng)
+abstract class ReportGenerator {
+    + generateReport(): void
+    + createReport(): Report  ' Factory method
+}
+
+' Các Creator cụ thể
+class PDFReportGenerator extends ReportGenerator {
+    + createReport(): Report
+}
+
+class ExcelReportGenerator extends ReportGenerator {
+    + createReport(): Report
+}
+
+class HTMLReportGenerator extends ReportGenerator {
+    + createReport(): Report
+}
+
+' Client
+class ReportClient {
+    + main()
+}
+
+' Quan hệ
+Report <|.. PDFReport
+Report <|.. ExcelReport
+Report <|.. HTMLReport
+ReportGenerator ..> Report : creates
+PDFReportGenerator --|> ReportGenerator
+ExcelReportGenerator --|> ReportGenerator
+HTMLReportGenerator --|> ReportGenerator
+ReportClient ..> ReportGenerator : uses
+
+@enduml

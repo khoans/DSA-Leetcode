@@ -1,0 +1,31 @@
+@startuml Bridge Pattern UML
+
+interface Implementor {
+    + operation()
+}
+
+class ConcreteImplementorA {
+    + operation()
+}
+
+class ConcreteImplementorB {
+    + operation()
+}
+
+abstract class Abstraction {
+    - implementor : Implementor
+    + operation()
+}
+
+class RefinedAbstraction {
+    + operation()
+}
+
+' Quan hệ
+Abstraction *-- Implementor
+RefinedAbstraction --|> Abstraction
+ConcreteImplementorA ..|> Implementor
+ConcreteImplementorB ..|> Implementor
+
+@enduml
+

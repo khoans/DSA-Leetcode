@@ -1,0 +1,65 @@
+@startuml Abstract Factory Pattern - Core Classes
+
+' Các sản phẩm trừu tượng
+interface AbstractProductA {
+    + usefulFunctionA(): void
+}
+
+interface AbstractProductB {
+    + usefulFunctionB(): void
+    + anotherFunctionB(collaborator: AbstractProductA): void
+}
+
+' Các sản phẩm cụ thể
+class ConcreteProductA1 implements AbstractProductA {
+    + usefulFunctionA(): void
+}
+
+class ConcreteProductA2 implements AbstractProductA {
+    + usefulFunctionA(): void
+}
+
+class ConcreteProductB1 implements AbstractProductB {
+    + usefulFunctionB(): void
+    + anotherFunctionB(collaborator: AbstractProductA): void
+}
+
+class ConcreteProductB2 implements AbstractProductB {
+    + usefulFunctionB(): void
+    + anotherFunctionB(collaborator: AbstractProductA): void
+}
+
+' Abstract Factory
+interface AbstractFactory {
+    + createProductA(): AbstractProductA
+    + createProductB(): AbstractProductB
+}
+
+' Các factory cụ thể
+class ConcreteFactory1 implements AbstractFactory {
+    + createProductA(): AbstractProductA
+    + createProductB(): AbstractProductB
+}
+
+class ConcreteFactory2 implements AbstractFactory {
+    + createProductA(): AbstractProductA
+    + createProductB(): AbstractProductB
+}
+
+' Client
+class Client {
+    + main()
+}
+
+' Quan hệ
+AbstractProductA <|.. ConcreteProductA1
+AbstractProductA <|.. ConcreteProductA2
+AbstractProductB <|.. ConcreteProductB1
+AbstractProductB <|.. ConcreteProductB2
+AbstractFactory <|.. ConcreteFactory1
+AbstractFactory <|.. ConcreteFactory2
+Client ..> AbstractFactory : uses
+Client ..> AbstractProductA : works with
+Client ..> AbstractProductB : works with
+
+@enduml

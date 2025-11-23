@@ -1,0 +1,61 @@
+@startuml Bridge Pattern - Payment Example
+
+' Giao diện cài đặt (Implementation)
+interface PaymentProcessor {
+    + process(amount: double): boolean
+    + refund(transactionId: String): boolean
+}
+
+' Các cài đặt cụ thể
+class PayPalProcessor {
+    + process(amount: double): boolean
+    + refund(transactionId: String): boolean
+}
+
+class StripeProcessor {
+    + process(amount: double): boolean
+    + refund(transactionId: String): boolean
+}
+
+class SquareProcessor {
+    + process(amount: double): boolean
+    + refund(transactionId: String): boolean
+}
+
+' Lớp trừu tượng (Abstraction)
+abstract class PaymentMethod {
+    - processor: PaymentProcessor
+    + PaymentMethod(processor: PaymentProcessor)
+    + pay(amount: double)
+    + refundPayment(transactionId: String)
+}
+
+' Lớp trừu tượng được tinh chế
+class CreditCardPayment {
+    + CreditCardPayment(processor: PaymentProcessor)
+    + pay(amount: double)
+    + refundPayment(transactionId: String)
+}
+
+class BankTransferPayment {
+    + BankTransferPayment(processor: PaymentProcessor)
+    + pay(amount: double)
+    + refundPayment(transactionId: String)
+}
+
+class DigitalWalletPayment {
+    + DigitalWalletPayment(processor: PaymentProcessor)
+    + pay(amount: double)
+    + refundPayment(transactionId: String)
+}
+
+' Quan hệ
+PaymentMethod *-- PaymentProcessor
+CreditCardPayment --|> PaymentMethod
+BankTransferPayment --|> PaymentMethod
+DigitalWalletPayment --|> PaymentMethod
+PayPalProcessor ..|> PaymentProcessor
+StripeProcessor ..|> PaymentProcessor
+SquareProcessor ..|> PaymentProcessor
+
+@enduml

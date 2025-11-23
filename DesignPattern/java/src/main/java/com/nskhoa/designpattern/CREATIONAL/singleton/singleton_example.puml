@@ -1,0 +1,20 @@
+@startuml Singleton Pattern Example - Logger
+
+class Logger {
+    - instance: Logger
+    - logFile: String
+    - Logger()  ' private constructor
+    + getInstance(): Logger
+    + log(message: String)
+    + close()
+}
+
+' Client
+class Application {
+    + main()
+}
+
+' Quan hệ
+Application ..> Logger : uses
+
+@enduml

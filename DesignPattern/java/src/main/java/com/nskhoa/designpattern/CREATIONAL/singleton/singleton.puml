@@ -1,0 +1,10 @@
+@startuml Singleton Pattern UML
+
+class Singleton {
+    - instance: Singleton
+    - Singleton()  ' private constructor
+    + getInstance(): Singleton
+    + someMethod(): void
+}
+
+@enduml

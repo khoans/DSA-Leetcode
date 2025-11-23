@@ -1,0 +1,43 @@
+@startuml Factory Method Pattern - Core Classes
+
+' Sản phẩm
+interface Product {
+    + operation(): void
+}
+
+class ConcreteProductA implements Product {
+    + operation(): void
+}
+
+class ConcreteProductB implements Product {
+    + operation(): void
+}
+
+' Creator
+abstract class Creator {
+    + someOperation(): void
+    + factoryMethod(): Product  ' Factory Method
+}
+
+class ConcreteCreatorA extends Creator {
+    + factoryMethod(): Product
+}
+
+class ConcreteCreatorB extends Creator {
+    + factoryMethod(): Product
+}
+
+' Client
+class Client {
+    + main()
+}
+
+' Quan hệ
+Product <|.. ConcreteProductA
+Product <|.. ConcreteProductB
+Creator ..> Product : creates
+ConcreteCreatorA --|> Creator
+ConcreteCreatorB --|> Creator
+Client ..> Creator : uses
+
+@enduml

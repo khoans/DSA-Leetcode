@@ -1,0 +1,102 @@
+@startuml Builder Pattern Example - Meal
+
+' Sản phẩm
+class Meal {
+    - items: List<Item>
+    + addItem(item: Item)
+    + getCost(): double
+    + showItems(): void
+}
+
+' Giao diện Item
+interface Item {
+    + name(): String
+    + packing(): Packing
+    + price(): double
+}
+
+' Gói đóng gói
+interface Packing {
+    + pack(): String
+}
+
+class Wrapper implements Packing {
+    + pack(): String
+}
+
+class Bottle implements Packing {
+    + pack(): String
+}
+
+' Các món ăn cụ thể
+class Burger {
+    + packing(): Packing
+    + price(): double
+}
+
+class ColdDrink {
+    + packing(): Packing
+    + price(): double
+}
+
+class ChickenBurger extends Burger {
+    + name(): String
+    + price(): double
+}
+
+class Coke extends ColdDrink {
+    + name(): String
+    + price(): double
+}
+
+' Builder
+interface MealBuilder {
+    + addBurger(burger: Burger)
+    + addDrink(drink: ColdDrink)
+    + addSide(side: String)
+    + build(): Meal
+}
+
+class HealthyMealBuilder implements MealBuilder {
+    - meal: Meal
+    + addBurger(burger: Burger)
+    + addDrink(drink: ColdDrink)
+    + addSide(side: String)
+    + build(): Meal
+}
+
+class FastFoodMealBuilder implements MealBuilder {
+    - meal: Meal
+    + addBurger(burger: Burger)
+    + addDrink(drink: ColdDrink)
+    + addSide(side: String)
+    + build(): Meal
+}
+
+' Client
+class MealDirector {
+    - builder: MealBuilder
+    + setBuilder(builder: MealBuilder)
+    + constructHealthyMeal(): Meal
+    + constructFastFoodMeal(): Meal
+}
+
+class Client {
+    + main()
+}
+
+' Quan hệ
+Meal *-- Item
+Item <|.. Burger
+Item <|.. ColdDrink
+Packing <|.. Wrapper
+Packing <|.. Bottle
+Burger <|-- ChickenBurger
+ColdDrink <|-- Coke
+MealBuilder <|.. HealthyMealBuilder
+MealBuilder <|.. FastFoodMealBuilder
+MealDirector ..> MealBuilder
+Client ..> MealBuilder
+Client ..> MealDirector
+
+@enduml

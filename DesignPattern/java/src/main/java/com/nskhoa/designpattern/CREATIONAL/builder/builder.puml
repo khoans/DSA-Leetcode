@@ -1,0 +1,42 @@
+@startuml Builder Pattern UML
+
+' Sản phẩm cuối cùng
+class Product {
+    - parts: List<String>
+    + getParts(): List<String>
+}
+
+' Giao diện Builder
+interface Builder {
+    + setPartA(part: String)
+    + setPartB(part: String)
+    + build(): Product
+}
+
+' Builder cụ thể
+class ConcreteBuilder implements Builder {
+    - product: Product
+    + setPartA(part: String)
+    + setPartB(part: String)
+    + build(): Product
+}
+
+' Director (tùy chọn)
+class Director {
+    - builder: Builder
+    + setBuilder(builder: Builder)
+    + construct(): Product
+}
+
+' Client
+class Client {
+    + main()
+}
+
+' Quan hệ
+Builder <|.. ConcreteBuilder
+ConcreteBuilder *-- Product
+Director ..> Builder
+Client ..> Builder
+
+@enduml

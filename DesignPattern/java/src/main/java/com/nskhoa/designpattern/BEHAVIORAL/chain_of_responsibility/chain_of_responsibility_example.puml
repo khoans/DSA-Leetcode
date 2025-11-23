@@ -1,0 +1,50 @@
+@startuml Chain of Responsibility - Approval Example
+
+' Giao diện xử lý yêu cầu
+abstract class Approver {
+    - nextApprover: Approver
+    + setNext(approver: Approver): Approver
+    + approveRequest(request: Request): void
+}
+
+' Các lớp xử lý cụ thể
+class TeamLeadApprover {
+    + approveRequest(request: Request): void
+}
+
+class ManagerApprover {
+    + approveRequest(request: Request): void
+}
+
+class DirectorApprover {
+    + approveRequest(request: Request): void
+}
+
+class CEOApprover {
+    + approveRequest(request: Request): void
+}
+
+' Yêu cầu cần xử lý
+class Request {
+    - type: String  ' Ví dụ: "leave", "expense"
+    - amount: double
+    - description: String
+    - approved: boolean
+}
+
+' Client gửi yêu cầu
+class ApprovalClient {
+    - firstApprover: Approver
+    + submitRequest(request: Request): void
+}
+
+' Quan hệ
+Approver *-- Approver : next
+TeamLeadApprover --|> Approver
+ManagerApprover --|> Approver
+DirectorApprover --|> Approver
+CEOApprover --|> Approver
+ApprovalClient ..> Approver : sends
+Request ..> Approver : as parameter
+
+@enduml

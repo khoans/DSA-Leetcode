@@ -1,0 +1,38 @@
+@startuml Iterator Pattern UML
+
+interface Iterator<T> {
+    + hasNext(): boolean
+    + next(): T
+    + remove(): void
+}
+
+interface Aggregate<T> {
+    + createIterator(): Iterator<T>
+}
+
+class ConcreteIterator<T> {
+    - collection: List<T>
+    - position: int
+    + hasNext(): boolean
+    + next(): T
+    + remove(): void
+}
+
+class ConcreteAggregate<T> {
+    - items: List<T>
+    + add(item: T)
+    + createIterator(): Iterator<T>
+}
+
+class Client {
+    + useIterator()
+}
+
+' Quan hệ
+Iterator <|-- ConcreteIterator
+Aggregate <|-- ConcreteAggregate
+ConcreteAggregate ..> ConcreteIterator : creates
+Client ..> Iterator : uses
+Client ..> Aggregate : uses
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml Prototype Pattern UML
+
+' Giao diện Prototype
+interface Prototype {
+    + clone(): Prototype
+}
+
+' Lớp cụ thể triển khai Prototype
+class ConcretePrototypeA implements Prototype {
+    - field: String
+    + clone(): Prototype
+}
+
+class ConcretePrototypeB implements Prototype {
+    - field: int
+    + clone(): Prototype
+}
+
+' Client
+class Client {
+    + main()
+}
+
+' Quan hệ
+Client ..> Prototype : uses
+
+@enduml

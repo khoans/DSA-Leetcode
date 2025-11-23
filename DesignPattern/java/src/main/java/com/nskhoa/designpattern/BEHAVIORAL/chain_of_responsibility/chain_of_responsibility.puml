@@ -1,0 +1,39 @@
+@startuml Chain of Responsibility UML
+
+abstract class Handler {
+    - successor: Handler
+    + setSuccessor(successor: Handler)
+    + handleRequest(request: Request)
+}
+
+class ConcreteHandlerA {
+    + handleRequest(request: Request)
+}
+
+class ConcreteHandlerB {
+    + handleRequest(request: Request)
+}
+
+class ConcreteHandlerC {
+    + handleRequest(request: Request)
+}
+
+class Request {
+    + type: String
+    + data: Object
+}
+
+class Client {
+    - handler: Handler
+    + makeRequest(request: Request)
+}
+
+' Quan hệ
+Handler *-- Handler : successor
+ConcreteHandlerA --|> Handler
+ConcreteHandlerB --|> Handler
+ConcreteHandlerC --|> Handler
+Client ..> Handler : sends
+Request ..> Handler : as parameter
+
+@enduml

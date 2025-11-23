@@ -1,0 +1,27 @@
+@startuml Adapter Pattern UML
+
+interface Target {
+    + request()
+}
+
+class Client {
+    - target: Target
+    + doSomething()
+}
+
+class Adaptee {
+    + specificRequest()
+}
+
+class Adapter {
+    - adaptee: Adaptee
+    + request()
+}
+
+' Quan hệ
+Client ..> Target : uses
+Adapter ..|> Target
+Adapter *-- Adaptee
+Adaptee : specificRequest()
+
+@enduml

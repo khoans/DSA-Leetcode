@@ -1,0 +1,46 @@
+@startuml Prototype Pattern Example - Configuration
+
+' Giao diện Prototype
+interface Configuration {
+    + clone(): Configuration
+    + display(): void
+    + setEnvironment(env: String)
+    + setDatabaseUrl(url: String)
+    + setApiKey(key: String)
+}
+
+' Lớp cấu hình cụ thể
+class AppConfig implements Configuration {
+    - environment: String
+    - databaseUrl: String
+    - apiKey: String
+    - features: List<String>
+
+    + AppConfig()
+    + AppConfig(AppConfig config)  ' copy constructor
+    + clone(): Configuration
+    + display(): void
+    + setEnvironment(env: String)
+    + setDatabaseUrl(url: String)
+    + setApiKey(key: String)
+}
+
+' Registry để quản lý các mẫu cấu hình
+class ConfigRegistry {
+    - configs: Map<String, Configuration>
+    + loadConfigs()
+    + getConfig(type: String): Configuration
+}
+
+' Client
+class Application {
+    + main()
+}
+
+' Quan hệ
+Configuration <|.. AppConfig
+ConfigRegistry ..> Configuration : contains
+Application ..> ConfigRegistry : uses
+Application ..> Configuration : clones
+
+@enduml
