@@ -1,0 +1,44 @@
+@startuml Observer Pattern Main Components
+
+interface Subject {
+    + attach(observer: Observer): void
+    + detach(observer: Observer): void
+    + notifyObservers(): void
+}
+
+interface Observer {
+    + update(subject: Subject): void
+}
+
+class ConcreteSubject implements Subject {
+    - observers: List<Observer>
+    - state: Object
+    + attach(observer: Observer): void
+    + detach(observer: Observer): void
+    + notifyObservers(): void
+    + getState(): Object
+    + setState(state: Object): void
+}
+
+class ConcreteObserver implements Observer {
+    - subject: Subject
+    - observerState: Object
+    + update(subject: Subject): void
+    + getObserverState(): Object
+}
+
+class Client {
+    + main()
+}
+
+' Relationships
+Subject *-- Observer : notifies
+ConcreteObserver *-- Subject : observes
+Client ..> Subject : creates
+Client ..> Observer : creates
+
+note right: Subject: maintains observer list
+note right: Observer: receives notifications
+note right: Loose coupling maintained
+
+@enduml

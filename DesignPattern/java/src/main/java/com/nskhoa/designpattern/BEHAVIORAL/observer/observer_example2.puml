@@ -1,0 +1,58 @@
+@startuml Observer Pattern Example - Stock Market
+
+interface StockSubject {
+    + subscribe(observer: StockObserver): void
+    + unsubscribe(observer: StockObserver): void
+    + notifySubscribers(): void
+}
+
+interface StockObserver {
+    + update(stockSymbol: String, price: double): void
+}
+
+class Stock implements StockSubject {
+    - observers: List<StockObserver>
+    - symbol: String
+    - price: double
+    + subscribe(observer: StockObserver): void
+    + unsubscribe(observer: StockObserver): void
+    + notifySubscribers(): void
+    + setPrice(newPrice: double): void
+    + getSymbol(): String
+    + getPrice(): double
+}
+
+class MobileApp implements StockObserver {
+    - userId: String
+    + update(stockSymbol: String, price: double): void
+    + showNotification(stockSymbol: String, price: double): void
+}
+
+class DesktopApp implements StockObserver {
+    - userId: String
+    + update(stockSymbol: String, price: double): void
+    + updateChart(stockSymbol: String, price: double): void
+}
+
+class EmailService implements StockObserver {
+    - email: String
+    + update(stockSymbol: String, price: double): void
+    + sendEmail(stockSymbol: String, price: double): void
+}
+
+class TradingPlatform {
+    + main()
+}
+
+' Relationships
+Stock *-- StockObserver : manages
+MobileApp *-- Stock : observes
+DesktopApp *-- Stock : observes
+EmailService *-- Stock : observes
+TradingPlatform ..> Stock : manages
+
+note right: Stock: subject
+note right: Apps: observers
+note right: Real-time price updates
+
+@enduml

@@ -1,0 +1,69 @@
+@startuml Observer Pattern Example - Weather Station
+
+interface Subject {
+    + registerObserver(observer: Observer): void
+    + removeObserver(observer: Observer): void
+    + notifyObservers(): void
+}
+
+interface Observer {
+    + update(temperature: double, humidity: double, pressure: double): void
+}
+
+class WeatherData implements Subject {
+    - observers: List<Observer>
+    - temperature: double
+    - humidity: double
+    - pressure: double
+    + registerObserver(observer: Observer): void
+    + removeObserver(observer: Observer): void
+    + notifyObservers(): void
+    + measurementsChanged(): void
+    + setMeasurements(temperature: double, humidity: double, pressure: double): void
+    + getTemperature(): double
+    + getHumidity(): double
+    + getPressure(): double
+}
+
+class CurrentConditionsDisplay implements Observer {
+    - temperature: double
+    - humidity: double
+    - weatherData: WeatherData
+    + update(temperature: double, humidity: double, pressure: double): void
+    + display(): void
+}
+
+class StatisticsDisplay implements Observer {
+    - maxTemp: double
+    - minTemp: double
+    - tempSum: double
+    - numReadings: int
+    - weatherData: WeatherData
+    + update(temperature: double, humidity: double, pressure: double): void
+    + display(): void
+}
+
+class ForecastDisplay implements Observer {
+    - currentPressure: double
+    - lastPressure: double
+    - weatherData: WeatherData
+    + update(temperature: double, humidity: double, pressure: double): void
+    + display(): void
+}
+
+class WeatherStationClient {
+    + main()
+}
+
+' Relationships
+WeatherData *-- Observer : manages
+CurrentConditionsDisplay *-- WeatherData : observes
+StatisticsDisplay *-- WeatherData : observes
+ForecastDisplay *-- WeatherData : observes
+WeatherStationClient ..> WeatherData : uses
+
+note right: WeatherData: subject
+note right: Displays: observers
+note right: Automatic updates on change
+
+@enduml
