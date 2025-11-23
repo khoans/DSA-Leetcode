@@ -1,0 +1,98 @@
+@startuml Visitor Pattern Example - Compiler AST
+
+interface ASTVisitor {
+    + visit(binaryExpr: BinaryExpression): void
+    + visit(unaryExpr: UnaryExpression): void
+    + visit(literalExpr: LiteralExpression): void
+    + visit(variableExpr: VariableExpression): void
+    + visit(ifStmt: IfStatement): void
+    + visit(whileStmt: WhileStatement): void
+}
+
+class CodeGenerationVisitor implements ASTVisitor {
+    + visit(binaryExpr: BinaryExpression): void
+    + visit(unaryExpr: UnaryExpression): void
+    + visit(literalExpr: LiteralExpression): void
+    + visit(variableExpr: VariableExpression): void
+    + visit(ifStmt: IfStatement): void
+    + visit(whileStmt: WhileStatement): void
+}
+
+class TypeCheckingVisitor implements ASTVisitor {
+    + visit(binaryExpr: BinaryExpression): void
+    + visit(unaryExpr: UnaryExpression): void
+    + visit(literalExpr: LiteralExpression): void
+    + visit(variableExpr: VariableExpression): void
+    + visit(ifStmt: IfStatement): void
+    + visit(whileStmt: WhileStatement): void
+}
+
+class OptimizationVisitor implements ASTVisitor {
+    + visit(binaryExpr: BinaryExpression): void
+    + visit(unaryExpr: UnaryExpression): void
+    + visit(literalExpr: LiteralExpression): void
+    + visit(variableExpr: VariableExpression): void
+    + visit(ifStmt: IfStatement): void
+    + visit(whileStmt: WhileStatement): void
+}
+
+interface ASTNode {
+    + accept(visitor: ASTVisitor): void
+}
+
+class BinaryExpression implements ASTNode {
+    - left: ASTNode
+    - right: ASTNode
+    - operator: String
+    + accept(visitor: ASTVisitor): void
+}
+
+class UnaryExpression implements ASTNode {
+    - operand: ASTNode
+    - operator: String
+    + accept(visitor: ASTVisitor): void
+}
+
+class LiteralExpression implements ASTNode {
+    - value: Object
+    + accept(visitor: ASTVisitor): void
+}
+
+class VariableExpression implements ASTNode {
+    - name: String
+    + accept(visitor: ASTVisitor): void
+}
+
+class IfStatement implements ASTNode {
+    - condition: ASTNode
+    - thenBranch: ASTNode
+    - elseBranch: ASTNode
+    + accept(visitor: ASTVisitor): void
+}
+
+class WhileStatement implements ASTNode {
+    - condition: ASTNode
+    - body: ASTNode
+    + accept(visitor: ASTVisitor): void
+}
+
+class AST {
+    - root: ASTNode
+    + accept(visitor: ASTVisitor): void
+}
+
+class Compiler {
+    + main()
+}
+
+' Relationships
+ASTNode ..> ASTVisitor : accepts
+AST *-- ASTNode : contains
+Compiler ..> AST : processes
+Compiler ..> ASTVisitor : applies
+
+note right: AST structure unchanged
+note right: Multiple compiler phases
+note right: Double dispatch for types
+
+@enduml

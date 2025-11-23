@@ -1,0 +1,57 @@
+@startuml Visitor Pattern Main Components
+
+interface Visitor {
+    + visit(element: ElementA): void
+    + visit(element: ElementB): void
+    + visit(element: ElementC): void
+}
+
+class ConcreteVisitor1 implements Visitor {
+    + visit(element: ElementA): void
+    + visit(element: ElementB): void
+    + visit(element: ElementC): void
+}
+
+class ConcreteVisitor2 implements Visitor {
+    + visit(element: ElementA): void
+    + visit(element: ElementB): void
+    + visit(element: ElementC): void
+}
+
+interface Element {
+    + accept(visitor: Visitor): void
+}
+
+class ElementA implements Element {
+    + accept(visitor: Visitor): void
+}
+
+class ElementB implements Element {
+    + accept(visitor: Visitor): void
+}
+
+class ElementC implements Element {
+    + accept(visitor: Visitor): void
+}
+
+class ObjectStructure {
+    - elements: List<Element>
+    + add(element: Element): void
+    + accept(visitor: Visitor): void
+}
+
+class Client {
+    + main()
+}
+
+' Relationships
+Element ..> Visitor : accepts
+ObjectStructure *-- Element : contains
+Client ..> ObjectStructure : uses
+Client ..> Visitor : creates
+
+note right: Visitor: defines operations
+note right: Elements: accept visitors
+note right: Double dispatch mechanism
+
+@enduml

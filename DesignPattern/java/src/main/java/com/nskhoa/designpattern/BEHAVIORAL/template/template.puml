@@ -1,0 +1,37 @@
+@startuml Template Method Pattern Main Components
+
+abstract class AbstractClass {
+    + templateMethod(): void
+    {abstract} + primitiveOperation1(): void
+    {abstract} + primitiveOperation2(): void
+    {abstract} + primitiveOperation3(): void
+    + hookMethod(): boolean
+    + concreteOperation(): void
+}
+
+class ConcreteClassA extends AbstractClass {
+    + primitiveOperation1(): void
+    + primitiveOperation2(): void
+    + primitiveOperation3(): void
+    + hookMethod(): boolean
+}
+
+class ConcreteClassB extends AbstractClass {
+    + primitiveOperation1(): void
+    + primitiveOperation2(): void
+    + primitiveOperation3(): void
+    + hookMethod(): boolean
+}
+
+class Client {
+    + main()
+}
+
+' Relationships
+Client ..> AbstractClass : uses
+
+note right: Template method defines algorithm structure
+note right: Abstract operations must be implemented
+note right: Hook methods can be optionally overridden
+
+@enduml

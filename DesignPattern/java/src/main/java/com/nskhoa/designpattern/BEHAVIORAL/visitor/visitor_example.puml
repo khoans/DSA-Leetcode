@@ -1,0 +1,88 @@
+@startuml Visitor Pattern Example - Document Processing
+
+interface DocumentVisitor {
+    + visit(text: TextElement): void
+    + visit(image: ImageElement): void
+    + visit(table: TableElement): void
+    + visit(chart: ChartElement): void
+}
+
+class HTMLExportVisitor implements DocumentVisitor {
+    + visit(text: TextElement): void
+    + visit(image: ImageElement): void
+    + visit(table: TableElement): void
+    + visit(chart: ChartElement): void
+}
+
+class PDFExportVisitor implements DocumentVisitor {
+    + visit(text: TextElement): void
+    + visit(image: ImageElement): void
+    + visit(table: TableElement): void
+    + visit(chart: ChartElement): void
+}
+
+class WordCountVisitor implements DocumentVisitor {
+    + visit(text: TextElement): void
+    + visit(image: ImageElement): void
+    + visit(table: TableElement): void
+    + visit(chart: ChartElement): void
+    + getWordCount(): int
+}
+
+class SpellCheckVisitor implements DocumentVisitor {
+    + visit(text: TextElement): void
+    + visit(image: ImageElement): void
+    + visit(table: TableElement): void
+    + visit(chart: ChartElement): void
+    + getErrors(): List<String>
+}
+
+interface DocumentElement {
+    + accept(visitor: DocumentVisitor): void
+}
+
+class TextElement implements DocumentElement {
+    - content: String
+    + accept(visitor: DocumentVisitor): void
+}
+
+class ImageElement implements DocumentElement {
+    - imageUrl: String
+    - width: int
+    - height: int
+    + accept(visitor: DocumentVisitor): void
+}
+
+class TableElement implements DocumentElement {
+    - rows: List<List<String>>
+    + accept(visitor: DocumentVisitor): void
+}
+
+class ChartElement implements DocumentElement {
+    - data: List<Double>
+    - chartType: String
+    + accept(visitor: DocumentVisitor): void
+}
+
+class Document {
+    - elements: List<DocumentElement>
+    + addElement(element: DocumentElement): void
+    + accept(visitor: DocumentVisitor): void
+    + getElements(): List<DocumentElement>
+}
+
+class DocumentProcessor {
+    + main()
+}
+
+' Relationships
+DocumentElement ..> DocumentVisitor : accepts
+Document *-- DocumentElement : contains
+DocumentProcessor ..> Document : processes
+DocumentProcessor ..> DocumentVisitor : uses
+
+note right: Document elements remain unchanged
+note right: New operations added via visitors
+note right: Type-specific processing
+
+@enduml

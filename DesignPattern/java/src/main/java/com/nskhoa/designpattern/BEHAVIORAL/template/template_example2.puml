@@ -1,0 +1,44 @@
+@startuml Template Method Pattern Example - Report System
+
+abstract class ReportGenerator {
+    + generateReport(): void
+    + prepareReport(): void
+    + formatHeader(): void
+    {abstract} + collectData(): List<Object>
+    {abstract} + formatData(): void
+    {abstract} + formatFooter(): void
+    + exportReport(): void
+    + validateData(): boolean
+    + cleanup(): void
+}
+
+class SalesReportGenerator extends ReportGenerator {
+    + collectData(): List<Object>
+    + formatData(): void
+    + formatFooter(): void
+}
+
+class InventoryReportGenerator extends ReportGenerator {
+    + collectData(): List<Object>
+    + formatData(): void
+    + formatFooter(): void
+}
+
+class FinancialReportGenerator extends ReportGenerator {
+    + collectData(): List<Object>
+    + formatData(): void
+    + formatFooter(): void
+}
+
+class ReportSystem {
+    + main()
+}
+
+' Relationships
+ReportSystem ..> ReportGenerator : uses
+
+note right: Common report structure
+note right: Each report type handles data differently
+note right: Framework ensures consistency
+
+@enduml

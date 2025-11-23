@@ -1,0 +1,47 @@
+@startuml Template Method Pattern Example - Game Framework
+
+abstract class GameFramework {
+    + run(): void
+    + initialize(): void
+    {abstract} + loadAssets(): void
+    {abstract} + update( deltaTime: float): void
+    {abstract} + render(): void
+    {abstract} + handleInput(): void
+    + cleanup(): void
+    + isRunning(): boolean
+    + setRunning(running: boolean): void
+}
+
+class PlatformerGame extends GameFramework {
+    + loadAssets(): void
+    + update( deltaTime: float): void
+    + render(): void
+    + handleInput(): void
+}
+
+class ShooterGame extends GameFramework {
+    + loadAssets(): void
+    + update( deltaTime: float): void
+    + render(): void
+    + handleInput(): void
+}
+
+class RPGGame extends GameFramework {
+    + loadAssets(): void
+    + update( deltaTime: float): void
+    + render(): void
+    + handleInput(): void
+}
+
+class GameEngine {
+    + main()
+}
+
+' Relationships
+GameEngine ..> GameFramework : runs
+
+note right: Common game loop structure
+note right: Each game implements specific logic
+note right: Framework controls execution flow
+
+@enduml
