@@ -1,0 +1,40 @@
+@startuml Composite Pattern Example - File System
+
+interface FileSystem {
+    + display(): void
+    + add(file: FileSystem): void
+    + remove(file: FileSystem): void
+    + getSize(): long
+}
+
+class File implements FileSystem {
+    - name: String
+    - size: long
+    + display(): void
+    + add(file: FileSystem): void
+    + remove(file: FileSystem): void
+    + getSize(): long
+}
+
+class Directory implements FileSystem {
+    - name: String
+    - files: List<FileSystem>
+    + display(): void
+    + add(file: FileSystem): void
+    + remove(file: FileSystem): void
+    + getSize(): long
+}
+
+class FileSystemClient {
+    + main()
+}
+
+' Relationships
+Directory *-- FileSystem : contains
+FileSystemClient ..> FileSystem : uses
+
+note right: File: leaf node
+note right: Directory: composite node
+note right: Can contain files and subdirectories
+
+@enduml

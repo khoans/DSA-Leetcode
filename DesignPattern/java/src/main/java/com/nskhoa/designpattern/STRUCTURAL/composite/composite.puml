@@ -1,0 +1,39 @@
+@startuml Composite Pattern Main Components
+
+interface Component {
+    + operation(): void
+    + add(component: Component): void
+    + remove(component: Component): void
+    + getChild(index: int): Component
+}
+
+class Leaf implements Component {
+    - name: String
+    + operation(): void
+    + add(component: Component): void
+    + remove(component: Component): void
+    + getChild(index: int): Component
+}
+
+class Composite implements Component {
+    - children: List<Component>
+    - name: String
+    + operation(): void
+    + add(component: Component): void
+    + remove(component: Component): void
+    + getChild(index: int): Component
+}
+
+class Client {
+    + main()
+}
+
+' Relationships
+Composite *-- Component : contains
+Client ..> Component : uses
+
+note right: Component defines interface
+note right: Leaf: individual object
+note right: Composite: contains other components
+
+@enduml
