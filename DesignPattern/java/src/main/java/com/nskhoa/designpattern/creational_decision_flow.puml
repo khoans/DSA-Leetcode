@@ -1,0 +1,53 @@
+@startuml Creational Patterns Decision Flowchart
+start
+:Do you need exactly one instance of a class for the entire application lifetime?;
+
+if (Yes) then (yes)
+  :Is global access required?;
+  if (Yes) then (yes)
+    :SINGLETON;
+    note right: Use only if absolutely necessary
+  else (no)
+    :Consider dependency injection instead;
+  endif
+else (no)
+  :Is object creation expensive but you have existing instances?;
+  if (Yes) then (yes)
+    :Can you clone/copy safely?;
+    if (Yes) then (yes)
+      :PROTOTYPE;
+      note right: When cloning is cheaper than creation
+    else (no)
+      :Consider other patterns;
+    endif
+  else (no)
+    :Do you need to build complex objects step by step?;
+    if (Yes) then (yes)
+      :BUILDER;
+      note right: For objects with many optional parameters
+    else (no)
+      :Do you need to create families of related objects?;
+      if (Yes) then (yes)
+        :Must all objects in family be compatible?;
+        if (Yes) then (yes)
+          :ABSTRACT FACTORY;
+          note right: For families of related products
+        else (no)
+          :FACTORY METHOD;
+          note right: For single products with subclasses
+        endif
+      else (no)
+        :Do you want subclasses to decide which class to instantiate?;
+        if (Yes) then (yes)
+          :FACTORY METHOD;
+          note right: Defer creation to subclasses
+        else (no)
+          :Consider simple factory or no pattern;
+        endif
+      endif
+    endif
+  endif
+endif
+
+stop
+@enduml

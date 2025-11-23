@@ -1,0 +1,88 @@
+@startuml Behavioral Patterns Decision Flowchart
+start
+:Do you have one-to-many dependencies where objects must notify others of state changes?;
+
+if (Yes) then (yes)
+  :OBSERVER;
+  note right: Notify dependent objects of state changes
+else (no)
+  :Do you need to capture and restore an object's internal state?;
+  if (Yes) then (yes)
+    :MEMENTO;
+    note right: Capture and restore object state
+  else (no)
+    :Does object behavior change based on internal state?;
+    if (Yes) then (yes)
+      :Are you using large if/switch on state?;
+      if (Yes) then (yes)
+        :STATE;
+        note right: Encapsulate state-specific behavior
+      else (no)
+        :Consider state pattern if conditions grow;
+      endif
+    else (no)
+      :Do you have multiple algorithms for same task?;
+      if (Yes) then (yes)
+        :Do you need to switch at runtime?;
+        if (Yes) then (yes)
+          :STRATEGY;
+          note right: Switch algorithms at runtime
+        else (no)
+          :Consider strategy anyway;
+        endif
+      else (no)
+        :Do you need to encapsulate a request as an object?;
+        if (Yes) then (yes)
+          :COMMAND;
+          note right: Encapsulate requests for queuing/undo
+        else (no)
+          :Do you have fixed algorithm skeleton with varying steps?;
+          if (Yes) then (yes)
+            :TEMPLATE METHOD;
+            note right: Define algorithm skeleton with hooks
+          else (no)
+            :Do you need to traverse a collection without exposing structure?;
+            if (Yes) then (yes)
+              :ITERATOR;
+              note right: Sequential access to collection elements
+            else (no)
+              :Do you have complex peer-to-peer communication?;
+              if (Yes) then (yes)
+                :Are objects tightly coupled?;
+                if (Yes) then (yes)
+                  :MEDIATOR;
+                  note right: Centralize communication logic
+                else (no)
+                  :Consider mediator for decoupling;
+                endif
+              else (no)
+                :Do you have chain of potential handlers?;
+                if (Yes) then (yes)
+                  :CHAIN OF RESPONSIBILITY;
+                  note right: Pass requests through handler chain
+                else (no)
+                  :Do you need to add new operations to stable structure?;
+                  if (Yes) then (yes)
+                    :VISITOR;
+                    note right: Add operations without modifying classes
+                  else (no)
+                    :Do you need to interpret simple language?;
+                    if (Yes) then (yes)
+                      :INTERPRETER;
+                      note right: Small grammar interpretation
+                    else (no)
+                      :No specific behavioral pattern needed;
+                    endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+endif
+
+stop
+@enduml

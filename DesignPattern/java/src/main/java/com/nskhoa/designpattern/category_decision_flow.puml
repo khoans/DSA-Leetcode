@@ -1,0 +1,19 @@
+@startuml Category Decision Flowchart
+start
+:Identify your primary architectural concern?;
+
+if (Do you need to create or manage object instantiation?) then (yes)
+  :CREATIONAL PATTERNS;
+  note right: Object creation and management
+else (no)
+  if (Do you need to compose classes or objects into larger structures?) then (yes)
+    :STRUCTURAL PATTERNS;
+    note right: Object composition and structure
+  else (no)
+    :BEHAVIORAL PATTERNS;
+    note right: Object communication and algorithms
+  endif
+endif
+
+stop
+@enduml

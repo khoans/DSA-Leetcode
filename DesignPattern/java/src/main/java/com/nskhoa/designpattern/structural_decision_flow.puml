@@ -1,0 +1,59 @@
+@startuml Structural Patterns Decision Flowchart
+start
+:Do you have an existing class with right functionality but wrong interface?;
+
+if (Yes) then (yes)
+  :Can you change the class?;
+  if (No) then (no)
+    :ADAPTER;
+    note right: Wrap incompatible interface
+  else (yes)
+    :Consider refactoring instead;
+  endif
+else (no)
+  :Do you need to add responsibilities to objects at runtime?;
+  if (Yes) then (yes)
+    :DECORATOR;
+    note right: Dynamic responsibility addition
+  else (no)
+    :Do you have part-whole hierarchies?;
+    if (Yes) then (yes)
+      :COMPOSITE;
+      note right: Uniform treatment of parts and wholes
+    else (no)
+      :Do you want to hide a complex subsystem?;
+      if (Yes) then (yes)
+        :FACADE;
+        note right: Simplify complex subsystem access
+      else (no)
+        :Are you running into memory bloat with similar objects?;
+        if (Yes) then (yes)
+          :Can you split state into intrinsic and extrinsic?;
+          if (Yes) then (yes)
+            :FLYWEIGHT;
+            note right: Memory optimization for similar objects
+          else (no)
+            :Optimize elsewhere;
+          endif
+        else (no)
+          :Do you need to control access to an object?;
+          if (Yes) then (yes)
+            :PROXY;
+            note right: Control object access
+          else (no)
+            :Do you need to decouple abstraction from implementation?;
+            if (Yes) then (yes)
+              :BRIDGE;
+              note right: Separate abstraction from implementation
+            else (no)
+              :No specific structural pattern needed;
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+endif
+
+stop
+@enduml
