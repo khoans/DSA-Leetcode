@@ -1,0 +1,46 @@
+@startuml Mediator Pattern Main Components
+
+interface Mediator {
+    + notify(sender: Colleague, event: String): void
+}
+
+class ConcreteMediator implements Mediator {
+    - colleague1: Colleague1
+    - colleague2: Colleague2
+    + notify(sender: Colleague, event: String): void
+    + colleague1Method(): void
+    + colleague2Method(): void
+}
+
+interface Colleague {
+    + send(message: String): void
+    + receive(message: String): void
+}
+
+class ConcreteColleague1 implements Colleague {
+    - mediator: Mediator
+    + send(message: String): void
+    + receive(message: String): void
+}
+
+class ConcreteColleague2 implements Colleague {
+    - mediator: Mediator
+    + send(message: String): void
+    + receive(message: String): void
+}
+
+class Client {
+    + main()
+}
+
+' Relationships
+ConcreteMediator *-- Colleague : coordinates
+ConcreteColleague1 *-- Mediator : uses
+ConcreteColleague2 *-- Mediator : uses
+Client ..> Mediator : creates
+
+note right: Mediator: central communication hub
+note right: Colleagues: interact through mediator
+note right: Reduces direct dependencies
+
+@enduml

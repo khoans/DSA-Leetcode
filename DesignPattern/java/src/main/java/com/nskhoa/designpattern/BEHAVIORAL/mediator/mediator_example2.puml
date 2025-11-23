@@ -1,0 +1,63 @@
+@startuml Mediator Pattern Example - GUI Components
+
+interface ComponentMediator {
+    + notify(sender: Component, event: String): void
+    + enableButton(): void
+    + disableButton(): void
+    + setOutput(text: String): void
+}
+
+class LoginDialog implements ComponentMediator {
+    - usernameField: TextField
+    - passwordField: TextField
+    - loginButton: Button
+    - outputField: TextField
+    + notify(sender: Component, event: String): void
+    + validateLogin(): boolean
+    + enableButton(): void
+    + disableButton(): void
+    + setOutput(text: String): void
+}
+
+interface Component {
+    + setMediator(mediator: ComponentMediator): void
+    + click(): void
+    + setText(text: String): void
+}
+
+class Button implements Component {
+    - mediator: ComponentMediator
+    - enabled: boolean
+    + setMediator(mediator: ComponentMediator): void
+    + click(): void
+    + enable(): void
+    + disable(): void
+}
+
+class TextField implements Component {
+    - mediator: ComponentMediator
+    - text: String
+    + setMediator(mediator: ComponentMediator): void
+    + setText(text: String): void
+    + getText(): String
+    + onTextChange(): void
+}
+
+class Label implements Component {
+    - mediator: ComponentMediator
+    - text: String
+    + setMediator(mediator: ComponentMediator): void
+    + setText(text: String): void
+}
+
+' Relationships
+LoginDialog *-- Component : coordinates
+Button *-- ComponentMediator : uses
+TextField *-- ComponentMediator : uses
+Label *-- ComponentMediator : uses
+
+note right: GUI components communicate through mediator
+note right: No direct coupling between components
+note right: Easy to modify interaction logic
+
+@enduml

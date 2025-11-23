@@ -1,0 +1,55 @@
+@startuml Mediator Pattern Example - Chat Room
+
+interface ChatRoom {
+    + sendMessage(message: String, sender: User): void
+    + addUser(user: User): void
+    + broadcast(message: String, sender: User): void
+}
+
+class ChatRoomImpl implements ChatRoom {
+    - users: List<User>
+    + sendMessage(message: String, sender: User): void
+    + addUser(user: User): void
+    + broadcast(message: String, sender: User): void
+}
+
+interface User {
+    + sendMessage(message: String): void
+    + receiveMessage(message: String, sender: User): void
+    + getName(): String
+}
+
+class ChatUser implements User {
+    - chatRoom: ChatRoom
+    - name: String
+    + ChatUser(chatRoom: ChatRoom, name: String)
+    + sendMessage(message: String): void
+    + receiveMessage(message: String, sender: User): void
+    + getName(): String
+}
+
+class AdminUser implements User {
+    - chatRoom: ChatRoom
+    - name: String
+    + AdminUser(chatRoom: ChatRoom, name: String)
+    + sendMessage(message: String): void
+    + receiveMessage(message: String, sender: User): void
+    + broadcastToAll(message: String): void
+    + getName(): String
+}
+
+class ChatClient {
+    + main()
+}
+
+' Relationships
+ChatRoomImpl *-- User : manages
+ChatUser *-- ChatRoom : uses
+AdminUser *-- ChatRoom : uses
+ChatClient ..> ChatRoom : creates
+
+note right: Users don't communicate directly
+note right: ChatRoom handles all communication
+note right: Easy to add new user types
+
+@enduml
