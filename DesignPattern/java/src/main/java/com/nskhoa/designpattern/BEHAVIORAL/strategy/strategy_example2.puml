@@ -1,0 +1,53 @@
+@startuml Strategy Pattern Example - Sorting Algorithms
+
+interface SortStrategy {
+    + sort(data: List<Integer>): List<Integer>
+    + getName(): String
+}
+
+class QuickSortStrategy implements SortStrategy {
+    + sort(data: List<Integer>): List<Integer>
+    + getName(): String
+}
+
+class MergeSortStrategy implements SortStrategy {
+    + sort(data: List<Integer>): List<Integer>
+    + getName(): String
+}
+
+class BubbleSortStrategy implements SortStrategy {
+    + sort(data: List<Integer>): List<Integer>
+    + getName(): String
+}
+
+class HeapSortStrategy implements SortStrategy {
+    + sort(data: List<Integer>): List<Integer>
+    + getName(): String
+}
+
+class DataProcessor {
+    - sortStrategy: SortStrategy
+    - data: List<Integer>
+    + setSortStrategy(strategy: SortStrategy): void
+    + processData(): List<Integer>
+    + setData(data: List<Integer>): void
+    + getSortTime(): long
+}
+
+class SortingClient {
+    + main()
+}
+
+' Relationships
+DataProcessor *-- SortStrategy : uses
+QuickSortStrategy ..> DataProcessor : selected by
+MergeSortStrategy ..> DataProcessor : selected by
+BubbleSortStrategy ..> DataProcessor : selected by
+HeapSortStrategy ..> DataProcessor : selected by
+SortingClient ..> DataProcessor : uses
+
+note right: Algorithm can be changed at runtime
+note right: Each sorting strategy has different performance
+note right: Easy to benchmark different algorithms
+
+@enduml

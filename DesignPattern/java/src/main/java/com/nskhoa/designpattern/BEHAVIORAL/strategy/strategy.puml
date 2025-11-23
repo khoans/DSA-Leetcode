@@ -1,0 +1,39 @@
+@startuml Strategy Pattern Main Components
+
+interface Strategy {
+    + execute(data: Object): Object
+}
+
+class ConcreteStrategyA implements Strategy {
+    + execute(data: Object): Object
+}
+
+class ConcreteStrategyB implements Strategy {
+    + execute(data: Object): Object
+}
+
+class ConcreteStrategyC implements Strategy {
+    + execute(data: Object): Object
+}
+
+class Context {
+    - strategy: Strategy
+    + setStrategy(strategy: Strategy): void
+    + executeStrategy(data: Object): Object
+    + getStrategy(): Strategy
+}
+
+class Client {
+    + main()
+}
+
+' Relationships
+Context *-- Strategy : uses
+Client ..> Context : creates
+Client ..> Strategy : selects
+
+note right: Context delegates to strategy
+note right: Strategies are interchangeable
+note right: Easy to add new strategies
+
+@enduml

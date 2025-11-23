@@ -1,0 +1,62 @@
+@startuml Strategy Pattern Example - Payment Processing
+
+interface PaymentStrategy {
+    + pay(amount: double): boolean
+    + getPaymentDetails(): String
+}
+
+class CreditCardPayment implements PaymentStrategy {
+    - cardNumber: String
+    - cvv: String
+    - expiryDate: String
+    + pay(amount: double): boolean
+    + getPaymentDetails(): String
+}
+
+class PayPalPayment implements PaymentStrategy {
+    - email: String
+    - password: String
+    + pay(amount: double): boolean
+    + getPaymentDetails(): String
+}
+
+class BitcoinPayment implements PaymentStrategy {
+    - walletAddress: String
+    + pay(amount: double): boolean
+    + getPaymentDetails(): String
+}
+
+class BankTransferPayment implements PaymentStrategy {
+    - accountNumber: String
+    - routingNumber: String
+    + pay(amount: double): boolean
+    + getPaymentDetails(): String
+}
+
+class ShoppingCart {
+    - paymentStrategy: PaymentStrategy
+    - items: List<Item>
+    - totalAmount: double
+    + setPaymentStrategy(strategy: PaymentStrategy): void
+    + processPayment(): boolean
+    + calculateTotal(): double
+    + getPaymentDetails(): String
+}
+
+class PaymentClient {
+    + main()
+}
+
+' Relationships
+ShoppingCart *-- PaymentStrategy : uses
+CreditCardPayment ..> ShoppingCart : selected by
+PayPalPayment ..> ShoppingCart : selected by
+BitcoinPayment ..> ShoppingCart : selected by
+BankTransferPayment ..> ShoppingCart : selected by
+PaymentClient ..> ShoppingCart : uses
+
+note right: Payment method can be switched
+note right: Each strategy handles payment differently
+note right: Easy to add new payment methods
+
+@enduml
