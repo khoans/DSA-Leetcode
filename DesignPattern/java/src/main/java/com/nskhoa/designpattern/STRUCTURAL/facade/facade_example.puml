@@ -1,0 +1,38 @@
+@startuml Facade Pattern - Computer Example
+
+' Facade
+class ComputerFacade {
+    - cpu: CPU
+    - memory: Memory
+    - hardDrive: HardDrive
+    + start(): void
+    + shutdown(): void
+}
+
+' Các hệ thống con (Subsystems)
+class CPU {
+    + freeze(): void
+    + jump(position: long): void
+    + execute(): void
+}
+
+class Memory {
+    + load(position: long, data: byte[]): void
+}
+
+class HardDrive {
+    + read(lba: long, size: int): byte[]
+}
+
+' Client
+class ComputerUser {
+    + main()
+}
+
+' Quan hệ
+ComputerFacade *-- CPU
+ComputerFacade *-- Memory
+ComputerFacade *-- HardDrive
+ComputerUser ..> ComputerFacade : uses
+
+@enduml

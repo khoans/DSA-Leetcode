@@ -1,0 +1,32 @@
+@startuml Facade Pattern UML
+
+class Facade {
+    - subsystem1: Subsystem1
+    - subsystem2: Subsystem2
+    - subsystem3: Subsystem3
+    + operation(): void
+}
+
+class Subsystem1 {
+    + operation1(): void
+}
+
+class Subsystem2 {
+    + operation2(): void
+}
+
+class Subsystem3 {
+    + operation3(): void
+}
+
+class Client {
+    + main()
+}
+
+' Quan hệ
+Facade *-- Subsystem1
+Facade *-- Subsystem2
+Facade *-- Subsystem3
+Client ..> Facade : uses
+
+@enduml
