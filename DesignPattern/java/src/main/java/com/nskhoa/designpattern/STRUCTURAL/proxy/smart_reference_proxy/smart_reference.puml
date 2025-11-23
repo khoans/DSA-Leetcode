@@ -1,0 +1,27 @@
+@startuml Smart Reference Proxy Core Components
+
+interface Object {
+    + operation(): void
+}
+
+class RealObject implements Object {
+    + operation(): void
+}
+
+class SmartProxy implements Object {
+    - realObject: RealObject
+    - referenceCount: int
+    - lastAccessTime: Date
+    + SmartProxy()
+    + operation(): void
+    - updateReferenceCount(): void
+    - logAccess(): void
+}
+
+note right: Tracks object usage
+note right: Reference counting, logging
+
+SmartProxy *-- RealObject
+Client ..> SmartProxy : uses
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml Protection Proxy Core Components
+
+interface Resource {
+    + access(): void
+}
+
+class RealResource implements Resource {
+    + access(): void
+}
+
+class ProtectionProxy implements Resource {
+    - realResource: RealResource
+    - userPermissions: String
+    + ProtectionProxy(resource: RealResource, permissions: String)
+    + access(): void
+    - checkAuthorization(): boolean
+}
+
+note right: Controls access based on permissions
+note right: Security validation before access
+
+ProtectionProxy *-- RealResource
+Client ..> ProtectionProxy : uses
+
+@enduml

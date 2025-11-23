@@ -1,0 +1,27 @@
+@startuml Virtual Proxy
+
+interface Image {
+    + display(): void
+}
+
+class RealImage implements Image {
+    - filename: String
+    + RealImage(filename: String)
+    + display(): void
+    - loadFromDisk(): void
+}
+
+class ImageProxy implements Image {
+    - realImage: RealImage
+    - filename: String
+    + ImageProxy(filename: String)
+    + display(): void
+}
+
+note right: Delays expensive object creation
+note right: Creates RealImage only when needed
+
+ImageProxy *-- RealImage
+Client ..> Image : uses
+
+@enduml

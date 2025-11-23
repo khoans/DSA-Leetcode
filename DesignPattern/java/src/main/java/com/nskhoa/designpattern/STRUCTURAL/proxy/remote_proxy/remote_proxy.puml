@@ -1,0 +1,25 @@
+@startuml Remote Proxy Core Components
+
+interface Service {
+    + performOperation(): void
+}
+
+class RemoteService implements Service {
+    + performOperation(): void
+}
+
+class RemoteProxy implements Service {
+    - remoteAddress: String
+    - port: int
+    + RemoteProxy(address: String, port: int)
+    + performOperation(): void
+    - sendNetworkRequest(): void
+}
+
+note right: Handles network communication
+note right: Acts as local representative
+
+RemoteProxy ..> RemoteService : network communication
+Client ..> RemoteProxy : uses
+
+@enduml

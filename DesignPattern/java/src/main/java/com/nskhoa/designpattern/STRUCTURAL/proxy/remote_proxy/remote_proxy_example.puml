@@ -1,0 +1,25 @@
+@startuml Remote Proxy
+
+interface RemoteService {
+    + performOperation(): String
+}
+
+class RemoteServiceImpl implements RemoteService {
+    + performOperation(): String
+}
+
+class RemoteProxy implements RemoteService {
+    - serverAddress: String
+    - port: int
+    + RemoteProxy(address: String, port: int)
+    + performOperation(): String
+    - sendRequest(data: String): String
+}
+
+note top: Handles network communication
+note top: Acts as local representative for remote object
+
+RemoteProxy ..> RemoteServiceImpl : network call
+Client ..> RemoteProxy : uses
+
+@enduml

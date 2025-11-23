@@ -1,0 +1,34 @@
+@startuml Proxy Types Summary
+
+package "Proxy Pattern Types" {
+
+    package "Virtual Proxy" {
+        interface Image
+        class RealImage
+        class ImageProxy
+        ImageProxy *-- RealImage
+    }
+
+    package "Remote Proxy" {
+        interface RemoteService
+        class RemoteServiceImpl
+        class RemoteProxy
+        RemoteProxy ..> RemoteServiceImpl
+    }
+
+    package "Protection Proxy" {
+        interface BankAccount
+        class RealBankAccount
+        class ProtectionProxy
+        ProtectionProxy *-- RealBankAccount
+    }
+
+    package "Smart Reference Proxy" {
+        interface Document
+        class RealDocument
+        class SmartReferenceProxy
+        SmartReferenceProxy *-- RealDocument
+    }
+}
+
+@enduml

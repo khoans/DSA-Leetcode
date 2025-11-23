@@ -1,0 +1,29 @@
+@startuml Protection Proxy
+
+interface BankAccount {
+    + withdraw(amount: double): void
+    + getBalance(): double
+}
+
+class RealBankAccount implements BankAccount {
+    - balance: double
+    + withdraw(amount: double): void
+    + getBalance(): double
+}
+
+class ProtectionProxy implements BankAccount {
+    - realAccount: RealBankAccount
+    - userRole: String
+    + ProtectionProxy(account: RealBankAccount, role: String)
+    + withdraw(amount: double): void
+    + getBalance(): double
+    - checkAccess(): boolean
+}
+
+note right: Controls access based on permissions
+note right: Security checks before operations
+
+ProtectionProxy *-- RealBankAccount
+Client ..> ProtectionProxy : uses
+
+@enduml

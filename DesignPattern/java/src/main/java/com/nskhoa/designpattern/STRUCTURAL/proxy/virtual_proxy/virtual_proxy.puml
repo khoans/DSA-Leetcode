@@ -1,0 +1,24 @@
+@startuml Virtual Proxy Core Components
+
+interface Subject {
+    + request(): void
+}
+
+class RealSubject implements Subject {
+    + request(): void
+}
+
+class VirtualProxy implements Subject {
+    - realSubject: RealSubject
+    + VirtualProxy()
+    + request(): void
+    - createRealSubject(): void
+}
+
+note right: Delays object creation
+note right: Creates RealSubject only when needed
+
+VirtualProxy *-- RealSubject
+Client ..> Subject : uses
+
+@enduml
