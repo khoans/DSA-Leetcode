@@ -1,0 +1,49 @@
+@startuml Decorator Pattern - Text Formatting Example
+
+' Interface Component
+interface Text {
+    + render(): String
+}
+
+' Concrete Component
+class PlainText implements Text {
+    - text: String
+    + PlainText(content: String)
+    + render(): String
+}
+
+' Abstract Decorator
+abstract class TextDecorator implements Text {
+    - wrappedText: Text
+    + TextDecorator(text: Text)
+    + render(): String
+}
+
+' Concrete Decorators
+class BoldTextDecorator extends TextDecorator {
+    + render(): String
+}
+
+class ItalicTextDecorator extends TextDecorator {
+    + render(): String
+}
+
+class UnderlineTextDecorator extends TextDecorator {
+    + render(): String
+}
+
+' Client
+class TextEditor {
+    + main()
+}
+
+' Relationships
+Text <|.. PlainText
+Text <|.. TextDecorator
+TextDecorator *-- Text
+BoldTextDecorator --|> TextDecorator
+ItalicTextDecorator --|> TextDecorator
+UnderlineTextDecorator --|> TextDecorator
+TextEditor ..> Text : uses
+
+@enduml
