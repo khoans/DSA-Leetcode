@@ -1,0 +1,26 @@
+@startuml Flyweight Pattern UML
+
+interface Flyweight {
+    + operation(extrinsicState: Object): void
+}
+
+class ConcreteFlyweight implements Flyweight {
+    - intrinsicState: Object
+    + operation(extrinsicState: Object): void
+}
+
+class FlyweightFactory {
+    - flyweights: Map<String, Flyweight>
+    + getFlyweight(key: String): Flyweight
+    + createFlyweight(key: String): Flyweight
+}
+
+class Client {
+    + main()
+}
+
+FlyweightFactory *-- Flyweight
+Client ..> FlyweightFactory : uses
+Client ..> Flyweight : uses
+
+@enduml

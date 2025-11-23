@@ -1,0 +1,42 @@
+@startuml Flyweight GUI Button Example
+
+interface WidgetFlyweight {
+    + draw(x: int, y: int, width: int, height: int): void
+}
+
+class ButtonFlyweight implements WidgetFlyweight {
+    - backgroundColor: String
+    - borderColor: String
+    - font: String
+    - fontSize: int
+    + draw(x: int, y: int, width: int, height: int): void
+}
+
+class WidgetFactory {
+    - widgets: Map<String, WidgetFlyweight>
+    + getButton(bgColor: String, borderColor: String, font: String): WidgetFlyweight
+    + getButtonCount(): int
+}
+
+class Window {
+    - buttons: List<WidgetWithPosition>
+    + render(): void
+}
+
+class WidgetWithPosition {
+    - flyweight: WidgetFlyweight
+    - x: int
+    - y: int
+    - width: int
+    - height: int
+}
+
+WidgetFactory *-- WidgetFlyweight
+Window *-- WidgetWithPosition
+WidgetWithPosition *-- WidgetFlyweight
+Client ..> Window : uses
+
+note right: Intrinsic: appearance (colors, font)
+note right: Extrinsic: position and size
+
+@enduml

@@ -1,0 +1,40 @@
+@startuml Flyweight Text Editor Example
+
+interface CharacterFlyweight {
+    + render(position: Point, color: String): void
+}
+
+class CharacterFlyweightImpl implements CharacterFlyweight {
+    - character: char
+    - font: String
+    - fontSize: int
+    - fontStyle: String
+    + render(position: Point, color: String): void
+}
+
+class CharacterFactory {
+    - characters: Map<String, CharacterFlyweight>
+    + getCharacter(char c, String font, int size, String style): CharacterFlyweight
+    + getCharacterCount(): int
+}
+
+class TextDocument {
+    - characters: List<CharWithPosition>
+    + render(): void
+}
+
+class CharWithPosition {
+    - flyweight: CharacterFlyweight
+    - position: Point
+    - color: String
+}
+
+CharacterFactory *-- CharacterFlyweight
+TextDocument *-- CharWithPosition
+CharWithPosition *-- CharacterFlyweight
+Client ..> TextDocument : uses
+
+note right: Intrinsic: character, font, size, style
+note right: Extrinsic: position, color
+
+@enduml
