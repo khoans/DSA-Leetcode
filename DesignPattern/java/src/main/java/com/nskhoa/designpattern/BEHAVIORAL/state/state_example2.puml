@@ -1,0 +1,63 @@
+@startuml State Pattern Example - Media Player
+
+interface PlayerState {
+    + play(player: MediaPlayer): void
+    + pause(player: MediaPlayer): void
+    + stop(player: MediaPlayer): void
+    + next(player: MediaPlayer): void
+    + previous(player: MediaPlayer): void
+}
+
+class StoppedState implements PlayerState {
+    + play(player: MediaPlayer): void
+    + pause(player: MediaPlayer): void
+    + stop(player: MediaPlayer): void
+    + next(player: MediaPlayer): void
+    + previous(player: MediaPlayer): void
+}
+
+class PlayingState implements PlayerState {
+    + play(player: MediaPlayer): void
+    + pause(player: MediaPlayer): void
+    + stop(player: MediaPlayer): void
+    + next(player: MediaPlayer): void
+    + previous(player: MediaPlayer): void
+}
+
+class PausedState implements PlayerState {
+    + play(player: MediaPlayer): void
+    + pause(player: MediaPlayer): void
+    + stop(player: MediaPlayer): void
+    + next(player: MediaPlayer): void
+    + previous(player: MediaPlayer): void
+}
+
+class MediaPlayer {
+    - state: PlayerState
+    - playlist: List<Song>
+    - currentIndex: int
+    + setState(state: PlayerState): void
+    + play(): void
+    + pause(): void
+    + stop(): void
+    + next(): void
+    + previous(): void
+    + getCurrentSong(): Song
+}
+
+class MediaClient {
+    + main()
+}
+
+' Relationships
+MediaPlayer *-- PlayerState : manages
+StoppedState ..> MediaPlayer : changes state
+PlayingState ..> MediaPlayer : changes state
+PausedState ..> MediaPlayer : changes state
+MediaClient ..> MediaPlayer : uses
+
+note right: Player behavior changes with state
+note right: Clean state transition logic
+note right: Easy to extend with new states
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml State Pattern Main Components
+
+interface State {
+    + handle(context: Context): void
+}
+
+class ConcreteStateA implements State {
+    + handle(context: Context): void
+}
+
+class ConcreteStateB implements State {
+    + handle(context: Context): void
+}
+
+class ConcreteStateC implements State {
+    + handle(context: Context): void
+}
+
+class Context {
+    - state: State
+    + setState(state: State): void
+    + request(): void
+    + getState(): State
+}
+
+' Relationships
+Context *-- State : manages
+ConcreteStateA ..> Context : changes state
+ConcreteStateB ..> Context : changes state
+ConcreteStateC ..> Context : changes state
+
+note right: Context delegates to current state
+note right: State can change context's state
+note right: Eliminates conditional logic
+
+@enduml

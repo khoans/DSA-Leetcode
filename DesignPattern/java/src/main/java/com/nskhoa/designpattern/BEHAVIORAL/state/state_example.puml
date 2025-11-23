@@ -1,0 +1,67 @@
+@startuml State Pattern Example - Document Workflow
+
+interface DocumentState {
+    + review(document: Document): void
+    + approve(document: Document): void
+    + publish(document: Document): void
+    + getStateName(): String
+}
+
+class DraftState implements DocumentState {
+    + review(document: Document): void
+    + approve(document: Document): void
+    + publish(document: Document): void
+    + getStateName(): String
+}
+
+class ReviewState implements DocumentState {
+    + review(document: Document): void
+    + approve(document: Document): void
+    + publish(document: Document): void
+    + getStateName(): String
+}
+
+class ApprovedState implements DocumentState {
+    + review(document: Document): void
+    + approve(document: Document): void
+    + publish(document: Document): void
+    + getStateName(): String
+}
+
+class PublishedState implements DocumentState {
+    + review(document: Document): void
+    + approve(document: Document): void
+    + publish(document: Document): void
+    + getStateName(): String
+}
+
+class Document {
+    - state: DocumentState
+    - content: String
+    - title: String
+    + setState(state: DocumentState): void
+    + review(): void
+    + approve(): void
+    + publish(): void
+    + getStateName(): String
+    + getContent(): String
+    + setTitle(title: String): void
+}
+
+class DocumentClient {
+    + main()
+}
+
+' Relationships
+Document *-- DocumentState : manages
+DraftState ..> Document : changes state
+ReviewState ..> Document : changes state
+ApprovedState ..> Document : changes state
+PublishedState ..> Document : changes state
+DocumentClient ..> Document : uses
+
+note right: Each state handles transitions
+note right: No conditional logic needed
+note right: Easy to add new states
+
+@enduml
