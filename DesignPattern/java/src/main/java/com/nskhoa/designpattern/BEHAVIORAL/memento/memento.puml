@@ -1,0 +1,34 @@
+@startuml Memento Pattern Main Components
+
+class Originator {
+    - state: Object
+    + createMemento(): Memento
+    + restore(memento: Memento): void
+    + setState(state: Object): void
+    + getState(): Object
+}
+
+class Memento {
+    - state: Object
+    - Originator(backup: Originator)
+    + getState(): Object
+}
+
+class Caretaker {
+    - mementos: List<Memento>
+    - originator: Originator
+    + backup(): void
+    + undo(): void
+    + showHistory(): void
+}
+
+' Relationships
+Caretaker *-- Memento : manages
+Originator ..> Memento : creates
+Caretaker ..> Originator : uses
+
+note right: Originator: creates mementos
+note right: Memento: stores state
+note right: Caretaker: manages history
+
+@enduml

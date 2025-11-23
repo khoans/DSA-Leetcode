@@ -1,0 +1,58 @@
+@startuml Memento Pattern Example - Game Save System
+
+class Game {
+    - level: int
+    - score: int
+    - playerPosition: Point
+    - inventory: List<Item>
+    - health: int
+    + move(direction: String): void
+    + takeDamage(damage: int): void
+    + collectItem(item: Item): void
+    + createSave(): GameMemento
+    + loadSave(memento: GameMemento): void
+    + getGameState(): String
+}
+
+class GameMemento {
+    - level: int
+    - score: int
+    - playerPosition: Point
+    - inventory: List<Item>
+    - health: int
+    - timestamp: Date
+    + GameMemento(game: Game)
+    + getLevel(): int
+    + getScore(): int
+    + getPlayerPosition(): Point
+    + getInventory(): List<Item>
+    + getHealth(): int
+    + getTimestamp(): Date
+}
+
+class SaveManager {
+    - saves: List<GameMemento>
+    - currentSaveIndex: int
+    + quickSave(game: Game): void
+    + loadSave(game: Game, index: int): void
+    + loadLastSave(game: Game): void
+    + deleteSave(index: int): void
+    + listSaves(): List<String>
+    + getSaveCount(): int
+}
+
+class GameClient {
+    + main()
+}
+
+' Relationships
+SaveManager *-- GameMemento : manages
+Game ..> GameMemento : creates
+GameClient ..> Game : plays
+GameClient ..> SaveManager : manages
+
+note right: Game: originator
+note right: GameMemento: save state
+note right: SaveManager: handles saves
+
+@enduml

@@ -1,0 +1,55 @@
+@startuml Memento Pattern Example - Text Editor
+
+class TextEditor {
+    - content: String
+    - cursorPosition: int
+    - selectionStart: int
+    - selectionEnd: int
+    + write(text: String): void
+    + delete(start: int, end: int): void
+    + createSnapshot(): TextEditorMemento
+    + restore(snapshot: TextEditorMemento): void
+    + getContent(): String
+}
+
+class TextEditorMemento {
+    - content: String
+    - cursorPosition: int
+    - selectionStart: int
+    - selectionEnd: int
+    - timestamp: Date
+    + TextEditorMemento(editor: TextEditor)
+    + getContent(): String
+    + getCursorPosition(): int
+    + getSelectionStart(): int
+    + getSelectionEnd(): int
+    + getTimestamp(): Date
+}
+
+class HistoryManager {
+    - snapshots: Stack<TextEditorMemento>
+    - redoStack: Stack<TextEditorMemento>
+    - maxSize: int
+    + save(editor: TextEditor): void
+    + undo(editor: TextEditor): void
+    + redo(editor: TextEditor): void
+    + canUndo(): boolean
+    + canRedo(): boolean
+    + clear(): void
+}
+
+class EditorClient {
+    + main()
+}
+
+' Relationships
+HistoryManager *-- TextEditorMemento : manages
+TextEditor ..> TextEditorMemento : creates
+EditorClient ..> TextEditor : uses
+EditorClient ..> HistoryManager : uses
+
+note right: TextEditor: originator
+note right: TextEditorMemento: state container
+note right: HistoryManager: caretaker
+
+@enduml
