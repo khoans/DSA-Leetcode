@@ -1,0 +1,61 @@
+@startuml Interpreter Pattern Example - Math Expressions
+
+interface Expression {
+    + interpret(context: Context): int
+}
+
+class NumberExpression implements Expression {
+    - value: int
+    + interpret(context: Context): int
+}
+
+class AddExpression implements Expression {
+    - left: Expression
+    - right: Expression
+    + interpret(context: Context): int
+}
+
+class SubtractExpression implements Expression {
+    - left: Expression
+    - right: Expression
+    + interpret(context: Context): int
+}
+
+class MultiplyExpression implements Expression {
+    - left: Expression
+    - right: Expression
+    + interpret(context: Context): int
+}
+
+class VariableExpression implements Expression {
+    - name: String
+    + interpret(context: Context): int
+}
+
+class Context {
+    - variables: Map<String, Integer>
+    + setVariable(name: String, value: int): void
+    + getVariable(name: String): int
+}
+
+class ExpressionParser {
+    + parse(expression: String): Expression
+}
+
+class CalculatorClient {
+    + main()
+}
+
+' Relationships
+AddExpression *-- Expression : left, right
+SubtractExpression *-- Expression : left, right
+MultiplyExpression *-- Expression : left, right
+ExpressionParser ..> Expression : creates
+CalculatorClient ..> ExpressionParser : uses
+CalculatorClient ..> Context : manages
+
+note right: Builds expression tree
+note right: Evaluates mathematical expressions
+note right: Supports variables and operations
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml Interpreter Pattern Main Components
+
+interface Expression {
+    + interpret(context: Context): int
+}
+
+class TerminalExpression implements Expression {
+    - value: Object
+    + interpret(context: Context): int
+}
+
+class NonterminalExpression implements Expression {
+    - expressions: List<Expression>
+    + interpret(context: Context): int
+}
+
+class Context {
+    - variables: Map<String, Object>
+    - state: Object
+}
+
+class Client {
+    + main()
+}
+
+' Relationships
+NonterminalExpression *-- Expression : contains
+Client ..> Expression : creates
+Client ..> Context : uses
+
+note right: Terminal: handles basic tokens
+note right: Non-terminal: combines expressions
+note right: Context: global interpreter state
+
+@enduml
